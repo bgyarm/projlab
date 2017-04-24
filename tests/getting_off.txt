@@ -1,0 +1,14 @@
+1 7
+R;RR0;RB0;RG0;R;R;R
+-
+E0 0 0
+C0 R 1
+C0 G 1
+C0 B 1
+M 6
+.
+/Railmap:
+R   | RR0 | RB0 | RG0 | R   | R   | R
+
+/TrainMap:
+0   | 0   | 0   | C0B0| C0G0| C0R0| E0

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/application/Command.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/struct/Carriage.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/struct/CoalCar.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/struct/Crossing.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/struct/ElementBase.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/struct/Rail.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/struct/Station.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/struct/Switch.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/struct/Tunnel.java" charset="ISO-8859-1" />
+  </component>
+</project>

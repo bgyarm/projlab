@@ -1,0 +1,20 @@
+3 3
+R;S;R
+0;R;S
+0;0;R
+-
+S 0 1 BC
+E0 0 0
+M 1
+S 0 1 BD
+M0 4
+.
+/Railmap:
+R   | SBC | R
+0   | R   | SAB
+0   | 0   | R
+
+/TrainMap:
+0   | 0   | !D0
+0   | 0   | 0
+0   | 0   | 0
