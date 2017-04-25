@@ -46,16 +46,16 @@ public class Rail extends RailElement {
 
     public Station getStation(){
         return station;
-    }
+    }//visszaadja az állomást
 
     @Override
-    public boolean isEntrance(){
-        if(railA == null || railB == null)
+    public boolean isEntrance(){//lehet e bejárat. Ilyenkor valamelyik végének nullnak kell lenni, ahol bejön a vonat.
+        if(railA == null || railB == null)//azt hogy pálya szélér?l indul e azt a vonat létrehozásakor ellen?rizzük
             return true;
         return false;
     }
     
-    public boolean remove(RailElement element){
+    public boolean remove(RailElement element){//szétkapcsoljuk az aktuális sínt és a paraméterben kapottat, ha lehet.
     	if(railA == element)
     		railA = null;
     	else if(railB == element)

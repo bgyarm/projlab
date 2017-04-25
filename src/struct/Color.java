@@ -6,5 +6,5 @@ public enum Color {
     green,
     rainbow;
 
-    boolean equals(Color c){ return this == c || this == rainbow || c == rainbow; }
+    boolean equals(Color c){ return this == c || this == rainbow || c == rainbow; }//a szivárvány szín mindennel ekvivalens
 }

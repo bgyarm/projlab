@@ -7,16 +7,16 @@ public class Station{
     public Station(Color c){
     	this.c = c;
     	passengers = false;
-    	}
+    }
     
     public Station(Color c, boolean p){
     	this.c = c;
     	passengers = p;
-    	}
+    }
 
 	public Color getColor(){
         return c;
-    }
+    }//visszaadja a színét
     
     //vannak-e utasok
     public boolean hasPassengers(){

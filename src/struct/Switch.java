@@ -5,8 +5,8 @@ public class Switch extends RailElement {
     private RailElement[] sw;
     private State state;
 
-    //négy állapottal
-    enum State{
+    //hat lehetséges állapot
+    enum State{//állapotok azzal a jelzéssel hogy melyik sínhez vannak csatlakoztatva
         AB(0, 1),
         BC(1, 2),
         CD(2, 3),
@@ -15,7 +15,7 @@ public class Switch extends RailElement {
         BD(1, 3);
         int[] a;
         State(int a, int b){this.a = new int[]{a, b};}
-        int[] getState(){return a;}
+        int[] getState(){return a;}//visszakapjuk a két összekötött sínt.
     }
 
 
@@ -23,7 +23,7 @@ public class Switch extends RailElement {
     public Switch(){
         sw = new RailElement[4];
     	trainElement = null;
-        notConnected = new RailElement() {
+        notConnected = new RailElement() {//nem csatlakozott sínt jelzi
             @Override
             public boolean setNext(RailElement next) {
                 return false;
@@ -34,9 +34,9 @@ public class Switch extends RailElement {
                 return null;
             }
         };
-        state = State.AB;
+        state = State.AB;//alap állapot az AB állapot
     }
-	public Switch(String state){
+	public Switch(String state){//meg lehet adni kezdö állapottal is
         sw = new RailElement[4];
 		trainElement = null;
         notConnected = new RailElement() {
@@ -57,12 +57,12 @@ public class Switch extends RailElement {
     @Override
     public boolean setNext(RailElement element){
         if(element == null)
-            return setNext(notConnected);
+            return setNext(notConnected);//ha nincs csatlakoztatva akkor is jelzö értékkel beállítunk egy objektumot
         if(element != notConnected)
             for(int i = 0; i < 4; i++)
-                if(sw[i] == element) return true;
+                if(sw[i] == element) return true;//ha már szerepel
         for(int i = 0; i < 4; i++)
-            if (sw[i] == null) {
+            if (sw[i] == null) {//ha be tudjuk írni beírjuk
                 sw[i] = element;
                 return true;
             }
@@ -83,10 +83,10 @@ public class Switch extends RailElement {
     }
 
     //megadja, hogy lehetséges-e egyáltalán a váltás
-    private boolean valid(){
+    private boolean valid(){//akor lehetséges ha van legalább két aktív sine
     	int n = 0;
     	for (int i = 0; i < 4; i++){
-            if(sw[i] != null) n++;
+            if(sw[i] != null || sw[i] != notConnected) n++;//null is lehet ha még nem volt meghívva rá a setNext
         }
     	return n>2;
     }
@@ -102,39 +102,39 @@ public class Switch extends RailElement {
         }
     }
 
-    public void changeDirection() {
+    public void changeDirection() {//megpróbálja a következö állapotba állítani a váltót
     	//Ha nem lehetséges a váltás, ne próbálkozzon
         if(!valid()) return;
         if (trainElement == null) {
-        	switch(state){
+        	switch(state){//megviszgálja az aktuális helyzetet, majd dönt a következö állapotról
         	case AB:
         		state = State.BC;
-        		if(sw[2] == null)
+        		if(sw[2] == null || sw[2] == notConnected)//ha olyan helyzetbe szeretne váltani ahon nincs sín
         			changeDirection();
         		break;
         	case BC:
         		state = State.CD;
-        		if(sw[3] == null)
+        		if(sw[3] == null || sw[3] == notConnected)
         			changeDirection();
         		break;
         	case CD:
         		state = State.DA;
-        		if(sw[0] == null)
+        		if(sw[0] == null || sw[0] == notConnected)
         			changeDirection();
         		break;
         	case DA:
         		state = State.AC;
-        		if(sw[2] == null)
+        		if(sw[2] == null || sw[2] == notConnected)
         			changeDirection();
         		break;
         	case AC:
         		state = State.BD;
-        		if(sw[1] == null || sw[3] == null)
+        		if(sw[1] == null || sw[3] == null || sw[1] == notConnected || sw[3] == notConnected)
         			changeDirection();
         		break;
         	case BD:
         		state = State.AB;
-        		if(sw[0] == null)
+        		if(sw[0] == null || sw[0] == notConnected)
         			changeDirection();
         		break;
         	}
@@ -142,10 +142,10 @@ public class Switch extends RailElement {
     }
 
     @Override
-    public boolean isEntrance(){
+    public boolean isEntrance(){//lehet e kiindulópont
         int n = 0;
         for(int i = 0; i < 4; i++)
-            if(sw[i] == notConnected)
+            if(sw[i] == null || sw[i] == notConnected)//akkor lehet ha van legalább 1 nem csatlakoztatott vége
                 n++;
         return n > 0 && n < 3;
     }

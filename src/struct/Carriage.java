@@ -20,16 +20,15 @@ public class Carriage extends ElementBase {
     public Color getColor(){return color;}
     public boolean hasPassangers(){return !empty;}
 
-    public void move() {
+    public void move() {//mozgatjuk a vagonokat.
 
-        prevRail = actRail;
+        prevRail = actRail;//beállítjuk a dolgokat
     	actRail = parent.prevRail;
     	if(actRail != null)
     		actRail.setTrainElement(this);
     	if(prevRail != null)
     	    prevRail.setTrainElement(child);
-    	boolean tokenpass = false;
-    	//RailElement prevRail = actRail;
+    	boolean tokenpass = false;//csak akkor adjuk át a tokent ha kiürült egy vagon. Alapból ezért false
         
         //nézzük meg, van-e itt állomás, ahová érkeztünk
         //ha van és egyezik a színünk...

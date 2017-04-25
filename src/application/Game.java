@@ -14,13 +14,13 @@ public class Game {
 		level = 0;
 		pause = false;
 		try {
-			levelPath = new File("").getAbsolutePath() + "\\levels\\";
+			levelPath = new File("").getAbsolutePath() + "\\levels\\";//a levels mappából töltjük be a pályákat.
 			levels = new File(levelPath).list();
 		} catch (Exception e){
 			e.printStackTrace();
 		}
 	}
-    //Végső állapot megvalósításához már kelleni fog GUI.
+    //Itt inicialízáljuk a grafikus részeket is majd.
 	public static void start(String actLevel){
         Command c = new Command();
         c.input(actLevel);
@@ -36,9 +36,9 @@ public class Game {
 	
 	public static void pause(){
 		pause = !pause;
-	}
+	}//megállíthatjuk, és elindíthatjuk a játékot
 	
-    public static void gameOver(){
+    public static void gameOver(){//játék vége
 	    over = true;
         //Logger.printMethodCall("Game", "gameOver");
     }

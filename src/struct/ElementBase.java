@@ -18,26 +18,21 @@ public abstract class ElementBase {
 
     public String getName(){return name;}
 
-    //Szerintem ennyi elég a crash-hez, illetve a gameOver kaphat String paraméter, 
-    //És abból ki tudja írni, hogy crash volt
-    //Esetleg a grafikai megjelenítésnél majd oda tudunk dobni valamit
-    public void crash(String id){
+    public void crash(String id){//ütközés valamelyik vonattal. Az id annak a vonatnak az azonosítója (neve) amelyikkel ütközik egy másik vonat.
     	crashedWith = id;
     	try {
-            ((Engine) this).stop();
+            ((Engine) this).stop();//megállítjuk hogy ne mozogjon tovább a vonat.
         }catch (Exception e){}
-        Game.gameOver();
+        Game.gameOver();//játéknak vége lesz
     }
-    public abstract void move();
-    
-    public void destroy(){
-    }
-    public boolean getDerailed(){
+    public abstract void move();//mozgatás, minden esetben felülírjuk.
+
+    public boolean getDerailed(){//lekéri az elsö vonatelemnek állapotát, ez csak egy engine lehet.
         ElementBase eb;
-        for(eb = this; this.parent != null; eb = this.parent);
+        for(eb = this; this.parent != null; eb = this.parent);//sor elejére megyünk
         return eb.derailed;
     }
-    public String getCrshed(){
+    public String getCrshed(){//lekéri az engine állapotát
         ElementBase eb;
         for(eb = this; this.parent != null; eb = this.parent);
         return eb.crashedWith;
