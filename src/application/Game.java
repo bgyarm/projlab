@@ -1,30 +1,46 @@
 package application;
 
+import struct.*;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.Color;
 import java.io.File;
 
-public class Game {
+public class Game extends JLayeredPane {
 	
 	private static int level;
 	private static boolean pause;
 	private static boolean over = false;
-	private static String levelPath;
-	private static String[] levels;
+    private String actLevel;
+	private View view;
+	private Menu menu;
+    private final static int fps = 30;
+    private Controller controller;
+    public static Font font = new Font("Comic Sans MS", Font.BOLD, 40);
 	
 	public Game(){
 		level = 0;
 		pause = false;
-		try {
-			levelPath = new File("").getAbsolutePath() + "\\levels\\";//a levels mappából töltjük be a pályákat.
-			levels = new File(levelPath).list();
-		} catch (Exception e){
-			e.printStackTrace();
-		}
+        setBounds(0, 0, Window.windowWidth, Window.windowHeight);
+        setBackground(Color.black);
+        menu = new Menu(this);
+        view = new View(Window.windowWidth-20-Window.borderW, Window.windowHeight/2);
+        view.setSize(Window.windowWidth-20-Window.borderW, Window.windowHeight/2);
+        getInfo();
+        add(menu, new Integer(0), 0);
+        add(view, new Integer(1), 0);
+        setVisible(true);
 	}
-    //Itt inicialízáljuk a grafikus részeket is majd.
-	public static void start(String actLevel){
-        Command c = new Command();
-        c.input(actLevel);
-        c.start();
+
+    public void getInfo(){
+	    view.clear();
+	    actLevel = menu.getAct();
+        controller = new Controller(view, actLevel);
+    }
+
+
+    public void startLevel(){
 
     }
 	

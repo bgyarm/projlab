@@ -8,6 +8,8 @@ import struct.*;
 public class Main {
 
     public static void main(String[] args) {
+    	Window window = new Window(800, 600);
+
     	Command comm = new Command();
     	InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
@@ -19,7 +21,7 @@ public class Main {
         		cmd = line.split(" ");
         		if(cmd[0].equals("input"))comm.input(cmd[1]);
         		if(cmd[0].equals("output"))comm.output(cmd[1]);
-        		if(cmd[0].equals("start"))comm.start();
+        		if(cmd[0].equals("start"))comm.init();
         		if(cmd[0].equals("exit"))break;
         	}
         }catch(Exception e){

@@ -1,13 +1,16 @@
 package application;
 
+import java.awt.*;
 import java.io.*;
 import java.rmi.server.ExportException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 
 import struct.*;
+import struct.Color;
 
 import javax.xml.bind.Element;
 
@@ -18,16 +21,24 @@ public class Command {
 	private ElementBase[][] trainMap;
 	private ArrayList<ArrayList<ElementBase>> trains = new ArrayList<>();
 	private ArrayList<String> result = new ArrayList<>();
+	private ArrayList<String> furthers;
+	private Dimension mapSize;
+	private boolean testing = false;
 	
 	public void input(String path){//bemeneti fájl beállítása
-	    String testdir = new File("").getAbsolutePath() + "\\tests\\";
-		File temp = new File(testdir + path + ".txt");
-		if(temp.isFile()){
-			input = temp;
-			System.out.println("Input set: " + input.getAbsolutePath());
-		}
-		else
-			System.out.println("File not found! (" + temp.getAbsolutePath() + ")");
+        String testdir;
+        if(testing) {
+            testdir = new File("").getAbsolutePath() + "\\tests\\";
+        } else {
+            testdir = new File("").getAbsolutePath() + "\\levels\\";
+        }
+            File temp = new File(testdir + path + ".txt");
+            if (temp.isFile()) {
+                input = temp;
+                System.out.println("Input set: " + input.getAbsolutePath());
+            } else
+                System.out.println("File not found! (" + temp.getAbsolutePath() + ")");
+
 	}
 	
 	public void output(String path){// kimeneti fájl beállítása
@@ -42,22 +53,24 @@ public class Command {
 		}
 	}
 	
-	public void start(){ //bemenetröl érkezö utasítások lefuttatása
+	public void init(){ //bemenetröl érkezö utasítások lefuttatása
 		try{
 			FileInputStream fis;
 			InputStreamReader isr;
 			if(input != null) {//ha van érvényes fájl megadva a programnak, onnan tölti be az utasításokat, egyébként Consolból lehet megadni
 				fis = new FileInputStream(input);
 				isr = new InputStreamReader(fis);
-				System.out.println("Test started from file.");
+				if(testing)
+				    System.out.println("Test started from file.");
 			} else {
                 isr = new InputStreamReader(System.in);
-                System.out.println("Test started from console.");
+                if(testing)
+                    System.out.println("Test started from console.");
             }
 			BufferedReader br = new BufferedReader(isr);
 		    ArrayList<String> matrix = new ArrayList<>(); //pálya leírását tartalmazza majd
 		    ArrayList<String> commands = new ArrayList<>(); //az utasításokat tartalmazza
-		    ArrayList<String> expected = new ArrayList<>(); // a várt eredmény ide fog betölteni
+		    furthers = new ArrayList<>(); //teszt: a várt eredmény ide fog betölteni/játékban: további vonatok létrehozásának kommandjai
 
 		    String info = br.readLine();
 		    if(info == null)
@@ -65,7 +78,8 @@ public class Command {
             String[] size = info.split("/")[0].trim().split(" ");//pályaméret beolvasása
             if(size.length != 2)
                 return;
-            System.out.format("Size of matrix is: %sx%s\n", size[0], size[1]);
+            mapSize = new Dimension(Integer.parseInt(size[1]), Integer.parseInt(size[0]));
+            System.out.format("Size of matrix is: %sx%s\n", mapSize.height, mapSize.width);
             String line;
 		    while((line = br.readLine()) != null && !line.equals("-")){
 		    	matrix.add(line.split("/")[0].trim());
@@ -75,27 +89,42 @@ public class Command {
             }
             while((line = br.readLine()) != null){
                 if(line.split("/")[0].length() > 1)
-                    expected.add(line.split("/")[0].trim());
+                    furthers.add(line.split("/")[0].trim());
             }
 
-		    railMap(size, matrix);
-            runCommands(commands);
-		    getRailMap();
-		    getTrainMap();
-		    writeOut(result);
-		    if(testMatch(Integer.parseInt(size[0]), expected))
-		        System.out.println("Match!");
-		    else
-		        System.out.println("Not match!");
+            railMap(matrix);
+            trainMap = new ElementBase[railMap.length][railMap[0].length];
+            for (int i = 0; i < commands.size(); i++)
+                runCommand(commands.get(i), railMap);
+
+            /*
+            Random r = new Random();
+            double percent = 0.2;
+            for (int i = 0; i < commands.size(); i++) {
+                r.nextInt(100);//események bekövetkezésének randomizálása.
+                if(i < 100*percent)
+                    runCommand(commands.get(i));
+                else
+                    i--;
+            }*/
+            getRailMap();
+            getTrainMap();
+            if(testing) {
+                writeOut(result);
+                if (testMatch(mapSize.height, furthers))
+                    System.out.println("Match!");
+                else
+                    System.out.println("Not match!");
+            }
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 	
-	private void railMap(String [] size, ArrayList<String> mrx){//a sínpálya felépítése
+	private void railMap(ArrayList<String> mrx){//a sínpálya felépítése
 		try{
-			int h = Integer.parseInt(size[0]);
-			int w = Integer.parseInt(size[1]);
+			int h = mapSize.height;
+			int w = mapSize.width;
 			if(h <=0 || w <=0 || h != mrx.size())
 				throw new Exception("Wrong parameter(s)!");
 			
@@ -157,12 +186,9 @@ public class Command {
 		return null;
 	}
 
-	public void runCommands(ArrayList<String> cmds){//események elsütése
+	public void runCommand(String cmd, RailElement[][] map){//események elsütése
 	    try {
-            trainMap = new ElementBase[railMap.length][railMap[0].length];
-
-            for (int i = 0; i < cmds.size(); i++) {
-                String[] comm = cmds.get(i).split(" ");
+                String[] comm = cmd.split(" ");
                 switch (comm[0].charAt(0)) {
                     case 'E'://Engine létrehozása:
                         if (comm.length == 3) {
@@ -170,11 +196,11 @@ public class Command {
                             Engine e;
                             int h = Integer.parseInt(comm[1]);
                             int w = Integer.parseInt(comm[2]);
-                            if ((h == 0 || w == 0) && railMap[h][w].isEntrance()) {
-                                e = new Engine(railMap[h][w]);
+                            if ((h == 0 || w == 0) && map[h][w].isEntrance()) {
+                                e = new Engine(map[h][w]);
                                 e.setName(comm[0]);
                                 train.add(e);
-                                trainMap[h][w] = e;
+                                //trainMap[h][w] = e;
                                 trains.add(train);//vonat listába felvétel
                             }
                         }
@@ -210,7 +236,7 @@ public class Command {
                             int h = Integer.parseInt(comm[1]);
                             int w = Integer.parseInt(comm[2]);
                             if(comm[3].equals("C")) {//ha építeni akarunk
-                                if (railMap[h][w] == null) {
+                                if (map[h][w] == null) {
                                     RailElement[] neighs = getNeighbours(h, w); //megkeressük a szomszédban lévö elemeket
                                     for(int n = 0; n < 4; n++) {
                                         if (neighs[n] != null) {//csak akkor építhetünk egy helyre alagútat, ha pontosan egy érvényes sínelem van a szomszédok között
@@ -219,18 +245,18 @@ public class Command {
                                                 if (j != n)
                                                     b = b && neighs[j] == null;//pontosan 1 érvényes elem lehet a környéken amihez hozzáköthetjük.
                                             if (b) {
-                                                railMap[h][w] = new Tunnel();//létrehozzuk és megpróbáljuk elhelyezni
-                                                if(!((Tunnel)railMap[h][w]).build(neighs[n]))// jó helyen felépítjük. Azt hogy hány alagút van azt a Tunnel.build függvény közben ellenörizzük
-                                                    railMap[h][w] = null; // ha nem lehet építeni, megszüntetjük.
+                                                map[h][w] = new Tunnel();//létrehozzuk és megpróbáljuk elhelyezni
+                                                if(!((Tunnel)map[h][w]).build(neighs[n]))// jó helyen felépítjük. Azt hogy hány alagút van azt a Tunnel.build függvény közben ellenörizzük
+                                                    map[h][w] = null; // ha nem lehet építeni, megszüntetjük.
                                                 break;
                                             }
                                         }
                                     }
                                 }
                             } else if(comm[3].equals("D")) //ha lebontanánk
-                                if(railMap[h][w].getClass().getSimpleName().equals("Tunnel")) {
-                                    if(((Tunnel) railMap[h][w]).destroy())//ha le lehet bontani, nem áll rajta a vonat
-                                        railMap[h][w] = null;// megszüntetjük a pályáról is.
+                                if(map[h][w].getClass().getSimpleName().equals("Tunnel")) {
+                                    if(((Tunnel) map[h][w]).destroy())//ha le lehet bontani, nem áll rajta a vonat
+                                        map[h][w] = null;// megszüntetjük a pályáról is.
                                 }
                         }
                         break;
@@ -239,13 +265,13 @@ public class Command {
 
                             int h = Integer.parseInt(comm[1]);
                             int w = Integer.parseInt(comm[2]);
-                            if(railMap[h][w].getClass().getSimpleName().equals("Switch"))
-                                ((Switch)railMap[h][w]).changeDirection(comm[3]);//Ha tud az adott állapotba vált
+                            if(map[h][w].getClass().getSimpleName().equals("Switch"))
+                                ((Switch)map[h][w]).changeDirection(comm[3]);//Ha tud az adott állapotba vált
                         } else if(comm.length == 3){ //ha nincs álapot paraméter
                             int h = Integer.parseInt(comm[1]);
                             int w = Integer.parseInt(comm[2]);
-                            if(railMap[h][w].getClass().getSimpleName().equals("Switch"))
-                                ((Switch)railMap[h][w]).changeDirection();
+                            if(map[h][w].getClass().getSimpleName().equals("Switch"))
+                                ((Switch)map[h][w]).changeDirection();
                         }
                         break;
                     case 'M'://Mozgatjuk a vonatokat
@@ -263,7 +289,6 @@ public class Command {
                             }
                         break;
                 }
-            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -437,6 +462,8 @@ public class Command {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
+
+    public Dimension getDim(){return mapSize;}
+    public RailElement[][] getMap(){return railMap;}
 }
