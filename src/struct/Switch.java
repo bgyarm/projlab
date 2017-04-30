@@ -109,33 +109,21 @@ public class Switch extends RailElement {
         	switch(state){//megviszgálja az aktuális helyzetet, majd dönt a következö állapotról
         	case AB:
         		state = State.BC;
-        		if(sw[2] == null || sw[2] == notConnected)//ha olyan helyzetbe szeretne váltani ahon nincs sín
-        			changeDirection();
         		break;
         	case BC:
         		state = State.CD;
-        		if(sw[3] == null || sw[3] == notConnected)
-        			changeDirection();
         		break;
         	case CD:
         		state = State.DA;
-        		if(sw[0] == null || sw[0] == notConnected)
-        			changeDirection();
         		break;
         	case DA:
         		state = State.AC;
-        		if(sw[2] == null || sw[2] == notConnected)
-        			changeDirection();
         		break;
         	case AC:
         		state = State.BD;
-        		if(sw[1] == null || sw[3] == null || sw[1] == notConnected || sw[3] == notConnected)
-        			changeDirection();
         		break;
         	case BD:
         		state = State.AB;
-        		if(sw[0] == null || sw[0] == notConnected)
-        			changeDirection();
         		break;
         	}
         }

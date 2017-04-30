@@ -1,11 +1,8 @@
 package application;
 
-import struct.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Color;
-import java.io.File;
 
 public class Game extends JLayeredPane {
 	
@@ -27,21 +24,24 @@ public class Game extends JLayeredPane {
         menu = new Menu(this);
         view = new View(Window.windowWidth-20-Window.borderW, Window.windowHeight/2);
         view.setSize(Window.windowWidth-20-Window.borderW, Window.windowHeight/2);
+        actLevel = menu.getAct();
+        controller = new Controller(view, actLevel);
         getInfo();
         add(menu, new Integer(0), 0);
         add(view, new Integer(1), 0);
+        view.addMouseListener(controller.getListener());
         setVisible(true);
 	}
 
     public void getInfo(){
 	    view.clear();
 	    actLevel = menu.getAct();
-        controller = new Controller(view, actLevel);
+        controller.init(actLevel);
     }
 
 
     public void startLevel(){
-
+        controller.validate();
     }
 	
 	public static void nextLevel(){

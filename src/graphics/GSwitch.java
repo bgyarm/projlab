@@ -24,7 +24,7 @@ public class GSwitch extends Drawable {
                     rotate(180);
                 else if(state.equals("BC"))
                     rotate(90);
-                else if(state.equals("AD"))
+                else if(state.equals("DA"))
                     rotate(270);
             }
         } catch (IOException ex){}

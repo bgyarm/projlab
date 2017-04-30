@@ -23,7 +23,7 @@ public class Command {
 	private ArrayList<String> result = new ArrayList<>();
 	private ArrayList<String> furthers;
 	private Dimension mapSize;
-	private boolean testing = false;
+	private boolean testing = true;
 	
 	public void input(String path){//bemeneti fájl beállítása
         String testdir;
@@ -249,7 +249,8 @@ public class Command {
                                                 if(!((Tunnel)map[h][w]).build(neighs[n]))// jó helyen felépítjük. Azt hogy hány alagút van azt a Tunnel.build függvény közben ellenörizzük
                                                     map[h][w] = null; // ha nem lehet építeni, megszüntetjük.
                                                 break;
-                                            }
+                                            } else
+                                                break;
                                         }
                                     }
                                 }
@@ -466,4 +467,5 @@ public class Command {
 
     public Dimension getDim(){return mapSize;}
     public RailElement[][] getMap(){return railMap;}
+    public ArrayList<String> getFurthers(){return furthers;}
 }

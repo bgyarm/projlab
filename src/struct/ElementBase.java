@@ -38,6 +38,7 @@ public abstract class ElementBase {
         return eb.crashedWith;
     }
     public RailElement getActRail(){return actRail;}
+    public RailElement getPrevRail() {return prevRail;}
     public abstract void giveToken();
     public abstract void takeToken();
     public abstract boolean hasToken();

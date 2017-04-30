@@ -47,7 +47,7 @@ public class Engine extends ElementBase {
 
     public void stop(){
     	active = false;
-    }//me glehet állítani
+    }//meg lehet állítani
 
     private  void derail(){
         //Logger.printMethodCall("Engine","derail");
