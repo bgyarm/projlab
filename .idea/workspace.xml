@@ -11,8 +11,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/Switch.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/Switch.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/Tunnel.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/Tunnel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/Command.java" afterPath="$PROJECT_DIR$/src/application/Command.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/Main.java" afterPath="$PROJECT_DIR$/src/application/Main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -774,7 +772,7 @@
       <workItem from="1493202250214" duration="4340000" />
       <workItem from="1493293738455" duration="490000" />
       <workItem from="1493391683110" duration="1779000" />
-      <workItem from="1493394089324" duration="68979000" />
+      <workItem from="1493394089324" duration="68988000" />
     </task>
     <task id="LOCAL-00001" summary="prototype done">
       <created>1493163885910</created>
@@ -804,11 +802,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493593884491</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Menu and Graphics 2">
+      <created>1493594024359</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1493594024359</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="200075000" />
+    <option name="totallyTimeSpent" value="200084000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1374" height="737" extended-state="6" />
