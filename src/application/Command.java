@@ -23,7 +23,7 @@ public class Command {
 	private ArrayList<String> result = new ArrayList<>();
 	private ArrayList<String> furthers;
 	private Dimension mapSize;
-	private boolean testing = true;
+	private boolean testing = false;
 	
 	public void input(String path){//bemeneti fájl beállítása
         String testdir;
