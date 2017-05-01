@@ -71,6 +71,7 @@ public class Command {
 		    ArrayList<String> matrix = new ArrayList<>(); //pálya leírását tartalmazza majd
 		    ArrayList<String> commands = new ArrayList<>(); //az utasításokat tartalmazza
 		    furthers = new ArrayList<>(); //teszt: a várt eredmény ide fog betölteni/játékban: további vonatok létrehozásának kommandjai
+            trains.clear();
 
 		    String info = br.readLine();
 		    if(info == null)

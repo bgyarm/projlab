@@ -32,6 +32,10 @@ public class Controller {
                         events.add(comm);
                         validate();
                     }
+                } else {
+                    newTrain();
+                    events.add("M");
+                    validate();
                 }
             }
             @Override
@@ -109,29 +113,37 @@ public class Controller {
     }
 
     public void validate(){
-        events.add("M");
         for (String ev : events) {
             comm.runCommand(ev, railMap);
         }
-        events.clear();
+        events.clear();/*
         for( Dimension d : modified)
             getGraphics(railMap[d.width][d.height], d.width, d.height);
-        modified.clear();
+        modified.clear();*/
+        for(int i = 0; i < railMap.length; i++)
+            for(int j = 0; j < railMap[i].length; j++)
+                getGraphics(railMap[i][j], i, j);
         for(int i = 0; i < railMap.length; i++)
             for(int j = 0; j < railMap[i].length; j++) {
                 if (railMap[i][j] != null) {
                     if (railMap[i][j].getTrainElement() != null) {
                         ElementBase tmp = railMap[i][j].getTrainElement();
-                        if (tmp.getClass().getSimpleName().equals("Engine")) {
-                            RailElement[] neighs = comm.getNeighbours(i, j);
-                            String direction = "";
-                            for(int n = 0; n < 4; n++)
-                                if(neighs[n].equals(tmp.getPrevRail()))
-                                    direction += n;
-                            for(int n = 0; n < 4; n++)
-                                if(neighs[n].equals(tmp.getActRail().getNext(tmp.getPrevRail())))
-                                    direction += n;
-                            view.addTrain(new GEngine(j * View.imgSize, i * View.imgSize, direction), i, j);
+                        RailElement[] neighs = comm.getNeighbours(i, j);
+                        String direction = "";
+                        for(int n = 0; n < 4; n++)
+                            if(neighs[n] != null && neighs[n].equals(tmp.getPrevRail()))
+                                direction += n;
+                        for(int n = 0; n < 4; n++)
+                            if(neighs[n] != null && neighs[n].equals(tmp.getActRail().getNext(tmp.getPrevRail())))
+                                direction += n;
+                        if (tmp.getClass().getSimpleName().equals("Engine"))
+                            view.addTrain(new GEngine(j * View.imgSize, i * View.imgSize, direction), j, i);
+                        else if (tmp.getClass().getSimpleName().equals("CoalCar")){
+                            view.addTrain(new GCar(j * View.imgSize, i * View.imgSize, direction, "coal"), j, i);
+                        }
+                        else {
+                            String color = ((Carriage)tmp).getColor().name();
+                            view.addTrain(new GCar(j * View.imgSize, i * View.imgSize, direction, color), j, i);
                         }
                     } else
                         view.addTrain(null, j, i);
@@ -178,6 +190,17 @@ public class Controller {
 
     public void addEvent(String ev){
         events.add(ev);
+    }
+
+    public void newTrain(){
+        String s = "";
+        do{
+            if(comm.getFurthers().size() > 0){
+                addEvent(comm.getFurthers().get(0));
+                comm.getFurthers().remove(0);
+            }
+        }
+        while(comm.getFurthers().size() > 0 && comm.getFurthers().get(0).charAt(0) != 'E');
     }
 
     public MouseListener getListener(){return listener;}

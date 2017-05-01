@@ -126,6 +126,11 @@ public class Switch extends RailElement {
         		state = State.AB;
         		break;
         	}
+            for(int i = 0; i < 4; i++)
+                if(i == state.getState()[0] || i == state.getState()[1])
+                    sw[i].setNext(this);
+                else
+                    sw[i].remove(this);
         }
     }
 

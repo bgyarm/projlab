@@ -5,8 +5,7 @@ import java.awt.*;
 import java.awt.Color;
 
 public class Game extends JLayeredPane {
-	
-	private static int level;
+
 	private static boolean pause;
 	private static boolean over = false;
     private String actLevel;
@@ -17,7 +16,6 @@ public class Game extends JLayeredPane {
     public static Font font = new Font("Comic Sans MS", Font.BOLD, 40);
 	
 	public Game(){
-		level = 0;
 		pause = false;
         setBounds(0, 0, Window.windowWidth, Window.windowHeight);
         setBackground(Color.black);
@@ -43,10 +41,6 @@ public class Game extends JLayeredPane {
     public void startLevel(){
         controller.validate();
     }
-	
-	public static void nextLevel(){
-		level++;
-	}
 
 	public static boolean isOver(){return over;}
 	

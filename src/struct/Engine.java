@@ -17,7 +17,7 @@ public class Engine extends ElementBase {
     
     @Override
     public void move(){
-    	if(!active || Game.isOver()) return;//ha nincs vége a játéknak, vagy nem aktív, nem mozgatjuk
+    	if(!active) return;//ha nincs vége a játéknak, vagy nem aktív, nem mozgatjuk
         //Logger.printMethodCall("Engine","move");
         
         RailElement nextRail = actRail.getNext(prevRail);//magkapjuk az előző pozícióból kiszámított következő pozíciót.
