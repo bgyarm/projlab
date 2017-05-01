@@ -7,17 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75def48b-032a-4ca2-8f82-d05d99f44f07" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/application/Command.class" afterPath="$PROJECT_DIR$/out/production/projekt/application/Command.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/application/Game.class" afterPath="$PROJECT_DIR$/out/production/projekt/application/Game.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/application/Main.class" afterPath="$PROJECT_DIR$/out/production/projekt/application/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/Engine.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/Engine.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/Switch.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/Switch.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/Command.java" afterPath="$PROJECT_DIR$/src/application/Command.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/Controller.java" afterPath="$PROJECT_DIR$/src/application/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/Game.java" afterPath="$PROJECT_DIR$/src/application/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/GCar.java" afterPath="$PROJECT_DIR$/src/graphics/GCar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/GEngine.java" afterPath="$PROJECT_DIR$/src/graphics/GEngine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/Engine.java" afterPath="$PROJECT_DIR$/src/struct/Engine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/Switch.java" afterPath="$PROJECT_DIR$/src/struct/Switch.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -173,6 +165,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -780,7 +777,7 @@
       <workItem from="1493202250214" duration="4340000" />
       <workItem from="1493293738455" duration="490000" />
       <workItem from="1493391683110" duration="1779000" />
-      <workItem from="1493394089324" duration="78607000" />
+      <workItem from="1493394089324" duration="78798000" />
     </task>
     <task id="LOCAL-00001" summary="prototype done">
       <created>1493163885910</created>
@@ -824,11 +821,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493594030787</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Graphics Testing">
+      <created>1493644768749</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1493644768749</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="209703000" />
+    <option name="totallyTimeSpent" value="209894000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1374" height="737" extended-state="6" />
@@ -877,7 +881,8 @@
     <MESSAGE value="images" />
     <MESSAGE value="Menu and Graphics 1" />
     <MESSAGE value="Menu and Graphics 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Menu and Graphics 2" />
+    <MESSAGE value="Graphics Testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Graphics Testing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
