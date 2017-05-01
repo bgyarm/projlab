@@ -10,7 +10,7 @@ public class Switch extends RailElement {
         AB(0, 1),
         BC(1, 2),
         CD(2, 3),
-        DA(3, 4),
+        DA(3, 0),
         AC(0, 2),
         BD(1, 3);
         int[] a;

@@ -4,7 +4,6 @@ R;R;S;R;T
 T;R;S;R;0
 -
 S 0 2 BD
-T 2 4 C
 .
 E0 0 0
 C0 C

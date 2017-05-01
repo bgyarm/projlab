@@ -53,10 +53,9 @@ public class Tunnel extends Rail {
     }
     
     public boolean destroy(){//megsemmisítjük
-        ElementBase entElement = railB.getTrainElement();
         ElementBase inElement = this.getTrainElement();
 
-        if(entElement == null && inElement == null){//ha nincs senki közvetlenül a bejáraton
+        if(inElement == null){//ha nincs senki közvetlenül a bejáraton
             if(railB.remove(this))//megpróbáljuk szétkapcsolni
             	this.remove(railB);
             if(!tunnel[0].remove(this))

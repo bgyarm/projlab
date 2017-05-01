@@ -54,7 +54,8 @@ public class Rail extends RailElement {
             return true;
         return false;
     }
-    
+
+    @Override
     public boolean remove(RailElement element){//szétkapcsoljuk az aktuális sínt és a paraméterben kapottat, ha lehet.
     	if(railA == element)
     		railA = null;

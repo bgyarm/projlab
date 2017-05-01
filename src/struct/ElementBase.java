@@ -42,4 +42,7 @@ public abstract class ElementBase {
     public abstract void giveToken();
     public abstract void takeToken();
     public abstract boolean hasToken();
+    public boolean remove(RailElement element){//szétkapcsoljuk az aktuális sínt és a paraméterben kapottat, ha lehet.
+        return true;
+    }
 }

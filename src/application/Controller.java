@@ -54,6 +54,11 @@ public class Controller {
     }
 
     void init(String actLevel){
+        if(railMap != null)
+            for(int i = 0; i < railMap.length; i++)
+                for(int j = 0; j < railMap[i].length; j++)
+                    if(railMap[i][j] != null && railMap[i][j].getClass().getSimpleName().equals("Tunnel"))
+                        ((Tunnel)railMap[i][j]).destroy();
         comm.input(actLevel.substring(0, actLevel.lastIndexOf('.')));
         comm.init();
         int size = view.getSize().width / comm.getDim().width;
@@ -125,7 +130,7 @@ public class Controller {
                 getGraphics(railMap[i][j], i, j);
         for(int i = 0; i < railMap.length; i++)
             for(int j = 0; j < railMap[i].length; j++) {
-                if (railMap[i][j] != null) {
+                if (railMap[i][j] != null && !railMap[i][j].getClass().getSimpleName().equals("Tunnel")) {
                     if (railMap[i][j].getTrainElement() != null) {
                         ElementBase tmp = railMap[i][j].getTrainElement();
                         RailElement[] neighs = comm.getNeighbours(i, j);
