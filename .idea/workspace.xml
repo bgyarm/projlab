@@ -7,16 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75def48b-032a-4ca2-8f82-d05d99f44f07" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/ElementBase.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/ElementBase.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/Rail.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/Rail.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/Tunnel.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/Tunnel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/Switch$State.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/Switch$State.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/levels/tunnel_test.txt" afterPath="$PROJECT_DIR$/levels/tunnel_test.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/Controller.java" afterPath="$PROJECT_DIR$/src/application/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/ElementBase.java" afterPath="$PROJECT_DIR$/src/struct/ElementBase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/Rail.java" afterPath="$PROJECT_DIR$/src/struct/Rail.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/Switch.java" afterPath="$PROJECT_DIR$/src/struct/Switch.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/Tunnel.java" afterPath="$PROJECT_DIR$/src/struct/Tunnel.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -179,6 +171,19 @@
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/Tests" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -344,6 +349,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/thumbnailator-0.4.8.jar!/" />
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -787,7 +793,7 @@
       <workItem from="1493202250214" duration="4340000" />
       <workItem from="1493293738455" duration="490000" />
       <workItem from="1493391683110" duration="1779000" />
-      <workItem from="1493394089324" duration="82122000" />
+      <workItem from="1493394089324" duration="82372000" />
     </task>
     <task id="LOCAL-00001" summary="prototype done">
       <created>1493163885910</created>
@@ -845,11 +851,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493644950072</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Graphics Testing">
+      <created>1493648277318</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1493648277318</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="213218000" />
+    <option name="totallyTimeSpent" value="213468000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1374" height="737" extended-state="6" />
