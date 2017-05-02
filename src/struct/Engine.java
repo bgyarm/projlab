@@ -18,12 +18,9 @@ public class Engine extends ElementBase {
     @Override
     public void move(){
     	if(!active) return;//ha nincs vége a játéknak, vagy nem aktív, nem mozgatjuk
-        //Logger.printMethodCall("Engine","move");
         
         RailElement nextRail = actRail.getNext(prevRail);//magkapjuk az előző pozícióból kiszámított következő pozíciót.
-        
 
-        //Logger.printAction("Engine","move","Changed previous rail to actual rail and updated actual rail");
 
         if(nextRail != null && nextRail.getTrainElement() == null){//ha nem siklik ki, és nincs akivel ütközne
             prevRail = actRail;
@@ -41,7 +38,6 @@ public class Engine extends ElementBase {
         }
         else{// már csak az az eset maradt, hogy nincs előttünk sín, ekkor kisiklik a vonat
             derail();
-            //Logger.printAction("Engine","move","Train derailed");
         }
     }
 
@@ -50,7 +46,6 @@ public class Engine extends ElementBase {
     }//meg lehet állítani
 
     private  void derail(){
-        //Logger.printMethodCall("Engine","derail");
         derailed = true;
         active = false;
         Game.gameOver();//ekkor is vége lesz a játéknak

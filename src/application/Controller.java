@@ -144,11 +144,11 @@ public class Controller {
                         if (tmp.getClass().getSimpleName().equals("Engine"))
                             view.addTrain(new GEngine(j * View.imgSize, i * View.imgSize, direction), j, i);
                         else if (tmp.getClass().getSimpleName().equals("CoalCar")){
-                            view.addTrain(new GCar(j * View.imgSize, i * View.imgSize, direction, "coal"), j, i);
+                            view.addTrain(new GCar(j * View.imgSize, i * View.imgSize, direction, "coal", false), j, i);
                         }
                         else {
                             String color = ((Carriage)tmp).getColor().name();
-                            view.addTrain(new GCar(j * View.imgSize, i * View.imgSize, direction, color), j, i);
+                            view.addTrain(new GCar(j * View.imgSize, i * View.imgSize, direction, color, ((Carriage) tmp).hasPassangers()), j, i);
                         }
                     } else
                         view.addTrain(null, j, i);

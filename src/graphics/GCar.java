@@ -1,17 +1,19 @@
 package graphics;
 
 import application.View;
-import struct.Color;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
 public class GCar extends Drawable {
     String direction;
-    public GCar(int x, int y, String dir, String color) {
+    boolean passengers;
+    public GCar(int x, int y, String dir, String color, boolean passengers) {
         super(x, y);
         direction = dir;
+        this.passengers = passengers;
         String path = new File("").getAbsolutePath() + "\\img\\";
         try {
             image = resize(ImageIO.read(new File(path + color + ".png")), View.imgSize, View.imgSize);
@@ -23,5 +25,15 @@ public class GCar extends Drawable {
                 rotate(135);
             }
         } catch (IOException ex) {}
+    }
+
+    @Override
+    public void draw(Graphics g) {
+        super.draw(g);
+        if(passengers) {
+            g.setColor(java.awt.Color.WHITE);
+            g.setFont(new Font("Comic Sans MS", Font.BOLD, View.imgSize / 4));
+            g.drawString("P", x + View.imgSize / 2 - View.imgSize / 8, y + View.imgSize / 2 + View.imgSize / 8);
+        }
     }
 }
