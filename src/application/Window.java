@@ -32,5 +32,4 @@ public class Window extends JFrame{
         game = new Game();
         add(game, BorderLayout.CENTER);
     }
-
 }

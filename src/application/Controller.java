@@ -6,6 +6,7 @@ import struct.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.Console;
 import java.util.ArrayList;
 
 public class Controller {
@@ -33,9 +34,9 @@ public class Controller {
                         validate();
                     }
                 } else {
-                    newTrain();
-                    events.add("M");
-                    validate();
+                    //newTrain();
+                    //events.add("M");
+                    //validate();
                 }
             }
             @Override
@@ -47,10 +48,6 @@ public class Controller {
             @Override
             public void mouseExited(MouseEvent e) {}
         };
-    }
-
-    void start(){
-
     }
 
     void init(String actLevel){
@@ -203,6 +200,7 @@ public class Controller {
             if(comm.getFurthers().size() > 0){
                 addEvent(comm.getFurthers().get(0));
                 comm.getFurthers().remove(0);
+                System.out.println("NewTrain");
             }
         }
         while(comm.getFurthers().size() > 0 && comm.getFurthers().get(0).charAt(0) != 'E');
