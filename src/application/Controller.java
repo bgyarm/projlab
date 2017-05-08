@@ -140,7 +140,7 @@ public class Controller {
                                 direction += n;
                         if (tmp.getClass().getSimpleName().equals("Engine")) {
                             boolean isBoom = tmp.getDerailed() || tmp.getCrshed() != null;
-                            view.addTrain(new GEngine(j * View.imgSize, i * View.imgSize, direction, isBoom), j, i);
+                            view.addTrain(new GEngine(j * View.imgSize, i * View.imgSize, direction, isBoom, tmp.getPrevRail()==null), j, i);
                         } else if (tmp.getClass().getSimpleName().equals("CoalCar")){
                             view.addTrain(new GCar(j * View.imgSize, i * View.imgSize, direction, "coal", false), j, i);
                         }
