@@ -49,12 +49,6 @@ public class View extends JPanel {
                 if (trains[i][j] != null)
                     trains[i][j].draw(buffer.getGraphics());
         }
-        if(Game.isOver()) {
-            Graphics buff = buffer.getGraphics();
-            buff.setColor(Color.BLACK);
-            buff.setFont(new Font("Comic Sans MS", Font.BOLD, 60));
-            buff.drawString(Game.overText, Window.windowWidth / 2 - 200, Window.windowHeight / 2 - 60);
-        }
         g.drawImage(buffer, 0, 0, this);
     }
     public BufferedImage getBuffer(){return buffer;}

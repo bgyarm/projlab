@@ -47,6 +47,11 @@ public class Menu extends JPanel {
         if(started){
             g.drawRect(Window.windowWidth - 300, Window.windowHeight - 170, 200, 50);
             g.drawString("Back", Window.windowWidth - 240, Window.windowHeight - 130);
+            if(Game.isOver()) {
+                g.setColor(Color.BLACK);
+                g.setFont(new Font("Comic Sans MS", Font.BOLD, 60));
+                g.drawString(Game.overText, Window.windowWidth/2 - 250, Window.windowHeight - 80);
+            }
         }
         else {
             g.drawString("<", prev.x, prev.y);

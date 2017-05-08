@@ -193,7 +193,7 @@ public class Controller {
     }
 
     public void newTrain(){
-        if(Game.numTrains < 4) {
+        if(Game.numTrains < 2) {
             String s = "";
             Random r = new Random();
             int entNum = comm.getEntraces().size();
@@ -201,7 +201,7 @@ public class Controller {
                 Point ent;
                 do {
                      ent = comm.getEntraces().get(r.nextInt(entNum));
-                } while (railMap[ent.x][ent.y].getTrainElement() != null && railMap[ent.x][ent.y].getNext(null) != null);
+                } while (railMap[ent.x][ent.y].getTrainElement() != null || railMap[ent.x][ent.y].getNext(null) == null);
                 s = String.format("E%d %d %d", Game.numTrains, ent.x, ent.y);
                 addEvent(s);
                 for (int i = 0; i < r.nextInt(3) + 1; i++) {
