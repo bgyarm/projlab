@@ -21,7 +21,8 @@ public class Command {
 	private ElementBase[][] trainMap;
 	private ArrayList<ArrayList<ElementBase>> trains = new ArrayList<>();
 	private ArrayList<String> result = new ArrayList<>();
-	private ArrayList<String> furthers;
+	private ArrayList<String> expected;
+	private ArrayList<Point> entrances = new ArrayList<>();
 	private Dimension mapSize;
 	private boolean testing = false;
 	
@@ -70,7 +71,7 @@ public class Command {
 			BufferedReader br = new BufferedReader(isr);
 		    ArrayList<String> matrix = new ArrayList<>(); //pálya leírását tartalmazza majd
 		    ArrayList<String> commands = new ArrayList<>(); //az utasításokat tartalmazza
-		    furthers = new ArrayList<>(); //teszt: a várt eredmény ide fog betölteni/játékban: további vonatok létrehozásának kommandjai
+            expected = new ArrayList<>(); //teszt: a várt eredmény ide fog betölteni/játékban: további vonatok létrehozásának kommandjai
             trains.clear();
 
 		    String info = br.readLine();
@@ -90,7 +91,7 @@ public class Command {
             }
             while((line = br.readLine()) != null){
                 if(line.split("/")[0].length() > 1)
-                    furthers.add(line.split("/")[0].trim());
+                    expected.add(line.split("/")[0].trim());
             }
 
             railMap(matrix);
@@ -112,7 +113,7 @@ public class Command {
             getTrainMap();
             if(testing) {
                 writeOut(result);
-                if (testMatch(mapSize.height, furthers))
+                if (testMatch(mapSize.height, expected))
                     System.out.println("Match!");
                 else
                     System.out.println("Not match!");
@@ -148,6 +149,8 @@ public class Command {
                         RailElement[] neigh = getNeighbours(i, j);
                         for(int n = 0; n < 4; n++)//végigmegy a szomszédokon, ha valahol érvényes sín van összekapcsolja öket
                             b = temp.setNext(neigh[n]);
+                        if((i == 0 || j == 0 || i == railMap.length-1 || j == railMap[i].length-1) && temp.isEntrance())
+                            entrances.add(new Point(i,j));
                     }
                     if (!b) //ha valamelyik kapcsolás sikertelen volt kivételt dobunk.
                         throw new Exception("Wrong matrix format! Rail cannot connect at (" + i + ", " + j + ").");
@@ -197,7 +200,7 @@ public class Command {
                             Engine e;
                             int h = Integer.parseInt(comm[1]);
                             int w = Integer.parseInt(comm[2]);
-                            if ((h == 0 || w == 0) && map[h][w].isEntrance()) {
+                            if ((h == 0 || w == 0 || h == railMap.length-1 || w == railMap[h].length-1) && map[h][w].isEntrance()) {
                                 e = new Engine(map[h][w]);
                                 e.setName(comm[0]);
                                 train.add(e);
@@ -468,5 +471,5 @@ public class Command {
 
     public Dimension getDim(){return mapSize;}
     public RailElement[][] getMap(){return railMap;}
-    public ArrayList<String> getFurthers(){return furthers;}
+    public ArrayList<Point> getEntraces(){return entrances;}
 }

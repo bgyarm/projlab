@@ -35,7 +35,8 @@ public class Menu extends JPanel {
         repaint();
         game.getInfo();
     }
-    void setStrated(boolean b){started = b; game.setOver(false);}
+
+    void setStarted(boolean b){started = b; game.start(); game.setOver(false);}
     public boolean getStarted(){return started;}
 
     @Override

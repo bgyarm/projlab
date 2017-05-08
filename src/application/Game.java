@@ -14,7 +14,8 @@ public class Game extends JLayeredPane implements Runnable{
 	private Menu menu;
     private final static int fps = 30;
     private Controller controller;
-    private static String overText = "";
+    static String overText = "";
+    static int numTrains;
     public static Font font = new Font("Comic Sans MS", Font.BOLD, 40);
 	
 	public Game(){
@@ -41,19 +42,20 @@ public class Game extends JLayeredPane implements Runnable{
         controller.init(actLevel);
     }
 
+    public void start(){
+        numTrains = 0;
+        controller.newTrain();
+    }
 
     @Override
     public void run(){
         Random r = new Random();
-        controller.newTrain();
         try{
             while (true) {
                 if (!over && menu.getStarted()) {
 
-                    if (r.nextInt(100) < 10) {
+                    if (r.nextInt(100) < 18/numTrains)
                         controller.newTrain();
-                        controller.validate();
-                    }
                     controller.validate();
                     Thread.sleep(800);
                     controller.addEvent("M");

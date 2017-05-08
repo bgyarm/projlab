@@ -25,6 +25,11 @@ public class View extends JPanel {
         rails = new Drawable[h][w];
         trains = new Drawable[h][w];
     }
+    public void clearTrains(){
+        int h = trains.length;
+        int w = trains[h].length;
+        trains = new Drawable[h][w];
+    }
 
     public int getW(){return rails[0].length*imgSize;}
     public int getH(){return rails.length*imgSize;}
@@ -43,6 +48,12 @@ public class View extends JPanel {
                     rails[i][j].draw(buffer.getGraphics());
                 if (trains[i][j] != null)
                     trains[i][j].draw(buffer.getGraphics());
+        }
+        if(Game.isOver()) {
+            Graphics buff = buffer.getGraphics();
+            buff.setColor(Color.BLACK);
+            buff.setFont(new Font("Comic Sans MS", Font.BOLD, 60));
+            buff.drawString(Game.overText, Window.windowWidth / 2 - 200, Window.windowHeight / 2 - 60);
         }
         g.drawImage(buffer, 0, 0, this);
     }

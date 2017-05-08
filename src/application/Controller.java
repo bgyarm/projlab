@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.Console;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Controller {
     View view = null;
@@ -33,10 +34,6 @@ public class Controller {
                         events.add(comm);
                         validate();
                     }
-                } else {
-                    //newTrain();
-                    //events.add("M");
-                    //validate();
                 }
             }
             @Override
@@ -196,15 +193,40 @@ public class Controller {
     }
 
     public void newTrain(){
-        String s = "";
-        do{
-            if(comm.getFurthers().size() > 0){
-                addEvent(comm.getFurthers().get(0));
-                comm.getFurthers().remove(0);
+        if(Game.numTrains < 4) {
+            String s = "";
+            Random r = new Random();
+            int entNum = comm.getEntraces().size();
+            if (entNum > 0) {
+                Point ent;
+                do {
+                     ent = comm.getEntraces().get(r.nextInt(entNum));
+                } while (railMap[ent.x][ent.y].getTrainElement() != null && railMap[ent.x][ent.y].getNext(null) != null);
+                s = String.format("E%d %d %d", Game.numTrains, ent.x, ent.y);
+                addEvent(s);
+                for (int i = 0; i < r.nextInt(3) + 1; i++) {
+                    int c = r.nextInt(5);
+                    String color = "";
+                    if (c == 0)
+                        color = "C";
+                    else if (c == 1)
+                        color = "R";
+                    else if (c == 2)
+                        color = "G";
+                    else if (c == 3)
+                        color = "B";
+                    else if (c == 4)
+                        color = "U";
+                    s = String.format("C%d %s", Game.numTrains, color);
+                    if (c != 0)
+                        s += " " + r.nextInt(2);
+                    addEvent(s);
+                }
                 System.out.println("NewTrain");
+                Game.numTrains++;
+                validate();
             }
         }
-        while(comm.getFurthers().size() > 0 && comm.getFurthers().get(0).charAt(0) != 'E');
     }
 
     public MouseListener getListener(){return listener;}
