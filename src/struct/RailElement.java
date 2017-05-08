@@ -8,7 +8,7 @@ public abstract class RailElement {
 
     public abstract RailElement getNext(RailElement prev);
 
-    void setTrainElement(ElementBase te){trainElement = te;}
+    public void setTrainElement(ElementBase te){trainElement = te;}
     public ElementBase getTrainElement(){
         return trainElement;
     }

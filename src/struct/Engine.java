@@ -48,7 +48,7 @@ public class Engine extends ElementBase {
     private  void derail(){
         derailed = true;
         active = false;
-        Game.gameOver();//ekkor is vége lesz a játéknak
+        Game.gameOver("Vonat kisiklott!");//ekkor is vége lesz a játéknak
     }
 
 	@Override

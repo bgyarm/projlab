@@ -23,7 +23,7 @@ public abstract class ElementBase {
     	try {
             ((Engine) this).stop();//megállítjuk hogy ne mozogjon tovább a vonat.
         }catch (Exception e){}
-        Game.gameOver();//játéknak vége lesz
+        Game.gameOver("Vonatok ütköztek!!");//játéknak vége lesz
     }
     public abstract void move();//mozgatás, minden esetben felülírjuk.
 

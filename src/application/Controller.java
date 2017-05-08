@@ -138,9 +138,10 @@ public class Controller {
                         for(int n = 0; n < 4; n++)
                             if(neighs[n] != null && neighs[n].equals(tmp.getActRail().getNext(tmp.getPrevRail())))
                                 direction += n;
-                        if (tmp.getClass().getSimpleName().equals("Engine"))
-                            view.addTrain(new GEngine(j * View.imgSize, i * View.imgSize, direction), j, i);
-                        else if (tmp.getClass().getSimpleName().equals("CoalCar")){
+                        if (tmp.getClass().getSimpleName().equals("Engine")) {
+                            boolean isBoom = tmp.getDerailed() || tmp.getCrshed() != null;
+                            view.addTrain(new GEngine(j * View.imgSize, i * View.imgSize, direction, isBoom), j, i);
+                        } else if (tmp.getClass().getSimpleName().equals("CoalCar")){
                             view.addTrain(new GCar(j * View.imgSize, i * View.imgSize, direction, "coal", false), j, i);
                         }
                         else {

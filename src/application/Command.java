@@ -201,7 +201,7 @@ public class Command {
                                 e = new Engine(map[h][w]);
                                 e.setName(comm[0]);
                                 train.add(e);
-                                //trainMap[h][w] = e;
+                                map[h][w].setTrainElement(e);
                                 trains.add(train);//vonat listába felvétel
                             }
                         }
