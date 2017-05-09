@@ -104,12 +104,12 @@ public class Game extends JLayeredPane implements Runnable{
 	/**
 	 * Szüneteli vagy folytatja a játékot
 	 */
-	public static void pause(){pause = !pause;}//megÃ¡llÃ­thatjuk, Ã©s elindÃ­thatjuk a jÃ¡tÃ©kot
+	public static void pause(){pause = !pause;}//megállíthatjuk, és elindíthatjuk a játékot
     /**
      * Játék vége és szöveg kiírása (miért lett vége)
      * @param s Szöveg a játékosnak
      */
-    public static void gameOver(String s){//jÃ¡tÃ©k vÃ©ge
+    public static void gameOver(String s){//játék vége
 	    over = true;
 	    overText = s;
 	    menu.repaint();

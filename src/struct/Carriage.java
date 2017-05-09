@@ -3,7 +3,7 @@ package struct;
 import application.Game;
 
 /**
- * Utasszï¿½llï¿½tï¿½ kocsit megvalï¿½sï¿½tï¿½ osztï¿½ly
+ * Utasszállító kocsit megvalósító osztály
  */
 public class Carriage extends ElementBase {
     private boolean empty;
@@ -11,8 +11,8 @@ public class Carriage extends ElementBase {
     private Color color;
 
     /**
-     * @param parent Az ï¿½t hï¿½zï¿½ elem
-     * @param color A kocsi szï¿½ne
+     * @param parent Az öt húzó elem
+     * @param color A kocsi színe
      * @param passengers Vannek-e utasok a kocsin 
      */
     public  Carriage(ElementBase parent, Color color, boolean passengers){
@@ -23,12 +23,12 @@ public class Carriage extends ElementBase {
         this.parent = parent;
         parent.child = this;
         
-        //tesztelï¿½shez
+        //teszteléshez
         this.setName("Carriage " + count++);
     }
 
     /**
-     * @return A kocsi szï¿½ne
+     * @return A kocsi színe
      */
     public Color getColor(){return color;}
     /**
@@ -41,33 +41,33 @@ public class Carriage extends ElementBase {
      */
     public void move() {
 
-        prevRail = actRail;//beÃ¡llÃ­tjuk a dolgokat
+        prevRail = actRail;//beállítjuk a dolgokat
     	actRail = parent.prevRail;
     	if(actRail != null)
     		actRail.setTrainElement(this);
     	if(prevRail != null)
     	    prevRail.setTrainElement(child);
-    	boolean tokenpass = false;//csak akkor adjuk Ã¡t a tokent ha kiÃ¼rÃ¼lt egy vagon. AlapbÃ³l ezÃ©rt false
+    	boolean tokenpass = false;//csak akkor adjuk át a tokent ha kiürült egy vagon. Alapból ezért false
         
-        //nÃ©zzÃ¼k meg, van-e itt Ã¡llomÃ¡s, ahovÃ¡ Ã©rkeztÃ¼nk
-        //ha van Ã©s egyezik a szÃ­nÃ¼nk...
+        //nézzük meg, van-e itt állomás, ahová érkeztünk
+        //ha van és egyezik a színünk...
 		Station s = null;
 		if(actRail != null)
         	s = actRail.getStation();
         if (s != null) {
             Color c = s.getColor();
             if(c.equals(color)){
-            	//ha Ã¼res a kocsi Ã©s az Ã¡llomÃ¡son vannak emberek, vegyÃ¼k fel Å‘ket
-            	//ekkor a tokent ellenÅ‘riznÃ¼nk kell
+            	//ha üres a kocsi és az állomáson vannak emberek, vegyük fel öket
+            	//ekkor a tokent ellen?riznünk kell
             	if(empty && s.hasPassengers()){
-            	    Game.points++;//nÃ¶veljÃ¼k a pontokat
+            	    Game.points++;//növeljük a pontokat
             		empty = false;
             		s.setPassengers(false);
             		token = searchToken();
             	}
-            	//ha nem volt Ã¼res a kocsink, akkor rakjuk le az utasokat Ã©s passzoljuk tovÃ¡bb a tokent
+            	//ha nem volt üres a kocsink, akkor rakjuk le az utasokat és passzoljuk tovább a tokent
             	else if (!empty && token) {
-            		 Game.points += 2;//nÃ¶veljÃ¼k a megszerzett pontokat
+            		 Game.points += 2;//növeljük a megszerzett pontokat
                      empty = true;
                      token = false;
                      if(child != null)
@@ -76,7 +76,7 @@ public class Carriage extends ElementBase {
             }
         }
         
-        //az elÃ¶l lÃ©vÅ‘ kocsinak van elsÅ‘bbsÃ©ge az Ã¡llomÃ¡snÃ¡l, ezÃ©rt van a mozgatÃ¡s a vÃ©gÃ©n
+        //az elöl lévö kocsinak van els?bbsége az állomásnál, ezért van a mozgatás a végén
         if(child != null){
             if(tokenpass)
                 child.giveToken();
@@ -93,27 +93,27 @@ public class Carriage extends ElementBase {
 	}
 	
 	/**
-	 * @return EnnÃ©l a kocsinÃ¡l lehet-e a token
+	 * @return Ennél a kocsinál lehet-e a token
 	 */
 	public boolean searchToken(){
-		//ha nÃ¡lunk van, megtalÃ¡ltuk
+		//ha nálunk van, megtaláltuk
 		if(token) return true;
 		boolean b = false;
-		//elindulunk a mozdony irÃ¡nyÃºba
+		//elindulunk a mozdony irányúba
 		ElementBase iter = parent;
-		//ha talÃ¡lunk tokent, vagy a mozdonyhoz Ã©rÃ¼nk, megÃ¡llunk
+		//ha találunk tokent, vagy a mozdonyhoz érünk, megállunk
 		while(iter != null && !b){
 			b = iter.hasToken();
-			//ha talÃ¡ltunk tokent a mozdonyig, akkor nem lehet nÃ¡lunk a token
+			//ha találtunk tokent a mozdonyig, akkor nem lehet nálunk a token
 			if(b) return false;
 			iter = iter.parent;
 		}
-		//ha nem talÃ¡ltunk, nÃ©zzÃ¼k meg a vonat mÃ¡sik vÃ©ge felÃ©
+		//ha nem találtunk, nézzük meg a vonat másik vége felé
 		iter = child;
-		//ha talÃ¡lunk tokent, vagy a vÃ©gÃ©re Ã©rtÃ¼nk, megÃ¡llunk
+		//ha találunk tokent, vagy a végére értünk, megállunk
 		while(!b && iter != null){
 			b = iter.hasToken();
-			//ha talÃ¡ltunk tokent, akkor elvesszÃ¼k tÅ‘le, hiszen mi elÅ‘rÃ©bb Ã¡llunk
+			//ha találtunk tokent, akkor elvesszük töle, hiszen mi elörébb állunk
 			if(b){
 				iter.takeToken();
 				return true;
@@ -121,7 +121,7 @@ public class Carriage extends ElementBase {
 			iter = iter.child;
 		}
 		
-		//ha egyik irÃ¡nyban sem talÃ¡ltunk tokent, akkor kisajÃ¡tÃ­tjuk
+		//ha egyik irányban sem találtunk tokent, akkor kisajátítjuk
 		return true;
 	}
 

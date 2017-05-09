@@ -8,13 +8,13 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * A v√°lt√≥ kirajzolhat√≥ megval√≥s√≠t√°sa
+ * A v·ltÛ kirajzolhatÛ megvalÛsÌt·sa
  */
 public class GSwitch extends Drawable {
     /**
-     * @param x Sz√©less√©gi koordin√°ta
-     * @param y Magass√°gi koordin√°ta
-     * @param state A v√°lt√≥ √°ll√°sa
+     * @param x SzÈlessÈgi koordin·ta
+     * @param y Magass·gi koordin·ta
+     * @param state A v·ltÛ ·ll·sa
      */
     public GSwitch(int x, int y, String state){
         super(x, y);
@@ -37,7 +37,7 @@ public class GSwitch extends Drawable {
         } catch (IOException ex){}
     }
     /**
-     * Jelzi, hogy ez egy v√°lt√≥ egy S bet√ªvel
+     * Jelzi, hogy ez egy v·ltÛ egy S bet˚vel
      * @see graphics.Drawable#draw(java.awt.Graphics)
      */
     @Override

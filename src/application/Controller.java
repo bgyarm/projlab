@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 /**
- * Az esemÃ©nyek irÃ¡nyÃ­tÃ¡sÃ¡Ã©rt felelÅ‘s osztÃ¡ly
+ * Az események irányításáért felelös osztály
  */
 public class Controller {
     View view = null;
@@ -21,8 +21,8 @@ public class Controller {
     MouseListener listener;
 
     /**
-     * @param v nÃ©zet
-     * @param actLevel jelenlegi pÃ¡lya
+     * @param v nézet
+     * @param actLevel jelenlegi pálya
      */
     public Controller(View v, String actLevel) {
         comm = new Command();
@@ -54,8 +54,8 @@ public class Controller {
     }
 
     /**
-     * BetÃ¶lti a pÃ¡lyÃ¡t
-     * @param actLevel jelenlegi pÃ¡lya
+     * Betölti a pályát
+     * @param actLevel jelenlegi pálya
      */
     void init(String actLevel){
         if(railMap != null)
@@ -79,10 +79,10 @@ public class Controller {
     }
 
     /**
-     * A nÃ©zethez adja a grafikai elemet
-     * @param elem sÃ­nelem
-     * @param x szÃ©lessÃ©gi koordinÃ¡ta
-     * @param y magassÃ¡gi koordinÃ¡ta
+     * A nézethez adja a grafikai elemet
+     * @param elem sínelem
+     * @param x szélességi koordináta
+     * @param y magassági koordináta
      */
     void getGraphics(RailElement elem, int x, int y){
         Drawable d = null;
@@ -128,7 +128,7 @@ public class Controller {
     }
 
     /**
-     * ValidÃ¡lja a nÃ©zetet
+     * Validálja a nézetet
      */
     public void validate(){
         for (Iterator<String> iterator = events.iterator(); iterator.hasNext(); ) {
@@ -169,9 +169,9 @@ public class Controller {
     }
 
     /**
-     * @param x szÃ©lessÃ©gi koordinÃ¡ta
-     * @param y magassÃ¡gi koordinÃ¡ta
-     * @return A koordinÃ¡tÃ¡n lÃ©vÅ‘ elem, ha van ott valami, egyÃ©bkÃ©nt null
+     * @param x szélességi koordináta
+     * @param y magassági koordináta
+     * @return A koordinátán lévö elem, ha van ott valami, egyébként null
      */
     public String elementAt(int x, int y) {
         RailElement elem = railMap[y][x];
@@ -191,15 +191,15 @@ public class Controller {
     }
 
     /**
-     * EsemÃ©ny hozzÃ¡adÃ¡sa
-     * @param ev esemÃ©ny
+     * Esemény hozzáadása
+     * @param ev esemény
      */
     public void addEvent(String ev){
         events.add(ev);
     }
 
     /**
-     * Ãºj vonat elhelyezÃ©se a pÃ¡lyÃ¡n
+     * új vonat elhelyezése a pályán
      */
     public void newTrain(){
         if(Game.numTrains < Game.maxTrains) {
@@ -244,7 +244,7 @@ public class Controller {
     }
 
     /**
-     * @return Az egÃ©r esemÃ©nykezelÅ‘je
+     * @return Az egér eseménykezelöje
      */
     public MouseListener getListener(){return listener;}
 }

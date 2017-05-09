@@ -7,12 +7,12 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * A keresztezÃµdÃ©s kirajzolhatÃ³ megvalÃ³sÃ­tÃ¡sa
+ * A keresztezõdés kirajzolható megvalósítása
  */
 public class GCrossing extends Drawable {
     /**
-     * @param x SzÃ©lessÃ©gi koordinÃ¡ta
-     * @param y MagassÃ¡gi koordinÃ¡ta
+     * @param x Szélességi koordináta
+     * @param y Magassági koordináta
      */
     public GCrossing(int x, int y){
         super(x, y);

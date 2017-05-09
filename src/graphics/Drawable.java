@@ -6,14 +6,14 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 /**
- * A kirajzolhatÃ³ objektumok absztrakt osztÃ¡lya
+ * A kirajzolható objektumok absztrakt osztálya
  */
 public abstract class Drawable {
     protected BufferedImage image = null;
     int x = 0, y = 0;
     /**
-     * @param x szÃ©lessÃ©gi koordinÃ¡ta
-     * @param y hosszÃºsÃ¡gi koordinÃ¡ta
+     * @param x szélességi koordináta
+     * @param y hosszúsági koordináta
      */
     public Drawable(int x, int y){this.x = x; this.y = y;}
     /**
@@ -26,7 +26,7 @@ public abstract class Drawable {
 
     /**
      * Forgat
-     * @param angle forgatÃ¡s szÃ¶ge(fokban)
+     * @param angle forgatás szöge(fokban)
      */
     public void rotate(double angle){
         double rotationRequired = Math.toRadians (angle);
@@ -38,8 +38,8 @@ public abstract class Drawable {
     }
 
     /**
-     * MegszÃ­nezi a kÃ©pet
-     * @param c SzÃ­n
+     * Megszínezi a képet
+     * @param c Szín
      */
     public void colorImage(Color c) {
         int w = image.getWidth();
@@ -55,11 +55,11 @@ public abstract class Drawable {
     }
 
     /**
-     * ÃšjramÃ©retez
-     * @param img kÃ©p
-     * @param newW Ãºj szÃ©lessÃ©g
-     * @param newH Ãºj magassÃ¡g
-     * @return a kÃ©sz kÃ©p
+     * Újraméretez
+     * @param img kép
+     * @param newW új szélesség
+     * @param newH új magasság
+     * @return a kész kép
      */
     public static BufferedImage resize(BufferedImage img, int newW, int newH) {
         Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);

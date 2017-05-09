@@ -9,15 +9,15 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Az egyszer√ª s√≠nelem kirajzolhat√≥ megval√≥s√≠t√°sa
+ * Az egyszer˚ sÌnelem kirajzolhatÛ megvalÛsÌt·sa
  */
 public class GRail extends Drawable {
     Station station;
     /**
-     * @param x Sz√©less√©gi koordin√°ta
-     * @param y Magass√°gi koordin√°ta
-     * @param dir Ir√°nya
-     * @param station Rajta l√©v√µ √°llom√°s (ha van)
+     * @param x SzÈlessÈgi koordin·ta
+     * @param y Magass·gi koordin·ta
+     * @param dir Ir·nya
+     * @param station Rajta lÈvı ·llom·s (ha van)
      */
     public GRail(int x, int y, String dir, Station station){
         super(x, y);
@@ -44,7 +44,7 @@ public class GRail extends Drawable {
         } catch (IOException ex){}
     }
     /**
-     * Ha van rajta √°llom√°s, jelzi, az utasokat is, √©s az √°llom√°s sz√≠n√©t
+     * Ha van rajta ·llom·s, jelzi, az utasokat is, Ès az ·llom·s szÌnÈt
      * @see graphics.Drawable#draw(java.awt.Graphics)
      */
     @Override

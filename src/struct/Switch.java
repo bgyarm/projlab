@@ -1,18 +1,18 @@
 package struct;
 
 /**
- * A vÃ¡ltÃ³ sÃ­nelemet megvalÃ³sÃ­tÃ³ osztÃ¡ly
+ * A váltó sínelemet megvalósító osztály
  */
 public class Switch extends RailElement {
-	//nÃ©gy irÃ¡nyÃº vÃ¡ltÃ³
+	//négy irányú váltó
     private RailElement[] sw;
     private State state;
 
-    //hat lehetsÃ©ges Ã¡llapot
+    //hat lehetséges állapot
     /**
-     * Hat lehetsÃ©ges Ã¡llapot
+     * Hat lehetséges állapot
      */
-    enum State{//Ã¡llapotok azzal a jelzÃ©ssel hogy melyik sÃ­nhez vannak csatlakoztatva
+    enum State{//állapotok azzal a jelzéssel hogy melyik sínhez vannak csatlakoztatva
         AB(0, 1),
         BC(1, 2),
         CD(2, 3),
@@ -21,40 +21,40 @@ public class Switch extends RailElement {
         BD(1, 3);
         int[] a;
         State(int a, int b){this.a = new int[]{a, b};}
-        int[] getState(){return a;}//visszakapjuk a kÃ©t Ã¶sszekÃ¶tÃ¶tt sÃ­nt.
+        int[] getState(){return a;}//visszakapjuk a két összekötött sínt.
     }
 
 
     /**
-     * KezdÃµÃ¡llapot nÃ©lkÃ¼li konstruktor
+     * Kezdõállapot nélküli konstruktor
      */
     public Switch(){
         sw = new RailElement[4];
     	trainElement = null;
-        state = State.AB;//alap Ã¡llapot az AB Ã¡llapot
+        state = State.AB;//alap állapot az AB állapot
     }
 	/**
-	 * @param state kezdÃµÃ¡llapot
+	 * @param state kezdõállapot
 	 */
-	public Switch(String state){//meg lehet adni kezdÃ¶ Ã¡llapottal is
+	public Switch(String state){//meg lehet adni kezdö állapottal is
         sw = new RailElement[4];
 		trainElement = null;
 		changeDirection(state);
 	}
 
-    //Az elsÃµ null Ã©rtÃ©k helyÃ©re rakjuk az Ãºj sÃ­nelemet
+    //Az elsõ null érték helyére rakjuk az új sínelemet
     /* (non-Javadoc)
      * @see struct.RailElement#setNext(struct.RailElement)
      */
     @Override
     public boolean setNext(RailElement element){
         if(element == null)
-            return setNext(notConnected);//ha nincs csatlakoztatva akkor is jelzÃ¶ Ã©rtÃ©kkel beÃ¡llÃ­tunk egy objektumot
+            return setNext(notConnected);//ha nincs csatlakoztatva akkor is jelzö értékkel beállítunk egy objektumot
         if(element != notConnected)
             for(int i = 0; i < 4; i++)
-                if(sw[i] == element) return true;//ha mÃ¡r szerepel
+                if(sw[i] == element) return true;//ha már szerepel
         for(int i = 0; i < 4; i++)
-            if (sw[i] == null) {//ha be tudjuk Ã­rni beÃ­rjuk
+            if (sw[i] == null) {//ha be tudjuk írni beírjuk
                 sw[i] = element;
                 return true;
             }
@@ -66,9 +66,9 @@ public class Switch extends RailElement {
      */
     @Override
     public RailElement getNext(RailElement prev){
-        //Megkapjuk az Ã¡llapotbÃ³l, hogy mely sÃ­nek vannak Ã¶sszekÃ¶tve
-        //Majd ha az egyik vÃ©gÃ©t kaptuk elÃµzÃµkÃ©nt, akkor a mÃ¡sikat adjuk vissza
-        //Ha egyiket sem, akkor null Ã©rtÃ©ket
+        //Megkapjuk az állapotból, hogy mely sínek vannak összekötve
+        //Majd ha az egyik végét kaptuk elõzõként, akkor a másikat adjuk vissza
+        //Ha egyiket sem, akkor null értéket
         RailElement tmp = prev == null ? notConnected : prev;
         if(tmp == sw[state.getState()[0]])
             return sw[state.getState()[1]];
@@ -77,20 +77,20 @@ public class Switch extends RailElement {
         return null;
     }
 
-    //megadja, hogy lehetsÃ©ges-e egyÃ¡ltalÃ¡n a vÃ¡ltÃ¡s
+    //megadja, hogy lehetséges-e egyáltalán a váltás
     /**
-     * @return LehetsÃ©ges-e a vÃ¡ltÃ¡s
+     * @return Lehetséges-e a váltás
      */
-    private boolean valid(){//akor lehetsÃ©ges ha van legalÃ¡bb kÃ©t aktÃ­v sine
+    private boolean valid(){//akor lehetséges ha van legalább két aktív sine
     	int n = 0;
     	for (int i = 0; i < 4; i++){
-            if(sw[i] != null || sw[i] != notConnected) n++;//null is lehet ha mÃ©g nem volt meghÃ­vva rÃ¡ a setNext
+            if(sw[i] != null || sw[i] != notConnected) n++;//null is lehet ha még nem volt meghívva rá a setNext
         }
     	return n>2;
     }
 
     /**
-     * @param dir vÃ¡ltÃ¡s irÃ¡nya
+     * @param dir váltás iránya
      */
     public void changeDirection(String dir){
         if(trainElement == null) {
@@ -104,13 +104,13 @@ public class Switch extends RailElement {
     }
 
     /**
-     * vÃ¡ltÃ¡s a kÃ¶vetkezÃµ Ã¡llapotba
+     * váltás a következõ állapotba
      */
-    public void changeDirection() {//megprÃ³bÃ¡lja a kÃ¶vetkezÃ¶ Ã¡llapotba Ã¡llÃ­tani a vÃ¡ltÃ³t
-    	//Ha nem lehetsÃ©ges a vÃ¡ltÃ¡s, ne prÃ³bÃ¡lkozzon
+    public void changeDirection() {//megpróbálja a következö állapotba állítani a váltót
+    	//Ha nem lehetséges a váltás, ne próbálkozzon
         if(!valid()) return;
         if (trainElement == null) {
-        	switch(state){//megviszgÃ¡lja az aktuÃ¡lis helyzetet, majd dÃ¶nt a kÃ¶vetkezÃ¶ Ã¡llapotrÃ³l
+        	switch(state){//megviszgálja az aktuális helyzetet, majd dönt a következö állapotról
         	case AB:
         		state = State.BC;
         		break;
@@ -142,16 +142,16 @@ public class Switch extends RailElement {
      * @see struct.RailElement#isEntrance()
      */
     @Override
-    public boolean isEntrance(){//lehet e kiindulÃ³pont
+    public boolean isEntrance(){//lehet e kiindulópont
         int n = 0;
         for(int i = 0; i < 4; i++)
-            if(sw[i] == null || sw[i] == notConnected)//akkor lehet ha van legalÃ¡bb 1 nem csatlakoztatott vÃ©ge
+            if(sw[i] == null || sw[i] == notConnected)//akkor lehet ha van legalább 1 nem csatlakoztatott vége
                 n++;
         return n > 0 && n < 3;
     }
 
     /**
-     * @return Az vÃ¡ltÃ³ Ã¡llÃ¡sa/Ã¡llapota
+     * @return Az váltó állása/állapota
      */
     public String  getState(){return state.name();}
 

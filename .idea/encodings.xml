@@ -2,24 +2,30 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/application/Command.java" charset="ISO-8859-1" />
-    <file url="file://$PROJECT_DIR$/src/application/Controller.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/graphics/Drawable.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/graphics/GCar.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/graphics/GCrossing.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/graphics/GEngine.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/graphics/GRail.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/graphics/GSwitch.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/graphics/GTunnel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/application/Controller.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/application/Game.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/application/Logger.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/application/Menu.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/application/View.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/application/Window.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/application/menuMouseListener.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/graphics/Drawable.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/graphics/GCar.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/graphics/GCrossing.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/graphics/GEngine.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/graphics/GRail.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/graphics/GSwitch.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/graphics/GTunnel.java" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/src/struct/Carriage.java" charset="ISO-8859-1" />
-    <file url="file://$PROJECT_DIR$/src/struct/CoalCar.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/struct/Color.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/struct/Crossing.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/struct/ElementBase.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/struct/Engine.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/struct/Rail.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/struct/RailElement.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/struct/Station.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/struct/Switch.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/struct/Tunnel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/struct/CoalCar.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/struct/Color.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/struct/Crossing.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/struct/ElementBase.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/struct/Engine.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/struct/Rail.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/struct/RailElement.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/struct/Station.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/struct/Switch.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/struct/Tunnel.java" charset="ISO-8859-1" />
   </component>
 </project>

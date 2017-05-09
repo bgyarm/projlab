@@ -1,7 +1,7 @@
 package struct;
 
 /**
- * Az egyszerÃ» sÃ­nt mevalÃ³sÃ­tÃ³ osztÃ¡ly
+ * Az egyszerû sínt mevalósító osztály
  */
 public class Rail extends RailElement {
     protected RailElement railA;
@@ -9,7 +9,7 @@ public class Rail extends RailElement {
     private Station station;
 
     /**
-     * ÃllomÃ¡s nÃ©lkÃ¼li sÃ­n
+     * Állomás nélküli sín
      */
     public Rail(){
     	trainElement = null;
@@ -18,14 +18,14 @@ public class Rail extends RailElement {
         railB = null;
     }
     /**
-     * @param s A sÃ­n mellett talÃ¡lhatÃ³ Ã¡llomÃ¡s
+     * @param s A sín mellett található állomás
      */
     public Rail(Station s) {
     	super();
     	station = s;
     }
     /**
-     * @param next Mellette lÃ©vÃµ sÃ­nelem
+     * @param next Mellette lévõ sínelem
      */
     public Rail(RailElement next){
         super();
@@ -37,7 +37,7 @@ public class Rail extends RailElement {
     	 */
     	@Override
     public boolean setNext(RailElement next){
-    	//Csak akkor tudja beÃ¡llÃ­tani a kÃ¶vetkezÃµt, ha van olyan vÃ©ge, ami nincs csatlakoztatva sehova
+    	//Csak akkor tudja beállítani a következõt, ha van olyan vége, ami nincs csatlakoztatva sehova
     	if(next == null || railA == next || railB == next) return true;
         if(railA == null)
     		railA = next;
@@ -45,7 +45,7 @@ public class Rail extends RailElement {
     		railB = next;
     	else
     		return false;
-    	//ha valamelyiket sikerÃ¼lt beÃ¡llÃ­tani, akkor igazzal tÃ©rÃ¼nk vissza, egyÃ©bkÃ©nt hamissal
+    	//ha valamelyiket sikerült beállítani, akkor igazzal térünk vissza, egyébként hamissal
     	return true;
     }
 
@@ -54,7 +54,7 @@ public class Rail extends RailElement {
      */
     @Override
     public RailElement getNext(RailElement prev){
-    	//Ha valaki a prev irÃ¡nyÃ¡bÃ³l Ã©rkezik, megadja merre van a kÃ¶vetkezÃµ sÃ­n, egyÃ©bkÃ©nt null-t ad vissza
+    	//Ha valaki a prev irányából érkezik, megadja merre van a következõ sín, egyébként null-t ad vissza
         if(prev == railA)
             return railB;
         if(prev == railB)
@@ -68,14 +68,14 @@ public class Rail extends RailElement {
     @Override
     public Station getStation(){
         return station;
-    }//visszaadja az Ã¡llomÃ¡st
+    }//visszaadja az állomást
 
     /* (non-Javadoc)
      * @see struct.RailElement#isEntrance()
      */
     @Override
-    public boolean isEntrance(){//lehet e bejÃ¡rat. Ilyenkor valamelyik vÃ©gÃ©nek nullnak kell lenni, ahol bejÃ¶n a vonat.
-        if(railA == null || railB == null)//azt hogy pÃ¡lya szÃ©lÃ©r?l indul e azt a vonat lÃ©trehozÃ¡sakor ellen?rizzÃ¼k
+    public boolean isEntrance(){//lehet e bejárat. Ilyenkor valamelyik végének nullnak kell lenni, ahol bejön a vonat.
+        if(railA == null || railB == null)//azt hogy pálya szélér?l indul e azt a vonat létrehozásakor ellen?rizzük
             return true;
         return false;
     }
@@ -84,7 +84,7 @@ public class Rail extends RailElement {
      * @see struct.RailElement#remove(struct.RailElement)
      */
     @Override
-    public boolean remove(RailElement element){//szÃ©tkapcsoljuk az aktuÃ¡lis sÃ­nt Ã©s a paramÃ©terben kapottat, ha lehet.
+    public boolean remove(RailElement element){//szétkapcsoljuk az aktuális sínt és a paraméterben kapottat, ha lehet.
     	if(railA == element)
     		railA = null;
     	else if(railB == element)

@@ -24,7 +24,7 @@ public class Menu extends JPanel {
         this.game = game;
         addMouseListener(new menuMouseListener(this));
         try {
-            levelPath = new File("").getAbsolutePath() + "\\levels\\";//a levels mapp√°b√≥l t√∂ltj√ºk be a p√°ly√°kat.
+            levelPath = new File("").getAbsolutePath() + "\\levels\\";//a levels mapp·b·l tˆltj¸ be a p·ly·kat.
             levels = new File(levelPath).list();
         } catch (Exception e){
             e.printStackTrace();

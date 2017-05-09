@@ -1,28 +1,28 @@
 package struct;
 
 /**
- * Az alagutat megvalÃ³sÃ­tÃ³ osztÃ¡ly
+ * Az alagutat megvalósító osztály
  */
 public class Tunnel extends Rail {
-	//belsÃµ pÃ¡lya, 3 hosszÃº + 2 belsÃµ sÃ­n
+	//belsõ pálya, 3 hosszú + 2 belsõ sín
     private static Rail[] tunnel = new Rail[3];
     private static boolean initialized = false;
     public static int count = 0;
     /**
-     * A belsÃµ sÃ­nek lÃ©trehozÃ¡sa, csak egyszer fut le
+     * A belsõ sínek létrehozása, csak egyszer fut le
      */
-    private  static void init(){//lÃ©trehozzuk a belsÃ¶ sineket.
+    private  static void init(){//létrehozzuk a belsö sineket.
         for(int i = 0; i < 3; i++)
             tunnel[i] = new Rail();
-        tunnel[0].setNext(tunnel[1]);//megfelelÃ¶en Ã¶sszekapcsoljuk Ã¶ket
+        tunnel[0].setNext(tunnel[1]);//megfelelöen összekapcsoljuk öket
         tunnel[1].setNext(tunnel[0]);
         tunnel[1].setNext(tunnel[2]);
         tunnel[2].setNext(tunnel[1]);
-        initialized = true;//ez utÃ¡n mÃ¡r lÃ©trejÃ¶tt a lÃ¡thatatlan alagÃºt
+        initialized = true;//ez után már létrejött a láthatatlan alagút
     }
 
     /**
-     * @return MÃ¡r lÃ©tre van-e hozva a belsÃµ sÃ­npÃ¡lya
+     * @return Már létre van-e hozva a belsõ sínpálya
      */
     public static boolean isInitialized(){return initialized;}
 
@@ -30,17 +30,17 @@ public class Tunnel extends Rail {
         return tunnel;
     }
 
-    //Egy bejÃ¡rat felÃ©pÃ­tÃ©se
+    //Egy bejárat felépítése
     /**
-     * Egy bejÃ¡rat felÃ©pÃ­tÃ©se
+     * Egy bejárat felépítése
      */
     public Tunnel(){
-    	//Ha ez az elsÃµ, akkor a belsÃµ pÃ¡lya is
+    	//Ha ez az elsõ, akkor a belsõ pálya is
     	if(!initialized)
     		init();
 
-        //A belsÃµ sÃ­n felÃ©pÃ­tÃ©se a szabad vÃ©gen
-        //Maximum 2 alagÃºtvÃ©g lehet, Ã­gy Ã¶sszesen 1 alagÃºt
+        //A belsõ sín felépítése a szabad végen
+        //Maximum 2 alagútvég lehet, így összesen 1 alagút
         if (tunnel[0].setNext(this)) {
             railA = tunnel[0];
         } else if (tunnel[2].setNext(this)) {
@@ -52,50 +52,50 @@ public class Tunnel extends Rail {
      * @see struct.Rail#setNext(struct.RailElement)
      */
     @Override
-    public boolean setNext(RailElement next){//megprÃ³bÃ¡ljuk beÃ¡llÃ­tani a kÃ¶vetkezÃ¶ sÃ­nnek a kopottat
-        if(next == null || railB == next) return true;//ha mÃ¡r be van Ã¡llÃ­tva vagy nem akarunk semmit beÃ¡llÃ­tani
-        if(railA != null && railB == null){ //ha railA null, akkor a konstruktorban nem tudta megkapni az alagÃºt semeylik vÃ©gÃ©t. railB-hez ha mÃ¡r van valaki hozzÃ¡kÃ¶tve akkor nem tudjuk beÃ¡llÃ­tani
+    public boolean setNext(RailElement next){//megpróbáljuk beállítani a következö sínnek a kopottat
+        if(next == null || railB == next) return true;//ha már be van állítva vagy nem akarunk semmit beállítani
+        if(railA != null && railB == null){ //ha railA null, akkor a konstruktorban nem tudta megkapni az alagút semeylik végét. railB-hez ha már van valaki hozzákötve akkor nem tudjuk beállítani
             railB = next;
-            return true;//ha betudtuk Ã¡llÃ­tani, be is Ã¡llÃ­tjuk
+            return true;//ha betudtuk állítani, be is állítjuk
         }
         return false;
     }
 
     /**
-     * Az alagÃºt felÃ©pÃ­tÃ©se
-     * @param entrance A bejÃ¡ratnÃ¡l lÃ©vÃµ sÃ­n, amihez kapcsolni akarjuk
-     * @return Igaz, ha sikerÃ¼lt felÃ©pÃ­teni
+     * Az alagút felépítése
+     * @param entrance A bejáratnál lévõ sín, amihez kapcsolni akarjuk
+     * @return Igaz, ha sikerült felépíteni
      */
-    public boolean build(RailElement entrance){//megprÃ³bÃ¡ljuk felÃ©pÃ­teni
-        if(this.setNext(entrance) && entrance.setNext(this) && count < 2) {// ha fel lehet Ã©pÃ­teni
+    public boolean build(RailElement entrance){//megpróbáljuk felépíteni
+        if(this.setNext(entrance) && entrance.setNext(this) && count < 2) {// ha fel lehet építeni
             count++;
-            return true;//ekkor igazzal tÃ©rÃ¼nk vissza
+            return true;//ekkor igazzal térünk vissza
         } else
-            entrance.remove(this);//ha nem akkor megszÃ¼ntetjÃ¼k a kapcsolatot, majd kÃ­vÃ¼lrÃ¶l megsemmisÃ­tjÃ¼k
-        return false;// ekkor nem sikerÃ¼l a felÃ©pÃ­tÃ©s
+            entrance.remove(this);//ha nem akkor megszüntetjük a kapcsolatot, majd kívülröl megsemmisítjük
+        return false;// ekkor nem sikerül a felépítés
     }
     
     /**
-     * Az alagÃºt megsemmisÃ­tÃ©se
-     * @return Igaz, ha sikerÃ¼lt elpusztÃ­tani a bejÃ¡ratot
+     * Az alagút megsemmisítése
+     * @return Igaz, ha sikerült elpusztítani a bejáratot
      */
-    public boolean destroy(){//megsemmisÃ­tjÃ¼k
+    public boolean destroy(){//megsemmisítjük
         ElementBase inElement = this.getTrainElement();
 
-        if(inElement == null){//ha nincs senki kÃ¶zvetlenÃ¼l a bejÃ¡raton
+        if(inElement == null){//ha nincs senki közvetlenül a bejáraton
             if(railB != null)
-                if(railB.remove(this))//megprÃ³bÃ¡ljuk szÃ©tkapcsolni
+                if(railB.remove(this))//megpróbáljuk szétkapcsolni
                     this.remove(railB);
             if(!tunnel[0].remove(this))
                 tunnel[2].remove(this);
             count--;
             return true;// ha lehet
         }
-        return false;//ha nem lehet megsemmisÃ­teni
+        return false;//ha nem lehet megsemmisíteni
     }
 
     /**
-     * Az alagÃºt alaphelyzetbe Ã¡llÃ­tÃ¡sa
+     * Az alagút alaphelyzetbe állítása
      */
     public static void reset(){
         if(initialized) {

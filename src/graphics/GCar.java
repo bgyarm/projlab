@@ -8,16 +8,16 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * A szenes/utasokocsik kirajzolhat√≥ objektuma
+ * A szenes/utasokocsik kirajzolhatÛ objektuma
  */
 public class GCar extends Drawable {
     String direction;
     boolean passengers;
     /**
-     * @param x Sz√©less√©gi koordin√°ta
-     * @param y Magass√°gi koordin√°ta
-     * @param dir A kocsi ir√°nya
-     * @param color A kocsi sz√≠ne
+     * @param x SzÈlessÈgi koordin·ta
+     * @param y Magass·gi koordin·ta
+     * @param dir A kocsi ir·nya
+     * @param color A kocsi szÌne
      * @param passengers Vannak-e utasok
      */
     public GCar(int x, int y, String dir, String color, boolean passengers) {

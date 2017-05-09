@@ -1,23 +1,23 @@
 package struct;
 
 /**
- * Szeneskocsit megvalÃ³sÃ­tÃ³ osztÃ¡ly. NÃ¡la nem lehet token, nem szÃ¡llÃ­that utasokat.
+ * Szeneskocsit megvalósító osztály. Nála nem lehet token, nem szállíthat utasokat.
  */
 public class CoalCar extends ElementBase {
 
 	/**
-	 * @param parent Az Ãµt hÃºzÃ³ elem
+	 * @param parent Az õt húzó elem
 	 */
 	public  CoalCar(ElementBase parent){
 		child = null;
 		this.parent = parent;
 		parent.child = this;
 
-		//tesztelÃ©shez
+		//teszteléshez
 		this.setName("CoalCar " + count++);
 	}
 
-	//Ãµ egyszerÃ»en csak hÃºzza a kÃ¶vetkezÃµ kocsit
+	//õ egyszerûen csak húzza a következõ kocsit
 	/* (non-Javadoc)
 	 * @see struct.ElementBase#move()
 	 */

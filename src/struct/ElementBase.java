@@ -3,7 +3,7 @@ package struct;
 import application.Game;
 
 /**
- * A mozgÃ³ elemekhez absztrakt osztÃ¡ly (mozdony, szeneskocsi, utaskocsi)
+ * A mozgó elemekhez absztrakt osztály (mozdony, szeneskocsi, utaskocsi)
  */
 public abstract class ElementBase {
     protected RailElement actRail;
@@ -16,71 +16,71 @@ public abstract class ElementBase {
     protected String name;
     
     /**
-     * @param n nÃ©v
+     * @param n név
      */
     public void setName(String n){
     	name = n;
     }
 
     /**
-     * @return nÃ©v
+     * @return név
      */
     public String getName(){return name;}
 
     /**
-     * @param id A mÃ¡sik vonat neve
+     * @param id A másik vonat neve
      */
-    public void crash(String id){//Ã¼tkÃ¶zÃ©s valamelyik vonattal. Az id annak a vonatnak az azonosÃ­tÃ³ja (neve) amelyikkel Ã¼tkÃ¶zik egy mÃ¡sik vonat.
+    public void crash(String id){//ütközés valamelyik vonattal. Az id annak a vonatnak az azonosítója (neve) amelyikkel ütközik egy másik vonat.
     	crashedWith = id;
     	try {
-            ((Engine) this).stop();//megÃ¡llÃ­tjuk hogy ne mozogjon tovÃ¡bb a vonat.
+            ((Engine) this).stop();//megállítjuk hogy ne mozogjon tovább a vonat.
         }catch (Exception e){}
 
-        Game.gameOver("Vonatok Ã¼tkÃ¶ztek!!");//jÃ¡tÃ©knak vÃ©ge lesz
+        Game.gameOver("Vonatok ütköztek!!");//játéknak vége lesz
         Game.points = 0;
     }
     /**
-     * A mozgatÃ¡sÃ©rt felelÃµs fÃ¼ggvÃ©ny, minden osztÃ¡lynak maga kell megvalÃ³sÃ­tania.
-     * A mozdony hÃºzza a mÃ¶gÃ¶tte lÃ©vÃµt, valamint ellenÃµrzi, hogy nekimegy-e valaminek.
-     * A kocsik hÃºzzÃ¡k a mÃ¶gÃ¶ttÃ¼k lÃ©vÃµket, Ã©s tovÃ¡bbadjÃ¡k a tokent, ha nincs rÃ¡ szÃ¼ksÃ©gÃ¼k.
-     * ÃllomÃ¡sokon az utaskocsik le/felszÃ¡llÃ­tjÃ¡k az utasokat szÃ¼ksÃ©g esetÃ©n.
+     * A mozgatásért felelõs függvény, minden osztálynak maga kell megvalósítania.
+     * A mozdony húzza a mögötte lévõt, valamint ellenõrzi, hogy nekimegy-e valaminek.
+     * A kocsik húzzák a mögöttük lévõket, és továbbadják a tokent, ha nincs rá szükségük.
+     * Állomásokon az utaskocsik le/felszállítják az utasokat szükség esetén.
      */
-    public abstract void move();//mozgatÃ¡s, minden esetben felÃ¼lÃ­rjuk.
+    public abstract void move();//mozgatás, minden esetben felülírjuk.
 
     /**
      * @return Kisiklott-e a vonat
      */
-    public boolean getDerailed(){//lekÃ©ri az elsÃ¶ vonatelemnek Ã¡llapotÃ¡t, ez csak egy engine lehet.
+    public boolean getDerailed(){//lekéri az elsö vonatelemnek állapotát, ez csak egy engine lehet.
         ElementBase eb;
-        for(eb = this; this.parent != null; eb = this.parent);//sor elejÃ©re megyÃ¼nk
+        for(eb = this; this.parent != null; eb = this.parent);//sor elejére megyünk
         return eb.derailed;
     }
     /**
-     * @return ÃœtkÃ¶zÃ¶tt-e a vonat, ha igen, akkor kivel
+     * @return Ütközött-e a vonat, ha igen, akkor kivel
      */
-    public String getCrshed(){//lekÃ©ri az engine Ã¡llapotÃ¡t
+    public String getCrshed(){//lekéri az engine állapotát
         ElementBase eb;
         for(eb = this; this.parent != null; eb = this.parent);
         return eb.crashedWith;
     }
     /**
-     * @return A vonatelem melyik sÃ­nelemen Ã¡ll
+     * @return A vonatelem melyik sínelemen áll
      */
     public RailElement getActRail(){return actRail;}
     /**
-     * @return Az elÃµzÃµ sÃ­nelem
+     * @return Az elõzõ sínelem
      */
     public RailElement getPrevRail() {return prevRail;}
     /**
-     * A tokent ennek a vonatelemnek adja. Mozdony/szeneskocsi esetÃ©n egybÃµl tovÃ¡bbadja, ha tudja
+     * A tokent ennek a vonatelemnek adja. Mozdony/szeneskocsi esetén egybõl továbbadja, ha tudja
      */
     public abstract void giveToken();
     /**
-     * Elveszi a tokent ettÃµl a vonatelemtÃµl
+     * Elveszi a tokent ettõl a vonatelemtõl
      */
     public abstract void takeToken();
     /**
-     * @return Igaz, ha ennÃ©l van a token
+     * @return Igaz, ha ennél van a token
      */
     public abstract boolean hasToken();
 }

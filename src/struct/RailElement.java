@@ -1,7 +1,7 @@
 package struct;
 
 /**
- * A sÃ­nelemekhez absztrakt osztÃ¡ly
+ * A sínelemekhez absztrakt osztály
  */
 public abstract class RailElement {
     ElementBase trainElement;
@@ -24,39 +24,39 @@ public abstract class RailElement {
     };
 	
 	/**
-	 * @param next mellette lÃ©vÃ¶ sÃ­nelem
-	 * @return sikerÃ¼lt-e Ã¶sszekapcsolni
+	 * @param next mellette lévö sínelem
+	 * @return sikerült-e összekapcsolni
 	 */
 	public abstract boolean setNext(RailElement next);
 
     /**
-     * @param prev A haladÃ¡si irÃ¡nnyal ellentÃ©tesen lÃ©vÃ¶ szomszÃ©dos sÃ­n
-     * @return A haladÃ¡si irÃ¡nyban lÃ©vÃ¶ szomszÃ©dos sÃ­n
+     * @param prev A haladási iránnyal ellentétesen lévö szomszédos sín
+     * @return A haladási irányban lévö szomszédos sín
      */
     public abstract RailElement getNext(RailElement prev);
 
     /**
-     * @param te A sÃ­nen lÃ©vÃ¶ vonatelem
+     * @param te A sínen lévö vonatelem
      */
     public void setTrainElement(ElementBase te){trainElement = te;}
     /**
-     * @return A sÃ­nen lÃ©vÃ¶ vonatelem
+     * @return A sínen lévö vonatelem
      */
     public ElementBase getTrainElement(){
         return trainElement;
     }
     /**
-     * @return Lehet-e pÃ¡lyabejÃ¡rat (ahol a vonatok indulnak)
+     * @return Lehet-e pályabejárat (ahol a vonatok indulnak)
      */
     public boolean isEntrance(){return false;}
     /**
-     * @param element A sz?tkapcsoland? sÃ­n
-     * @return SikerÃ¼lt-e szÃ©tkapcsolni a kÃ©t sÃ­nt
+     * @param element A sz?tkapcsoland? sín
+     * @return Sikerült-e szétkapcsolni a két sínt
      */
     public boolean remove(RailElement element){return false;}
 
     /**
-     * @return A sÃ­nelem mellett talÃ¡lhatÃ³ Ã¡llomÃ¡s. null, ha nincs
+     * @return A sínelem mellett található állomás. null, ha nincs
      */
     public Station getStation() { return null; }
 
