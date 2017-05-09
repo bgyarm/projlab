@@ -1,10 +1,8 @@
 package graphics;
 
 import application.View;
-import struct.Station;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 

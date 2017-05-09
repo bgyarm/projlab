@@ -3,8 +3,6 @@ package application;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import struct.*;
-
 public class Main {
 
     public static void main(String[] args) {

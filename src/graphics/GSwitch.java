@@ -1,6 +1,5 @@
 package graphics;
 
-import application.Game;
 import application.View;
 
 import javax.imageio.ImageIO;
@@ -37,9 +36,9 @@ public class GSwitch extends Drawable {
             }
         } catch (IOException ex){}
     }
-    /* (non-Javadoc)
-     * @see graphics.Drawable#draw(java.awt.Graphics)
+    /**
      * Jelzi, hogy ez egy váltó egy S betûvel
+     * @see graphics.Drawable#draw(java.awt.Graphics)
      */
     @Override
     public void draw(Graphics g){

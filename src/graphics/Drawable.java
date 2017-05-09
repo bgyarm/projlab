@@ -1,11 +1,9 @@
 package graphics;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
-import java.awt.image.WritableRaster;
 
 /**
  * A kirajzolható objektumok absztrakt osztálya

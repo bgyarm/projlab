@@ -32,11 +32,12 @@ public class Carriage extends ElementBase {
      */
     public Color getColor(){return color;}
     /**
-     * @return Vannek-e utasok a kocsin
+     * @return Igaz, ha vannak utasok a kocsin, más esetben hamis.
      */
-    public boolean hasPassangers(){return !empty;}
+    public boolean hasPassengers(){return !empty;}
 
-    /* (non-Javadoc)
+    /**
+     * A mozgatáson túl ellenõrzi, hogy állomáson állunk-e, és ha igen, akkor az utasok fel és leszállását is intézzük, valamint a tokent továbbadjuk.
      * @see struct.ElementBase#move()
      */
     public void move() {//mozgatjuk a vagonokat.
@@ -93,7 +94,7 @@ public class Carriage extends ElementBase {
 	}
 	
 	/**
-	 * @return Ennél a kocsinál lehet-e a token
+	 * @return Igaz, ha ennél a kocsinál  kell legyen a token, minden más esetben hamis.
 	 */
 	public boolean searchToken(){
 		//ha nálunk van, megtaláltuk

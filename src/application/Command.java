@@ -2,18 +2,15 @@ package application;
 
 import java.awt.*;
 import java.io.*;
-import java.rmi.server.ExportException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
 
 
 import struct.*;
 import struct.Color;
 
-import javax.xml.bind.Element;
-
+/**
+ * Egy parancs feldolgozására szolgáló osztály
+ */
 public class Command {
 	private File input;
 	private File output;
@@ -26,6 +23,10 @@ public class Command {
 	private Dimension mapSize;
 	private boolean testing = false;
 	
+	/**
+	 * Parancsok fájlból olvasása
+	 * @param path fájl elérési útja
+	 */
 	public void input(String path){//bemeneti fájl beállítása
         String testdir;
         if(testing) {
@@ -42,6 +43,10 @@ public class Command {
 
 	}
 	
+	/**
+	 * Kimenet fájlba írása
+	 * @param path Kimeneti fájl elérési útvonala
+	 */
 	public void output(String path){// kimeneti fájl beállítása
         String resultdir = new File("").getAbsolutePath() + "\\results\\";
 		File temp = new File(resultdir + path + ".txt");
@@ -54,6 +59,9 @@ public class Command {
 		}
 	}
 	
+	/**
+	 * Bemenetrõl érkezõ utasítások lefuttatása (tesztekhez)
+	 */
 	public void init(){ //bemenetröl érkezö utasítások lefuttatása
 		try{
 			FileInputStream fis;
@@ -123,6 +131,10 @@ public class Command {
 		}
 	}
 	
+	/**
+	 * Sínpálya felépítése
+	 * @param mrx bemenet
+	 */
 	private void railMap(ArrayList<String> mrx){//a sínpálya felépítése
 		try{
             entrances.clear();
@@ -192,6 +204,11 @@ public class Command {
 		return null;
 	}
 
+	/**
+	 * Események elsütése a pályán(tesztekhez)
+	 * @param cmd parancs
+	 * @param map pályaelemek térképe
+	 */
 	public void runCommand(String cmd, RailElement[][] map){//események elsütése
 	    try {
                 String[] comm = cmd.split(" ");
@@ -225,7 +242,7 @@ public class Command {
                                     c = new Carriage(last, Color.blue, comm[2].equals("1") ? true : false);
                                 else if (comm[1].equals("U")) //'U' karakter esetén bárhol leszállhatnak az utasok a kocsiból. (Szivárvány szín)
                                     c = new Carriage(last, Color.rainbow, comm[2].equals("1") ? true : false);
-                                if(((Carriage)c).hasPassangers() && ((Carriage)c).searchToken())//ha vannak utasok, és ö az elsö megkapja a tokent
+                                if(((Carriage)c).hasPassengers() && ((Carriage)c).searchToken())//ha vannak utasok, és ö az elsö megkapja a tokent
                                         c.giveToken();
                             }
                         }
@@ -301,6 +318,11 @@ public class Command {
         }
     }
 
+    /**
+     * @param h magassági koordináta
+     * @param w szélességi koordináta
+     * @return a koordináták által meghatározott sínelem közvetlen szomszédai, amikhez csatlakozhat
+     */
     public RailElement[] getNeighbours(int h, int w){//visszaadja egy adott sín körüli elemeket
 	    int maxh = railMap.length;
 	    int maxw = railMap[0].length;
@@ -318,6 +340,10 @@ public class Command {
         return neighs;
     }
 
+    /**
+     * @param re sínelem
+     * @return a sínelem tulajdonságai(típus, van-e rajta állomás, stb.)
+     */
     public String getRailInfo(RailElement re){//Lekérdezzük egy sínelem tulajdonságait. Formázottan visszaadjuk az információt
         String str = "";
         if(re != null)
@@ -351,6 +377,9 @@ public class Command {
         return String.format("%-4s", str);
     }
 
+	/**
+	 * A kész pálya formázása, majd az eredményhez írása(teszteknél kell)
+	 */
 	public void getRailMap(){//a pályát formázottan megjeleníti
         String row = "";
         result.add("/RailMap:\n");
@@ -365,6 +394,9 @@ public class Command {
         }
     }
 
+    /**
+     * A vonatelemek térképét frissíti (elhelyezkedésüket)
+     */
     public void updateTrainMap(){//frissíti a trainmap által tárolt adatokat
         for (int i = 0; i < trainMap.length; i++) {
             for (int j = 0; j < trainMap[i].length; j++) {
@@ -376,6 +408,10 @@ public class Command {
         }
     }
 
+    /**
+     * @param eb egy vonatelem
+     * @return a megadott vonatelem tulajdonságai(típus, szín, utasok, ilyesmi)
+     */
     public String getTrainInfo(ElementBase eb){//hasonló mint a getRailInfo csak vonatelemmel
         String str = "";
         if(eb != null)
@@ -392,13 +428,13 @@ public class Command {
                     Carriage c = (Carriage)eb;
                     str += c.getName();
                     if(c.getColor() == Color.red)
-                        str += "R" + (c.hasPassangers() ? "1" : "0");
+                        str += "R" + (c.hasPassengers() ? "1" : "0");
                     if(c.getColor() == Color.green)
-                        str += "G" + (c.hasPassangers() ? "1" : "0");
+                        str += "G" + (c.hasPassengers() ? "1" : "0");
                     if(c.getColor() == Color.blue)
-                        str += "B" + (c.hasPassangers() ? "1" : "0");
+                        str += "B" + (c.hasPassengers() ? "1" : "0");
                     if(c.getColor() == Color.rainbow)
-                        str += "U" + (c.hasPassangers() ? "1" : "0");
+                        str += "U" + (c.hasPassengers() ? "1" : "0");
                     break;
                 case "CoalCar":
                     str += eb.getName();//csak a nevét tároljuk el
@@ -411,6 +447,9 @@ public class Command {
         return String.format("%-4s", str);
     }
 
+    /**
+     * A vonatok jelenlegi állását elmenti az eredményekbe(teszteseteknél kell)
+     */
     public void getTrainMap(){//hasonló mint a getRailMap
         updateTrainMap();//elöször frissítjük a térképet
         String row = "";
@@ -437,6 +476,12 @@ public class Command {
         }
     }
 
+    /**
+     * Teszteset sikerességének vizsgálata
+     * @param height a pálya magassága
+     * @param expected elvárt teszteredmény
+     * @return igaz, ha a teszt sikeres volt
+     */
     public boolean testMatch(int height, ArrayList<String> expected){//összehasonlítja sorról sorra az eredményeket az elvárttal.
         result.remove(0); result.remove(height);
         int resH = height*2;//Rail + Trainmap, mindegyikhez a felirat + sortörés.
@@ -453,6 +498,10 @@ public class Command {
         return true;//egyébként sikeres
     }
 
+    /**
+     * Az eredményt fájlba írja
+     * @param res eredmény
+     */
     public void writeOut(ArrayList<String> res){//kiírjuk a paraméterben átadott lista tartalmát.
         try {
             Writer out;
@@ -471,7 +520,16 @@ public class Command {
         }
     }
 
+    /**
+     * @return A pálya dimenziója/mérete
+     */
     public Dimension getDim(){return mapSize;}
+    /**
+     * @return A sínelemek térképe
+     */
     public RailElement[][] getMap(){return railMap;}
+    /**
+     * @return A lehetséges belépési pontok a vonatoknak
+     */
     public ArrayList<Point> getEntraces(){return entrances;}
 }

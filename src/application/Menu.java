@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
+/**
+ * Menü és fõablak
+ */
 public class Menu extends JPanel {
     Game game;
     Point prev = new Point(30, 30);
@@ -14,6 +17,9 @@ public class Menu extends JPanel {
     private static String levelPath;
     private static String[] levels;
 
+    /**
+     * @param game a játék
+     */
     public Menu(Game game){
         this.game = game;
         addMouseListener(new menuMouseListener(this));
@@ -29,6 +35,9 @@ public class Menu extends JPanel {
         repaint();
     }
 
+    /**
+     * Frissíti az aktuális pályát és a játék információit
+     */
     public void update(){
         act += levels.length;
         act %= levels.length;
@@ -36,9 +45,20 @@ public class Menu extends JPanel {
         game.getInfo();
     }
 
+    /**
+     * Elindítja a játékot
+     * @param b indulási bit
+     */
     void setStarted(boolean b){started = b; game.start(); game.setOver(false);}
+    /**
+     * @return igaz, ha el van indítva a játék, másként hamis
+     */
     public boolean getStarted(){return started;}
 
+    /**
+     * Kirajzol egy grafikai elemet.
+     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+     */
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -61,5 +81,8 @@ public class Menu extends JPanel {
         }
     }
 
+    /**
+     * @return A jelenlegi pálya neve
+     */
     public String getAct(){return levels[act];}
 }

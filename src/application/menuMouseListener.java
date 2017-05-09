@@ -1,23 +1,31 @@
 package application;
 
-import javafx.application.Application;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * Az egér (kurzor) eseménykezelõje
+ */
 public class menuMouseListener implements MouseListener {
 
     Point prev;
     Point next;
     Menu menu;
 
+    /**
+     * @param m a menü
+     */
     public menuMouseListener(Menu m){
         prev = new Point(m.prev.x+10, m.prev.y-20);
         next = new Point(m.next.x+10, m.next.y-20);
         menu = m;
     }
 
+    /**
+     * Egérkattintás kezelése
+     */
     public void mouseClicked(MouseEvent e) {
         Point mouse = new Point(e.getX(), e.getY());
         if(!menu.getStarted()) {

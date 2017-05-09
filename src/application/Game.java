@@ -5,6 +5,9 @@ import java.awt.*;
 import java.awt.Color;
 import java.util.Random;
 
+/**
+ * A játékot összefogó osztály
+ */
 public class Game extends JLayeredPane implements Runnable{
 
 	private static boolean pause = true;
@@ -38,18 +41,27 @@ public class Game extends JLayeredPane implements Runnable{
         t.start();
 	}
 
+    /**
+     * A játékról begyûjti a friss információkat
+     */
     public void getInfo(){
 	    view.clear();
 	    actLevel = menu.getAct();
         controller.init(actLevel);
     }
 
+    /**
+     * Elindítja a játékot (start gomb)
+     */
     public void start(){
         numTrains = 0;
         ticks = 0;
         controller.newTrain();
     }
 
+    /**
+     * A játék ciklusa, lépteti a mozdonyokat és néha új mozdonyt helyez el a pályán. A lépésszámot figyeli és egy bizonyos idõ után nyer a játékos.
+     */
     @Override
     public void run(){
         Random r = new Random();
@@ -80,9 +92,23 @@ public class Game extends JLayeredPane implements Runnable{
         }catch (Exception e) {e.printStackTrace();}
     }
 
+	/**
+	 * @return Igaz, ha vége van a játéknak, minden más esetben hamis
+	 */
 	public static boolean isOver(){return over;}
+    /**
+     * Beállítja, hogy vége van-e a játéknak
+     * @param b végejelzés
+     */
     public static void setOver(boolean b){over = b;}
+	/**
+	 * Szüneteli vagy folytatja a játékot
+	 */
 	public static void pause(){pause = !pause;}//megÃ¡llÃ­thatjuk, Ã©s elindÃ­thatjuk a jÃ¡tÃ©kot
+    /**
+     * Játék vége és szöveg kiírása (miért lett vége)
+     * @param s Szöveg a játékosnak
+     */
     public static void gameOver(String s){//jÃ¡tÃ©k vÃ©ge
 	    over = true;
 	    overText = s;

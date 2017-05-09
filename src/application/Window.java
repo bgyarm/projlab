@@ -3,6 +3,9 @@ package application;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Az ablak megvalósítása
+ */
 public class Window extends JFrame{
     static int windowWidth = 800;
     static int windowHeight = 600;
@@ -11,6 +14,10 @@ public class Window extends JFrame{
     Game game;
     View view;
 
+    /**
+     * @param w szélesség
+     * @param h magasság
+     */
     public Window(int w, int h) {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         windowWidth = w;
@@ -21,6 +28,9 @@ public class Window extends JFrame{
         pack();
     }
 
+    /**
+     * Játék létrehozása, ablak inicializálása
+     */
     public void init(){
         setLocationRelativeTo(null);
         setPreferredSize(new Dimension(windowWidth, windowHeight));

@@ -37,9 +37,10 @@ public class GCar extends Drawable {
         } catch (IOException ex) {}
     }
 
-    /* (non-Javadoc)
-     * @see graphics.Drawable#draw(java.awt.Graphics)
+    /**
+     * Rajzol
      * Ha vannak utasok, azt is jelzi
+     * @see graphics.Drawable#draw(java.awt.Graphics)
      */
     @Override
     public void draw(Graphics g) {

@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+/**
+ * Az események irányításáért felelõs osztály
+ */
 public class Controller {
     View view = null;
     private RailElement[][] railMap = null;
@@ -17,6 +20,10 @@ public class Controller {
     ArrayList<String> events = new ArrayList<>();
     MouseListener listener;
 
+    /**
+     * @param v nézet
+     * @param actLevel jelenlegi pálya
+     */
     public Controller(View v, String actLevel) {
         comm = new Command();
         view = v;
@@ -46,6 +53,10 @@ public class Controller {
         };
     }
 
+    /**
+     * Betölti a pályát
+     * @param actLevel jelenlegi pálya
+     */
     void init(String actLevel){
         if(railMap != null)
             for(int i = 0; i < railMap.length; i++)
@@ -67,6 +78,12 @@ public class Controller {
         view.clear();
     }
 
+    /**
+     * A nézethez adja a grafikai elemet
+     * @param elem sínelem
+     * @param x szélességi koordináta
+     * @param y magassági koordináta
+     */
     void getGraphics(RailElement elem, int x, int y){
         Drawable d = null;
         if(elem != null) {
@@ -110,6 +127,9 @@ public class Controller {
         view.addRail(d, y, x);
     }
 
+    /**
+     * Validálja a nézetet
+     */
     public void validate(){
         for (Iterator<String> iterator = events.iterator(); iterator.hasNext(); ) {
             comm.runCommand(iterator.next(), railMap);
@@ -139,7 +159,7 @@ public class Controller {
                         }
                         else {
                             String color = ((Carriage)tmp).getColor().name();
-                            view.addTrain(new GCar(j * View.imgSize, i * View.imgSize, direction, color, ((Carriage) tmp).hasPassangers()), j, i);
+                            view.addTrain(new GCar(j * View.imgSize, i * View.imgSize, direction, color, ((Carriage) tmp).hasPassengers()), j, i);
                         }
                     } else
                         view.addTrain(null, j, i);
@@ -148,6 +168,11 @@ public class Controller {
             view.clear();
     }
 
+    /**
+     * @param x szélességi koordináta
+     * @param y magassági koordináta
+     * @return A koordinátán lévõ elem, ha van ott valami, egyébként null
+     */
     public String elementAt(int x, int y) {
         RailElement elem = railMap[y][x];
         if (elem != null) {
@@ -165,10 +190,17 @@ public class Controller {
         return null;
     }
 
+    /**
+     * Esemény hozzáadása
+     * @param ev esemény
+     */
     public void addEvent(String ev){
         events.add(ev);
     }
 
+    /**
+     * Új vonat elhelyezése a pályán
+     */
     public void newTrain(){
         if(Game.numTrains < Game.maxTrains) {
             int tries = 0;
@@ -211,5 +243,8 @@ public class Controller {
         }
     }
 
+    /**
+     * @return Az egér eseménykezelõje
+     */
     public MouseListener getListener(){return listener;}
 }

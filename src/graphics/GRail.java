@@ -43,9 +43,9 @@ public class GRail extends Drawable {
             }
         } catch (IOException ex){}
     }
-    /* (non-Javadoc)
+    /**
+     * Ha van rajta állomás, jelzi, az utasokat is, és az állomás színét
      * @see graphics.Drawable#draw(java.awt.Graphics)
-     * Ha van rajta állomás, jelzi, az utasokat is
      */
     @Override
     public void draw(Graphics g) {
