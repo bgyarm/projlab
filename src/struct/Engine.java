@@ -64,6 +64,7 @@ public class Engine extends ElementBase {
         derailed = true;
         active = false;
         Game.gameOver("Vonat kisiklott!");//ekkor is vége lesz a játéknak
+        Game.points = 0;
     }
 
 	/* (non-Javadoc)

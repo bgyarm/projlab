@@ -6,8 +6,8 @@ import struct.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.Console;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 public class Controller {
@@ -111,10 +111,10 @@ public class Controller {
     }
 
     public void validate(){
-        for (String ev : events) {
-            comm.runCommand(ev, railMap);
+        for (Iterator<String> iterator = events.iterator(); iterator.hasNext(); ) {
+            comm.runCommand(iterator.next(), railMap);
+            iterator.remove();
         }
-        events.clear();
         for(int i = 0; i < railMap.length; i++)
             for(int j = 0; j < railMap[i].length; j++)
                 getGraphics(railMap[i][j], i, j);
@@ -170,7 +170,7 @@ public class Controller {
     }
 
     public void newTrain(){
-        if(Game.numTrains < 2) {
+        if(Game.numTrains < Game.maxTrains) {
             int tries = 0;
             String s = "";
             Random r = new Random();

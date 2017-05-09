@@ -12,10 +12,10 @@ public class Game extends JLayeredPane implements Runnable{
     private String actLevel;
 	private View view;
 	private static Menu menu;
-    private final static int fps = 30;
     private Controller controller;
     static String overText = "";
     static int numTrains;
+    static int maxTrains = 2;
     static int ticks = 0;
     public static int points = 0;
     public static Font font = new Font("Comic Sans MS", Font.BOLD, 40);
@@ -25,8 +25,8 @@ public class Game extends JLayeredPane implements Runnable{
         setBounds(0, 0, Window.windowWidth, Window.windowHeight);
         setBackground(Color.black);
         menu = new Menu(this);
-        view = new View(Window.windowWidth-20-Window.borderW, Window.windowHeight-250);
-        view.setSize(Window.windowWidth-20-Window.borderW, Window.windowHeight-250);
+        view = new View(Window.windowWidth-20-Window.borderW, Window.windowHeight-180);
+        view.setSize(Window.windowWidth-20-Window.borderW, Window.windowHeight-180);
         actLevel = menu.getAct();
         controller = new Controller(view, actLevel);
         getInfo();
@@ -45,7 +45,6 @@ public class Game extends JLayeredPane implements Runnable{
     }
 
     public void start(){
-        points = 0;
         numTrains = 0;
         ticks = 0;
         controller.newTrain();
@@ -63,8 +62,16 @@ public class Game extends JLayeredPane implements Runnable{
                     controller.validate();
                     Thread.sleep(800);
                     controller.addEvent("M");
+                    menu.repaint(0, 0, 100, 40);
                     if(ticks > 30){
                         gameOver("Nyertel!");
+                        Thread.sleep(3000);
+                        overText = "";
+                        menu.act++;
+                        menu.update();
+                        Thread.sleep(1000);
+                        start();
+                        over = false;
                     }
                 }
                 else

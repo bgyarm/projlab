@@ -1,5 +1,7 @@
 package struct;
 
+import application.Game;
+
 /**
  * Utasszállító kocsit megvalósító osztály
  */
@@ -58,12 +60,14 @@ public class Carriage extends ElementBase {
             	//ha üres a kocsi és az állomáson vannak emberek, vegyük fel õket
             	//ekkor a tokent ellenõriznünk kell
             	if(empty && s.hasPassengers()){
+            	    Game.points++;//növeljük a pontokat
             		empty = false;
             		s.setPassengers(false);
             		token = searchToken();
             	}
             	//ha nem volt üres a kocsink, akkor rakjuk le az utasokat és passzoljuk tovább a tokent
             	else if (!empty && token) {
+            		 Game.points += 2;//növeljük a megszerzett pontokat
                      empty = true;
                      token = false;
                      if(child != null)

@@ -27,14 +27,14 @@ public class menuMouseListener implements MouseListener {
             } else if (mouse.distance(next) < 15) {
                 menu.act++;
                 menu.update();
-            } else if (mouse.distance(new Point(160, Window.windowHeight - 160)) < 50) {
+            } else if (mouse.distance(new Point(160, Window.windowHeight - 80)) < 50) {
                 menu.setStarted(true);
                 menu.repaint();
-            } else if (mouse.distance(new Point(Window.windowWidth - 220, Window.windowHeight - 120)) < 50) {
+            } else if (mouse.distance(new Point(Window.windowWidth - 220, Window.windowHeight - 80)) < 50) {
                 System.exit(0);
             }
         } else {
-            if (mouse.distance(new Point(Window.windowWidth - 220, Window.windowHeight - 120)) < 50) {
+            if (mouse.distance(new Point(Window.windowWidth - 220, Window.windowHeight - 80)) < 50) {
                 menu.setStarted(false);
                 menu.update();
                 menu.repaint();

@@ -45,8 +45,8 @@ public class Menu extends JPanel {
         g.setFont(Game.font);
         g.drawString(levels[act].substring(0, levels[act].lastIndexOf('.')), 200, 30);
         if(started){
-            g.drawRect(Window.windowWidth - 300, Window.windowHeight - 170, 200, 50);
-            g.drawString("Back", Window.windowWidth - 240, Window.windowHeight - 130);
+            g.drawString("Back", Window.windowWidth - 240, Window.windowHeight - 80);
+            g.drawString(Integer.toString(Game.points), 20, 35);
             if(Game.isOver()) {
                 g.setColor(Color.BLACK);
                 g.setFont(new Font("Comic Sans MS", Font.BOLD, 60));
@@ -56,10 +56,8 @@ public class Menu extends JPanel {
         else {
             g.drawString("<", prev.x, prev.y);
             g.drawString(">", next.x, next.y);
-            g.drawRect(100, Window.windowHeight - 170, 200, 50);
-            g.drawString("Start", 150, Window.windowHeight - 130);
-            g.drawRect(Window.windowWidth - 300, Window.windowHeight - 170, 200, 50);
-            g.drawString("Exit", Window.windowWidth - 240, Window.windowHeight - 130);
+            g.drawString("Start", 150, Window.windowHeight - 80);
+            g.drawString("Exit", Window.windowWidth - 240, Window.windowHeight - 80);
         }
     }
 

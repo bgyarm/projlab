@@ -35,7 +35,9 @@ public abstract class ElementBase {
     	try {
             ((Engine) this).stop();//megállítjuk hogy ne mozogjon tovább a vonat.
         }catch (Exception e){}
+
         Game.gameOver("Vonatok ütköztek!!");//játéknak vége lesz
+        Game.points = 0;
     }
     /**
      * A mozgatásért felelõs függvény, minden osztálynak maga kell megvalósítania.
