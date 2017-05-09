@@ -7,36 +7,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75def48b-032a-4ca2-8f82-d05d99f44f07" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/levels/get_on.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/levels/getting_off.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/levels/move_around.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/levels/move_trains.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/levels/switch_derail.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/levels/tunnel_derail.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/levels/tunnel_test.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/application/Command.class" afterPath="$PROJECT_DIR$/out/production/projekt/application/Command.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/boom.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/levels/basics.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/levels/hard.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/levels/t_crossing.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/levels/t_get_on.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/levels/t_getting_off.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/levels/t_move_around.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/levels/t_move_trains.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/levels/t_switch_derail.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/levels/t_tunnel_derail.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/levels/t_tunnel_test.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/application/Game.class" afterPath="$PROJECT_DIR$/out/production/projekt/application/Game.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/Carriage.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/Carriage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/CoalCar.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/CoalCar.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/Color.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/Color.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/Crossing.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/Crossing.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/ElementBase.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/ElementBase.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/Engine.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/Engine.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/Rail.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/Rail.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/RailElement.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/RailElement.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/Station.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/Station.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/Switch$1.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/Switch$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/Switch$State.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/Switch$State.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/Switch.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/Switch.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/struct/Tunnel.class" afterPath="$PROJECT_DIR$/out/production/projekt/struct/Tunnel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/Controller.java" afterPath="$PROJECT_DIR$/src/application/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/Game.java" afterPath="$PROJECT_DIR$/src/application/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/Menu.java" afterPath="$PROJECT_DIR$/src/application/Menu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/menuMouseListener.java" afterPath="$PROJECT_DIR$/src/application/menuMouseListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/Carriage.java" afterPath="$PROJECT_DIR$/src/struct/Carriage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/ElementBase.java" afterPath="$PROJECT_DIR$/src/struct/ElementBase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/Engine.java" afterPath="$PROJECT_DIR$/src/struct/Engine.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,10 +35,10 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
+            <state relative-caret-position="2907">
               <caret line="173" column="26" lean-forward="true" selection-start-line="173" selection-start-column="26" selection-end-line="173" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -64,10 +47,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Command.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Command.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/application/Command.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1391">
+            <state relative-caret-position="4964">
               <caret line="304" column="34" lean-forward="true" selection-start-line="304" selection-start-column="34" selection-end-line="304" selection-end-column="34" />
               <folding>
                 <marker date="1494338028140" expanded="true" signature="20481:20946" ph="{...}" />
@@ -181,6 +164,12 @@
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--follow-tags" />
+        <option name="title" value="Current Branch" />
+      </GitPushTagMode>
+    </option>
     <favorite-branches>
       <branch-storage>
         <map>
@@ -289,60 +278,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="struct" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projekt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projlab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projekt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projlab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="graphics" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projekt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projlab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -810,7 +745,7 @@
       <workItem from="1493931429140" duration="13882000" />
       <workItem from="1494153439732" duration="201000" />
       <workItem from="1494239109343" duration="17975000" />
-      <workItem from="1494321692414" duration="17956000" />
+      <workItem from="1494321692414" duration="18808000" />
     </task>
     <task id="LOCAL-00001" summary="prototype done">
       <created>1493163885910</created>
@@ -931,15 +866,21 @@
       <option name="project" value="LOCAL" />
       <updated>1494338683726</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Game ready for play">
+      <created>1494342129509</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1494342129509</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="270289000" />
+    <option name="totallyTimeSpent" value="271141000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1374" height="737" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -956,7 +897,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1295754" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1295754" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -988,7 +929,8 @@
     <MESSAGE value="First steps in game" />
     <MESSAGE value="Game 1" />
     <MESSAGE value="Game 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Game 2" />
+    <MESSAGE value="Game ready for play" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game ready for play" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1413,16 +1355,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/Command.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1391">
-          <caret line="304" column="34" lean-forward="true" selection-start-line="304" selection-start-column="34" selection-end-line="304" selection-end-column="34" />
-          <folding>
-            <marker date="1494338028140" expanded="true" signature="20481:20946" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
@@ -1449,10 +1381,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
+        <state relative-caret-position="2907">
           <caret line="173" column="26" lean-forward="true" selection-start-line="173" selection-start-column="26" selection-end-line="173" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4964">
+          <caret line="304" column="34" lean-forward="true" selection-start-line="304" selection-start-column="34" selection-end-line="304" selection-end-column="34" />
+          <folding>
+            <marker date="1494338028140" expanded="true" signature="20481:20946" ph="{...}" />
           </folding>
         </state>
       </provider>
