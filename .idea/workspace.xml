@@ -7,43 +7,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75def48b-032a-4ca2-8f82-d05d99f44f07" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/city.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/felület.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/felület.psd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/field.docx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/field.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/items.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/játék.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/játék.psd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/menu.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/menu.psd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/objects.psd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/onlyfield.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/vonat.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imgsrc/city.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imgsrc/felület.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imgsrc/felület.psd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imgsrc/field.docx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imgsrc/field.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imgsrc/items.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imgsrc/játék.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imgsrc/játék.psd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imgsrc/menu.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imgsrc/menu.psd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imgsrc/objects.psd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imgsrc/onlyfield.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imgsrc/vonat.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/application/Command.class" afterPath="$PROJECT_DIR$/out/production/projekt/application/Command.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/application/Game.class" afterPath="$PROJECT_DIR$/out/production/projekt/application/Game.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/application/Logger.class" afterPath="$PROJECT_DIR$/out/production/projekt/application/Logger.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt/application/Main.class" afterPath="$PROJECT_DIR$/out/production/projekt/application/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/Command.java" afterPath="$PROJECT_DIR$/src/application/Command.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/Controller.java" afterPath="$PROJECT_DIR$/src/application/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/Game.java" afterPath="$PROJECT_DIR$/src/application/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/Menu.java" afterPath="$PROJECT_DIR$/src/application/Menu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/Drawable.java" afterPath="$PROJECT_DIR$/src/graphics/Drawable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/GCar.java" afterPath="$PROJECT_DIR$/src/graphics/GCar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/GCrossing.java" afterPath="$PROJECT_DIR$/src/graphics/GCrossing.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/GEngine.java" afterPath="$PROJECT_DIR$/src/graphics/GEngine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/GRail.java" afterPath="$PROJECT_DIR$/src/graphics/GRail.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/GSwitch.java" afterPath="$PROJECT_DIR$/src/graphics/GSwitch.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/GTunnel.java" afterPath="$PROJECT_DIR$/src/graphics/GTunnel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/Carriage.java" afterPath="$PROJECT_DIR$/src/struct/Carriage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/CoalCar.java" afterPath="$PROJECT_DIR$/src/struct/CoalCar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/Color.java" afterPath="$PROJECT_DIR$/src/struct/Color.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/Crossing.java" afterPath="$PROJECT_DIR$/src/struct/Crossing.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/ElementBase.java" afterPath="$PROJECT_DIR$/src/struct/ElementBase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/Engine.java" afterPath="$PROJECT_DIR$/src/struct/Engine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/Rail.java" afterPath="$PROJECT_DIR$/src/struct/Rail.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/RailElement.java" afterPath="$PROJECT_DIR$/src/struct/RailElement.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/Station.java" afterPath="$PROJECT_DIR$/src/struct/Station.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/Switch.java" afterPath="$PROJECT_DIR$/src/struct/Switch.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struct/Tunnel.java" afterPath="$PROJECT_DIR$/src/struct/Tunnel.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -281,20 +262,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="projlab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projekt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projlab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -764,7 +731,7 @@
       <workItem from="1494153439732" duration="201000" />
       <workItem from="1494239109343" duration="17975000" />
       <workItem from="1494321692414" duration="20820000" />
-      <workItem from="1494366752937" duration="4395000" />
+      <workItem from="1494366752937" duration="4506000" />
     </task>
     <task id="LOCAL-00001" summary="prototype done">
       <created>1493163885910</created>
@@ -906,11 +873,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494369989494</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Game ready for play">
+      <created>1494371170911</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1494371170911</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="277548000" />
+    <option name="totallyTimeSpent" value="277659000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1374" height="737" extended-state="6" />
