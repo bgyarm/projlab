@@ -125,6 +125,8 @@ public class Command {
 	
 	private void railMap(ArrayList<String> mrx){//a sínpálya felépítése
 		try{
+            entrances.clear();
+            Tunnel.reset();
 			int h = mapSize.height;
 			int w = mapSize.width;
 			if(h <=0 || w <=0 || h != mrx.size())

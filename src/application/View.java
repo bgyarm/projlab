@@ -28,7 +28,9 @@ public class View extends JPanel {
     public void clearTrains(){
         int h = trains.length;
         int w = trains[h].length;
-        trains = new Drawable[h][w];
+        for(int i = 0; i < h; i++)
+            for(int j = 0; j < w; j++)
+                trains[i][j] = null;
     }
 
     public int getW(){return rails[0].length*imgSize;}
@@ -51,18 +53,11 @@ public class View extends JPanel {
         }
         g.drawImage(buffer, 0, 0, this);
     }
-    public BufferedImage getBuffer(){return buffer;}
 
     public void clear(){
         Graphics g = buffer.getGraphics();
         g.setColor(Color.lightGray);
         g.fillRect (0, 0, this.getWidth(), this.getHeight());
         repaint();
-    }
-
-    public void clear(int x, int y){
-        Graphics g = buffer.getGraphics();
-        g.setColor(getBackground());
-        g.fillRect (x, y, View.imgSize, View.imgSize);
     }
 }

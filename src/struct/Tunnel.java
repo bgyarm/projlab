@@ -7,6 +7,7 @@ public class Tunnel extends Rail {
 	//belsõ pálya, 3 hosszú + 2 belsõ sín
     private static Rail[] tunnel = new Rail[3];
     private static boolean initialized = false;
+    public static int count = 0;
     /**
      * A belsõ sínek létrehozása, csak egyszer fut le
      */
@@ -37,13 +38,14 @@ public class Tunnel extends Rail {
     	//Ha ez az elsõ, akkor a belsõ pálya is
     	if(!initialized)
     		init();
-    	//A belsõ sín felépítése a szabad végen
-    	//Maximum 2 alagútvég lehet, így összesen 1 alagút
-    	if(tunnel[0].setNext(this))
-    		railA = tunnel[0];
-    	else
-    		if(tunnel[2].setNext(this))
-    			railA = tunnel[2];
+
+        //A belsõ sín felépítése a szabad végen
+        //Maximum 2 alagútvég lehet, így összesen 1 alagút
+        if (tunnel[0].setNext(this)) {
+            railA = tunnel[0];
+        } else if (tunnel[2].setNext(this)) {
+            railA = tunnel[2];
+        }
     }
 
     /* (non-Javadoc)
@@ -65,9 +67,10 @@ public class Tunnel extends Rail {
      * @return Igaz, ha sikerült felépíteni
      */
     public boolean build(RailElement entrance){//megpróbáljuk felépíteni
-        if(this.setNext(entrance) && entrance.setNext(this))// ha fel lehet építeni
+        if(this.setNext(entrance) && entrance.setNext(this) && count < 2) {// ha fel lehet építeni
+            count++;
             return true;//ekkor igazzal térünk vissza
-        else
+        } else
             entrance.remove(this);//ha nem akkor megszüntetjük a kapcsolatot, majd kívülröl megsemmisítjük
         return false;// ekkor nem sikerül a felépítés
     }
@@ -80,12 +83,28 @@ public class Tunnel extends Rail {
         ElementBase inElement = this.getTrainElement();
 
         if(inElement == null){//ha nincs senki közvetlenül a bejáraton
-            if(railB.remove(this))//megpróbáljuk szétkapcsolni
-            	this.remove(railB);
+            if(railB != null)
+                if(railB.remove(this))//megpróbáljuk szétkapcsolni
+                    this.remove(railB);
             if(!tunnel[0].remove(this))
                 tunnel[2].remove(this);
+            count--;
             return true;// ha lehet
         }
         return false;//ha nem lehet megsemmisíteni
+    }
+
+    /**
+     * Az alagút alaphelyzetbe állítása
+     */
+    public static void reset(){
+        if(initialized) {
+            tunnel[0].remove(tunnel[0].getNext(tunnel[1]));
+            tunnel[2].remove(tunnel[2].getNext(tunnel[1]));
+            tunnel[0].setTrainElement(null);
+            tunnel[1].setTrainElement(null);
+            tunnel[2].setTrainElement(null);
+            count = 0;
+        }
     }
 }

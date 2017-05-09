@@ -31,23 +31,6 @@ public class Switch extends RailElement {
     public Switch(){
         sw = new RailElement[4];
     	trainElement = null;
-        notConnected = new RailElement() {//nem csatlakozott sínt jelzi
-            /* (non-Javadoc)
-             * @see struct.RailElement#setNext(struct.RailElement)
-             */
-            @Override
-            public boolean setNext(RailElement next) {
-                return false;
-            }
-
-            /* (non-Javadoc)
-             * @see struct.RailElement#getNext(struct.RailElement)
-             */
-            @Override
-            public RailElement getNext(RailElement prev) {
-                return null;
-            }
-        };
         state = State.AB;//alap állapot az AB állapot
     }
 	/**
@@ -56,17 +39,6 @@ public class Switch extends RailElement {
 	public Switch(String state){//meg lehet adni kezdö állapottal is
         sw = new RailElement[4];
 		trainElement = null;
-        notConnected = new RailElement() {
-            @Override
-            public boolean setNext(RailElement next) {
-                return true;
-            }
-
-            @Override
-            public RailElement getNext(RailElement prev) {
-                return null;
-            }
-        };
 		changeDirection(state);
 	}
 
@@ -182,4 +154,6 @@ public class Switch extends RailElement {
      * @return Az váltó állása/állapota
      */
     public String  getState(){return state.name();}
+
+
 }

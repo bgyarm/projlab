@@ -16,7 +16,6 @@ public class Controller {
     Command comm = null;
     ArrayList<String> events = new ArrayList<>();
     MouseListener listener;
-    ArrayList<Dimension> modified = new ArrayList<>();
 
     public Controller(View v, String actLevel) {
         comm = new Command();
@@ -115,10 +114,7 @@ public class Controller {
         for (String ev : events) {
             comm.runCommand(ev, railMap);
         }
-        events.clear();/*
-        for( Dimension d : modified)
-            getGraphics(railMap[d.width][d.height], d.width, d.height);
-        modified.clear();*/
+        events.clear();
         for(int i = 0; i < railMap.length; i++)
             for(int j = 0; j < railMap[i].length; j++)
                 getGraphics(railMap[i][j], i, j);
@@ -157,32 +153,13 @@ public class Controller {
         if (elem != null) {
             String type = elem.getClass().getSimpleName();
             if (type.equals("Switch")) {
-                modified.add(new Dimension(y, x));
                 return String.format("S %d %d", y, x);
             }
             else if (type.equals("Tunnel")) {
-                modified.add(new Dimension(y, x));
-                if(y > 0)
-                    modified.add(new Dimension(y-1, x));
-                else if(y < railMap.length - 1)
-                    modified.add(new Dimension(y+1, x));
-                if(x > 0)
-                    modified.add(new Dimension(y, x-1));
-                if(x < railMap[y].length - 1)
-                    modified.add(new Dimension(y, x+1));
                 return String.format("T %d %d D", y, x);
             }
         }
         else {
-            modified.add(new Dimension(y, x));
-            if(y > 0)
-                modified.add(new Dimension(y-1, x));
-            else if(y < railMap.length - 1)
-                modified.add(new Dimension(y+1, x));
-            if(x > 0)
-                modified.add(new Dimension(y, x-1));
-            if(x < railMap[y].length - 1)
-                modified.add(new Dimension(y, x+1));
             return String.format("T %d %d C", y, x);
         }
         return null;
@@ -194,37 +171,42 @@ public class Controller {
 
     public void newTrain(){
         if(Game.numTrains < 2) {
+            int tries = 0;
             String s = "";
             Random r = new Random();
             int entNum = comm.getEntraces().size();
             if (entNum > 0) {
                 Point ent;
                 do {
-                     ent = comm.getEntraces().get(r.nextInt(entNum));
-                } while (railMap[ent.x][ent.y].getTrainElement() != null || railMap[ent.x][ent.y].getNext(null) == null);
-                s = String.format("E%d %d %d", Game.numTrains, ent.x, ent.y);
-                addEvent(s);
-                for (int i = 0; i < r.nextInt(3) + 1; i++) {
-                    int c = r.nextInt(5);
-                    String color = "";
-                    if (c == 0)
-                        color = "C";
-                    else if (c == 1)
-                        color = "R";
-                    else if (c == 2)
-                        color = "G";
-                    else if (c == 3)
-                        color = "B";
-                    else if (c == 4)
-                        color = "U";
-                    s = String.format("C%d %s", Game.numTrains, color);
-                    if (c != 0)
-                        s += " " + r.nextInt(2);
+                    ent = comm.getEntraces().get(r.nextInt(entNum));
+                    tries++;
+                    if(tries > 3) break;
+                } while ((railMap[ent.x][ent.y].getTrainElement() != null || railMap[ent.x][ent.y].getNext(null) == null) && !Game.isOver());
+                if(tries <= 3) {
+                    s = String.format("E%d %d %d", Game.numTrains, ent.x, ent.y);
                     addEvent(s);
+                    for (int i = 0; i < r.nextInt(3) + 1; i++) {
+                        int c = r.nextInt(5);
+                        String color = "";
+                        if (c == 0)
+                            color = "C";
+                        else if (c == 1)
+                            color = "R";
+                        else if (c == 2)
+                            color = "G";
+                        else if (c == 3)
+                            color = "B";
+                        else if (c == 4)
+                            color = "U";
+                        s = String.format("C%d %s", Game.numTrains, color);
+                        if (c != 0)
+                            s += " " + r.nextInt(2);
+                        addEvent(s);
+                    }
+                    System.out.println("NewTrain");
+                    Game.numTrains++;
+                    validate();
                 }
-                System.out.println("NewTrain");
-                Game.numTrains++;
-                validate();
             }
         }
     }

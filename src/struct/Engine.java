@@ -26,26 +26,26 @@ public class Engine extends ElementBase {
      */
     @Override
     public void move(){
-    	if(!active) return;//ha nincs vÃ©ge a jÃ¡tÃ©knak, vagy nem aktÃ­v, nem mozgatjuk
+    	if(!active) return;//ha nincs vége a játéknak, vagy nem aktív, nem mozgatjuk
         
-        RailElement nextRail = actRail.getNext(prevRail);//magkapjuk az elÅ‘zÅ‘ pozÃ­ciÃ³bÃ³l kiszÃ¡mÃ­tott kÃ¶vetkezÅ‘ pozÃ­ciÃ³t.
+        RailElement nextRail = actRail.getNext(prevRail);//magkapjuk az elözö pozícióból kiszámított következö pozíciót.
 
 
-        if(nextRail != null && nextRail.getTrainElement() == null){//ha nem siklik ki, Ã©s nincs akivel Ã¼tkÃ¶zne
+        if(nextRail != null && nextRail != RailElement.notConnected && nextRail.getTrainElement() == null){//ha nem siklik ki, és nincs akivel ütközne
             prevRail = actRail;
             actRail = nextRail;
             actRail.setTrainElement(this);
-            prevRail.setTrainElement(child);//beÃ¡llÃ­tjuk az Ãºj Ã¡llapotokat
+            prevRail.setTrainElement(child);//beállítjuk az új állapotokat
 
             if(child != null){
-        		child.move();//megprÃ³bÃ¡ljuk mozgatni a kapcsolt kocsikat
+        		child.move();//megpróbáljuk mozgatni a kapcsolt kocsikat
         	}
         }
-        else if(nextRail != null && nextRail.getTrainElement() != null) {//ha van valaki elÅ‘ttÃ¼nk
-            crash(nextRail.getTrainElement().getName().substring(1));//Ã¼tkÃ¶zÃ©s Ã©s Ã¡tadjuk az idjÃ¡t a vonatnak akivel Ã¼tkÃ¶ztÃ¼nk
-            nextRail.getTrainElement().crash(this.getName().substring(1));// mÃ¡sik vonaton is meg kell hÃ­vni
+        else if(nextRail != null && nextRail.getTrainElement() != null) {//ha van valaki elöttünk
+            crash(nextRail.getTrainElement().getName().substring(1));//ütközés és átadjuk az idját a vonatnak akivel ütköztünk
+            nextRail.getTrainElement().crash(this.getName().substring(1));// másik vonaton is meg kell hívni
         }
-        else{// mÃ¡r csak az az eset maradt, hogy nincs elÅ‘ttÃ¼nk sÃ­n, ekkor kisiklik a vonat
+        else{// már csak az az eset maradt, hogy nincs elöttünk sín, ekkor kisiklik a vonat
             derail();
         }
     }
@@ -55,7 +55,7 @@ public class Engine extends ElementBase {
      */
     public void stop(){
     	active = false;
-    }//meg lehet Ã¡llÃ­tani
+    }
 
     /**
      * Kisiklik a vonat
@@ -63,7 +63,7 @@ public class Engine extends ElementBase {
     private  void derail(){
         derailed = true;
         active = false;
-        Game.gameOver("Vonat kisiklott!");//ekkor is vÃ©ge lesz a jÃ¡tÃ©knak
+        Game.gameOver("Vonat kisiklott!");//ekkor is vége lesz a játéknak
     }
 
 	/* (non-Javadoc)

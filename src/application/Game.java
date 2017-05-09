@@ -17,6 +17,7 @@ public class Game extends JLayeredPane implements Runnable{
     static String overText = "";
     static int numTrains;
     static int ticks = 0;
+    public static int points = 0;
     public static Font font = new Font("Comic Sans MS", Font.BOLD, 40);
 	
 	public Game(){
@@ -44,6 +45,7 @@ public class Game extends JLayeredPane implements Runnable{
     }
 
     public void start(){
+        points = 0;
         numTrains = 0;
         ticks = 0;
         controller.newTrain();
@@ -56,19 +58,19 @@ public class Game extends JLayeredPane implements Runnable{
             while (true) {
                 if (!over && menu.getStarted()) {
                     ticks++;
-                    if(ticks > 20)
-                        gameOver("Nyertel!");
-
-                    if (r.nextInt(100) < 9/(numTrains*numTrains))
+                    if (r.nextInt(100) < 5)
                         controller.newTrain();
                     controller.validate();
                     Thread.sleep(800);
                     controller.addEvent("M");
+                    if(ticks > 30){
+                        gameOver("Nyertel!");
+                    }
                 }
                 else
                     Thread.sleep(500);
             }
-        }catch (Exception e) {}
+        }catch (Exception e) {e.printStackTrace();}
     }
 
 	public static boolean isOver(){return over;}

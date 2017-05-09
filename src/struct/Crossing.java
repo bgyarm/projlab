@@ -10,23 +10,6 @@ public class Crossing extends RailElement {
     public Crossing(){
     	cross = new RailElement[4];
     	trainElement = null;
-    	notConnected = new RailElement() {//egy jelzö elem ami azt mutatja hogy nincs csatlakoztatva a végéhez semmi. Ahhoz kell hogy a setNext mindig helyes sorrendben hozza létre a kapcsolatokat.
-            /* (non-Javadoc)
-             * @see struct.RailElement#setNext(struct.RailElement)
-             */
-            @Override
-            public boolean setNext(RailElement next) {
-                return true;
-            }
-
-            /* (non-Javadoc)
-             * @see struct.RailElement#getNext(struct.RailElement)
-             */
-            @Override
-            public RailElement getNext(RailElement prev) {
-                return null;
-            }
-        };
     }
 
     

@@ -1,46 +1,62 @@
 package struct;
 
 /**
- * A sínelemekhez absztrakt osztály
+ * A sï¿½nelemekhez absztrakt osztï¿½ly
  */
 public abstract class RailElement {
     ElementBase trainElement;
-    protected RailElement notConnected;
+    static protected RailElement notConnected = new RailElement() {//nem csatlakozott sÃ­nt jelzi
+        /* (non-Javadoc)
+         * @see struct.RailElement#setNext(struct.RailElement)
+         */
+        @Override
+        public boolean setNext(RailElement next) {
+            return false;
+        }
+
+        /* (non-Javadoc)
+         * @see struct.RailElement#getNext(struct.RailElement)
+         */
+        @Override
+        public RailElement getNext(RailElement prev) {
+            return null;
+        }
+    };
 	
 	/**
-	 * @param next mellette lévõ sínelem
-	 * @return sikerült-e összekapcsolni
+	 * @param next mellette lï¿½vï¿½ sï¿½nelem
+	 * @return sikerï¿½lt-e ï¿½sszekapcsolni
 	 */
 	public abstract boolean setNext(RailElement next);
 
     /**
-     * @param prev A haladási iránnyal ellentétesen lévõ szomszédos sín
-     * @return A haladási irányban lévõ szomszédos sín
+     * @param prev A haladï¿½si irï¿½nnyal ellentï¿½tesen lï¿½vï¿½ szomszï¿½dos sï¿½n
+     * @return A haladï¿½si irï¿½nyban lï¿½vï¿½ szomszï¿½dos sï¿½n
      */
     public abstract RailElement getNext(RailElement prev);
 
     /**
-     * @param te A sínen lévõ vonatelem
+     * @param te A sï¿½nen lï¿½vï¿½ vonatelem
      */
     public void setTrainElement(ElementBase te){trainElement = te;}
     /**
-     * @return A sínen lévõ vonatelem
+     * @return A sï¿½nen lï¿½vï¿½ vonatelem
      */
     public ElementBase getTrainElement(){
         return trainElement;
     }
     /**
-     * @return Lehet-e pályabejárat (ahol a vonatok indulnak)
+     * @return Lehet-e pï¿½lyabejï¿½rat (ahol a vonatok indulnak)
      */
     public boolean isEntrance(){return false;}
     /**
-     * @param element A szétkapcsolandó sín
-     * @return Sikerült-e szétkapcsolni a két sínt
+     * @param element A szï¿½tkapcsolandï¿½ sï¿½n
+     * @return Sikerï¿½lt-e szï¿½tkapcsolni a kï¿½t sï¿½nt
      */
     public boolean remove(RailElement element){return false;}
 
     /**
-     * @return A sínelem mellett található állomás. null, ha nincs
+     * @return A sï¿½nelem mellett talï¿½lhatï¿½ ï¿½llomï¿½s. null, ha nincs
      */
     public Station getStation() { return null; } //csak Rail mellett lehet station. Railben override szÃ¼ksÃ©ges.
 
