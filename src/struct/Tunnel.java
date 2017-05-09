@@ -1,9 +1,15 @@
 package struct;
 
+/**
+ * Az alagutat megvalósító osztály
+ */
 public class Tunnel extends Rail {
 	//belsõ pálya, 3 hosszú + 2 belsõ sín
     private static Rail[] tunnel = new Rail[3];
     private static boolean initialized = false;
+    /**
+     * A belsõ sínek létrehozása, csak egyszer fut le
+     */
     private  static void init(){//létrehozzuk a belsö sineket.
         for(int i = 0; i < 3; i++)
             tunnel[i] = new Rail();
@@ -14,6 +20,9 @@ public class Tunnel extends Rail {
         initialized = true;//ez után már létrejött a láthatatlan alagút
     }
 
+    /**
+     * @return Már létre van-e hozva a belsõ sínpálya
+     */
     public static boolean isInitialized(){return initialized;}
 
     public static Rail[] getInner(){
@@ -21,6 +30,9 @@ public class Tunnel extends Rail {
     }
 
     //Egy bejárat felépítése
+    /**
+     * Egy bejárat felépítése
+     */
     public Tunnel(){
     	//Ha ez az elsõ, akkor a belsõ pálya is
     	if(!initialized)
@@ -34,6 +46,9 @@ public class Tunnel extends Rail {
     			railA = tunnel[2];
     }
 
+    /* (non-Javadoc)
+     * @see struct.Rail#setNext(struct.RailElement)
+     */
     @Override
     public boolean setNext(RailElement next){//megpróbáljuk beállítani a következö sínnek a kopottat
         if(next == null || railB == next) return true;//ha már be van állítva vagy nem akarunk semmit beállítani
@@ -44,6 +59,11 @@ public class Tunnel extends Rail {
         return false;
     }
 
+    /**
+     * Az alagút felépítése
+     * @param entrance A bejáratnál lévõ sín, amihez kapcsolni akarjuk
+     * @return Igaz, ha sikerült felépíteni
+     */
     public boolean build(RailElement entrance){//megpróbáljuk felépíteni
         if(this.setNext(entrance) && entrance.setNext(this))// ha fel lehet építeni
             return true;//ekkor igazzal térünk vissza
@@ -52,6 +72,10 @@ public class Tunnel extends Rail {
         return false;// ekkor nem sikerül a felépítés
     }
     
+    /**
+     * Az alagút megsemmisítése
+     * @return Igaz, ha sikerült elpusztítani a bejáratot
+     */
     public boolean destroy(){//megsemmisítjük
         ElementBase inElement = this.getTrainElement();
 

@@ -1,14 +1,22 @@
 package struct;
 
+/**
+ * Utasszállító kocsit megvalósító osztály
+ */
 public class Carriage extends ElementBase {
     private boolean empty;
     private boolean token;
     private Color color;
 
-    public  Carriage(ElementBase parent, Color color, boolean passangers){
+    /**
+     * @param parent Az õt húzó elem
+     * @param color A kocsi színe
+     * @param passengers Vannek-e utasok a kocsin 
+     */
+    public  Carriage(ElementBase parent, Color color, boolean passengers){
     	child = null;
         this.color = color;
-        this.empty = !passangers;
+        this.empty = !passengers;
         this.token = false;
         this.parent = parent;
         parent.child = this;
@@ -17,9 +25,18 @@ public class Carriage extends ElementBase {
         this.setName("Carriage " + count++);
     }
 
+    /**
+     * @return A kocsi színe
+     */
     public Color getColor(){return color;}
+    /**
+     * @return Vannek-e utasok a kocsin
+     */
     public boolean hasPassangers(){return !empty;}
 
+    /* (non-Javadoc)
+     * @see struct.ElementBase#move()
+     */
     public void move() {//mozgatjuk a vagonokat.
 
         prevRail = actRail;//beállítjuk a dolgokat
@@ -63,11 +80,17 @@ public class Carriage extends ElementBase {
     	}
     }
 
+	/* (non-Javadoc)
+	 * @see struct.ElementBase#giveToken()
+	 */
 	@Override
 	public void giveToken() {
 		token = true;		
 	}
 	
+	/**
+	 * @return Ennél a kocsinál lehet-e a token
+	 */
 	public boolean searchToken(){
 		//ha nálunk van, megtaláltuk
 		if(token) return true;
@@ -98,11 +121,17 @@ public class Carriage extends ElementBase {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see struct.ElementBase#hasToken()
+	 */
 	@Override
 	public boolean hasToken() {
 		return token;
 	}
 	
+	/* (non-Javadoc)
+	 * @see struct.ElementBase#takeToken()
+	 */
 	@Override
 	public void takeToken(){
 		token = false;

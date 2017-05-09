@@ -2,9 +2,15 @@ package struct;
 
 import application.*;
 
+/**
+ * A mozdonyt megvalÛsÌtÛ oszt·ly
+ */
 public class Engine extends ElementBase {
     private boolean active;
 
+    /**
+     * @param rail A mozdony kezdıhelye
+     */
     public  Engine(RailElement rail){
     	child = null;
         actRail = rail;
@@ -15,6 +21,9 @@ public class Engine extends ElementBase {
         this.setName("Engine " + count++);
     }
     
+    /* (non-Javadoc)
+     * @see struct.ElementBase#move()
+     */
     @Override
     public void move(){
     	if(!active) return;//ha nincs v√©ge a j√°t√©knak, vagy nem akt√≠v, nem mozgatjuk
@@ -41,26 +50,41 @@ public class Engine extends ElementBase {
         }
     }
 
+    /**
+     * Meg·llÌtja a vonatot
+     */
     public void stop(){
     	active = false;
     }//meg lehet √°ll√≠tani
 
+    /**
+     * Kisiklik a vonat
+     */
     private  void derail(){
         derailed = true;
         active = false;
         Game.gameOver("Vonat kisiklott!");//ekkor is v√©ge lesz a j√°t√©knak
     }
 
+	/* (non-Javadoc)
+	 * @see struct.ElementBase#giveToken()
+	 */
 	@Override
 	public void giveToken(){
 		child.giveToken();
 	}
 
+	/* (non-Javadoc)
+	 * @see struct.ElementBase#hasToken()
+	 */
 	@Override
 	public boolean hasToken() {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see struct.ElementBase#takeToken()
+	 */
 	@Override
 	public void takeToken() {
 	}

@@ -1,5 +1,8 @@
 package struct;
 
+/**
+ * Keresztezõdés megvalósítása
+ */
 public class Crossing extends RailElement {
 	
     private RailElement[] cross;
@@ -8,11 +11,17 @@ public class Crossing extends RailElement {
     	cross = new RailElement[4];
     	trainElement = null;
     	notConnected = new RailElement() {//egy jelzö elem ami azt mutatja hogy nincs csatlakoztatva a végéhez semmi. Ahhoz kell hogy a setNext mindig helyes sorrendben hozza létre a kapcsolatokat.
+            /* (non-Javadoc)
+             * @see struct.RailElement#setNext(struct.RailElement)
+             */
             @Override
             public boolean setNext(RailElement next) {
                 return true;
             }
 
+            /* (non-Javadoc)
+             * @see struct.RailElement#getNext(struct.RailElement)
+             */
             @Override
             public RailElement getNext(RailElement prev) {
                 return null;
@@ -22,6 +31,9 @@ public class Crossing extends RailElement {
 
     
     //A szemköztit adja vissza. Ha egyikkel sem illeszkedik, vagy notConnected elem van szemközt, akkor null-t
+	/* (non-Javadoc)
+	 * @see struct.RailElement#getNext(struct.RailElement)
+	 */
 	@Override
 	public RailElement getNext(RailElement prev) {
         for(int i = 0; i < 4; i++)
@@ -32,6 +44,9 @@ public class Crossing extends RailElement {
 	}
 
 	//Beállítja a kapott sínt szomszédosnak
+    /* (non-Javadoc)
+     * @see struct.RailElement#setNext(struct.RailElement)
+     */
     @Override
 	public boolean setNext(RailElement element) {
 		if(element == null)
@@ -51,6 +66,9 @@ public class Crossing extends RailElement {
         return false;//ha nem lehet
 	}
 
+    /* (non-Javadoc)
+     * @see struct.RailElement#isEntrance()
+     */
     @Override
     public boolean isEntrance(){//ha lehet kezdöpont
         int n = 0;
