@@ -45,6 +45,7 @@ public class Game extends JLayeredPane implements Runnable{
 
     public void start(){
         numTrains = 0;
+        ticks = 0;
         controller.newTrain();
     }
 
