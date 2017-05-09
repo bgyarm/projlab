@@ -7,14 +7,14 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * A mozdony kirajzolhatÛ megvalÛsÌt·sa
+ * A mozdony kirajzolhat√≥ megval√≥s√≠t√°sa
  */
 public class GEngine extends Drawable {
     String direction;
     /**
-     * @param x SzÈlessÈgi koordin·ta
-     * @param y Magass·gi koordin·ta
-     * @param dir Halad·si ir·ny
+     * @param x Sz√©less√©gi koordin√°ta
+     * @param y Magass√°gi koordin√°ta
+     * @param dir Halad√°si ir√°ny
      * @param boom Felrobbant-e
      * @param start A vonat elindult-e
      */

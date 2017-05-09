@@ -3,13 +3,13 @@ package struct;
 import application.*;
 
 /**
- * A mozdonyt megvalósító osztály
+ * A mozdonyt megvalÃ³sÃ­tÃ³ osztÃ¡ly
  */
 public class Engine extends ElementBase {
     private boolean active;
 
     /**
-     * @param rail A mozdony kezdõhelye
+     * @param rail A mozdony kezdÃµhelye
      */
     public  Engine(RailElement rail){
     	child = null;
@@ -26,32 +26,32 @@ public class Engine extends ElementBase {
      */
     @Override
     public void move(){
-    	if(!active) return;//ha nincs vége a játéknak, vagy nem aktív, nem mozgatjuk
+    	if(!active) return;//ha nincs vÃ©ge a jÃ¡tÃ©knak, vagy nem aktÃ­v, nem mozgatjuk
         
-        RailElement nextRail = actRail.getNext(prevRail);//magkapjuk az elözö pozícióból kiszámított következö pozíciót.
+        RailElement nextRail = actRail.getNext(prevRail);//magkapjuk az elÃ¶zÃ¶ pozÃ­ciÃ³bÃ³l kiszÃ¡mÃ­tott kÃ¶vetkezÃ¶ pozÃ­ciÃ³t.
 
 
-        if(nextRail != null && nextRail != RailElement.notConnected && nextRail.getTrainElement() == null){//ha nem siklik ki, és nincs akivel ütközne
+        if(nextRail != null && nextRail != RailElement.notConnected && nextRail.getTrainElement() == null){//ha nem siklik ki, Ã©s nincs akivel Ã¼tkÃ¶zne
             prevRail = actRail;
             actRail = nextRail;
             actRail.setTrainElement(this);
-            prevRail.setTrainElement(child);//beállítjuk az új állapotokat
+            prevRail.setTrainElement(child);//beÃ¡llÃ­tjuk az Ãºj Ã¡llapotokat
 
             if(child != null){
-        		child.move();//megpróbáljuk mozgatni a kapcsolt kocsikat
+        		child.move();//megprÃ³bÃ¡ljuk mozgatni a kapcsolt kocsikat
         	}
         }
-        else if(nextRail != null && nextRail.getTrainElement() != null) {//ha van valaki elöttünk
-            crash(nextRail.getTrainElement().getName().substring(1));//ütközés és átadjuk az idját a vonatnak akivel ütköztünk
-            nextRail.getTrainElement().crash(this.getName().substring(1));// másik vonaton is meg kell hívni
+        else if(nextRail != null && nextRail.getTrainElement() != null) {//ha van valaki elÃ¶ttÃ¼nk
+            crash(nextRail.getTrainElement().getName().substring(1));//Ã¼tkÃ¶zÃ©s Ã©s Ã¡tadjuk az idjÃ¡t a vonatnak akivel Ã¼tkÃ¶ztÃ¼nk
+            nextRail.getTrainElement().crash(this.getName().substring(1));// mÃ¡sik vonaton is meg kell hÃ­vni
         }
-        else{// már csak az az eset maradt, hogy nincs elöttünk sín, ekkor kisiklik a vonat
+        else{// mÃ¡r csak az az eset maradt, hogy nincs elÃ¶ttÃ¼nk sÃ­n, ekkor kisiklik a vonat
             derail();
         }
     }
 
     /**
-     * Megállítja a vonatot
+     * MegÃ¡llÃ­tja a vonatot
      */
     public void stop(){
     	active = false;
@@ -63,7 +63,7 @@ public class Engine extends ElementBase {
     private  void derail(){
         derailed = true;
         active = false;
-        Game.gameOver("Vonat kisiklott!");//ekkor is vége lesz a játéknak
+        Game.gameOver("Vonat kisiklott!");//ekkor is vÃ©ge lesz a jÃ¡tÃ©knak
         Game.points = 0;
     }
 

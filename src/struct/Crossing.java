@@ -1,7 +1,7 @@
 package struct;
 
 /**
- * Keresztezõdés megvalósítása
+ * KeresztezÃµdÃ©s megvalÃ³sÃ­tÃ¡sa
  */
 public class Crossing extends RailElement {
 	
@@ -13,7 +13,7 @@ public class Crossing extends RailElement {
     }
 
     
-    //A szemköztit adja vissza. Ha egyikkel sem illeszkedik, vagy notConnected elem van szemközt, akkor null-t
+    //A szemkÃ¶ztit adja vissza. Ha egyikkel sem illeszkedik, vagy notConnected elem van szemkÃ¶zt, akkor null-t
 	/* (non-Javadoc)
 	 * @see struct.RailElement#getNext(struct.RailElement)
 	 */
@@ -21,29 +21,29 @@ public class Crossing extends RailElement {
 	public RailElement getNext(RailElement prev) {
         for(int i = 0; i < 4; i++)
             if(prev == cross[i])
-                if(cross[i + (i%2 == 0 ? 1 : -1)] != notConnected) // ha a következö nem "null", vagyis van csatlakoztatott elem.
-                    return cross[i + (i%2 == 0 ? 1 : -1)];//a szemköztit adja vissza, 0->1 ,1->0, 2->3, 3->2.
+                if(cross[i + (i%2 == 0 ? 1 : -1)] != notConnected) // ha a kÃ¶vetkezÃ¶ nem "null", vagyis van csatlakoztatott elem.
+                    return cross[i + (i%2 == 0 ? 1 : -1)];//a szemkÃ¶ztit adja vissza, 0->1 ,1->0, 2->3, 3->2.
 		return null;
 	}
 
-	//Beállítja a kapott sínt szomszédosnak
+	//BeÃ¡llÃ­tja a kapott sÃ­nt szomszÃ©dosnak
     /* (non-Javadoc)
      * @see struct.RailElement#setNext(struct.RailElement)
      */
     @Override
 	public boolean setNext(RailElement element) {
 		if(element == null)
-            return setNext(notConnected);//ha nullt csatlakoztatnánk akkor is jelzö értékkel lefoglaljuk az egyik véget.
+            return setNext(notConnected);//ha nullt csatlakoztatnÃ¡nk akkor is jelzÃ¶ Ã©rtÃ©kkel lefoglaljuk az egyik vÃ©get.
 		for(int i = 0; i < 4; i++)
-            if(cross[i] == element) return true; // ha már szerepel az elemek között
+            if(cross[i] == element) return true; // ha mÃ¡r szerepel az elemek kÃ¶zÃ¶tt
 
-		for (int i = 0; i < 2; i++)//beállítjuk a következö síneket.
-            if (cross[i] == null) {//beállítjuk elöször a felsö elemet, következönek másik ágon az egyik oldalsót, majd a lentit
-                cross[i] = element;//felsö és a lenti beállítása
+		for (int i = 0; i < 2; i++)//beÃ¡llÃ­tjuk a kÃ¶vetkezÃ¶ sÃ­neket.
+            if (cross[i] == null) {//beÃ¡llÃ­tjuk elÃ¶szÃ¶r a felsÃ¶ elemet, kÃ¶vetkezÃ¶nek mÃ¡sik Ã¡gon az egyik oldalsÃ³t, majd a lentit
+                cross[i] = element;//felsÃ¶ Ã©s a lenti beÃ¡llÃ­tÃ¡sa
                 return true;
             }
-            else if (cross[i+2] == null) {//ha már a fenti be van állítva, akkor jön az egyik oldalsó, majd ha már a lenti is akkor a másikat is itt állítjuk be
-                cross[i+2] = element;//két oldalsó beállítása
+            else if (cross[i+2] == null) {//ha mÃ¡r a fenti be van Ã¡llÃ­tva, akkor jÃ¶n az egyik oldalsÃ³, majd ha mÃ¡r a lenti is akkor a mÃ¡sikat is itt Ã¡llÃ­tjuk be
+                cross[i+2] = element;//kÃ©t oldalsÃ³ beÃ¡llÃ­tÃ¡sa
                 return true;
             }
         return false;//ha nem lehet
@@ -53,10 +53,10 @@ public class Crossing extends RailElement {
      * @see struct.RailElement#isEntrance()
      */
     @Override
-    public boolean isEntrance(){//ha lehet kezdöpont
+    public boolean isEntrance(){//ha lehet kezdÃ¶pont
         int n = 0;
         for(int i = 0; i < 4; i++)
-            if(cross[i] == notConnected)//akkor lehet ha van legalább 1 nem cstlakoztatott vége
+            if(cross[i] == notConnected)//akkor lehet ha van legalÃ¡bb 1 nem cstlakoztatott vÃ©ge
                 n++;
         return n > 0 && n < 3;
     }

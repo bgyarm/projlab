@@ -7,13 +7,13 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Az alagút kirajzolható megvalósítása
+ * Az alagÃºt kirajzolhatÃ³ megvalÃ³sÃ­tÃ¡sa
  */
 public class GTunnel extends Drawable {
     /**
-     * @param x Szélességi koordináta
-     * @param y Magassági koordináta
-     * @param dir Iránya
+     * @param x SzÃ©lessÃ©gi koordinÃ¡ta
+     * @param y MagassÃ¡gi koordinÃ¡ta
+     * @param dir IrÃ¡nya
      */
     public GTunnel(int x, int y, String dir){
         super(x, y);

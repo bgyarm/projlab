@@ -1,14 +1,14 @@
 package struct;
 
 /**
- * Az állomást megvalósító osztály. Csak sín tagjaként szereplhet.
+ * Az Ã¡llomÃ¡st megvalÃ³sÃ­tÃ³ osztÃ¡ly. Csak sÃ­n tagjakÃ©nt szereplhet.
  */
 public class Station{
     private Color c;
     private boolean passengers;
 
     /**
-     * @param c Az állomás színe
+     * @param c Az Ã¡llomÃ¡s szÃ­ne
      * Ekkor nincsenek utasok
      */
     public Station(Color c){
@@ -17,7 +17,7 @@ public class Station{
     }
     
     /**
-     * @param c Az állomás színe
+     * @param c Az Ã¡llomÃ¡s szÃ­ne
      * @param p Vannek-e ott utasok
      */
     public Station(Color c, boolean p){
@@ -26,23 +26,23 @@ public class Station{
     }
 
 	/**
-	 * @return Az állomás színe
+	 * @return Az Ã¡llomÃ¡s szÃ­ne
 	 */
 	public Color getColor(){
         return c;
-    }//visszaadja a színét
+    }//visszaadja a szÃ­nÃ©t
     
     //vannak-e utasok
     /**
-     * @return Igaz, ha az állomáson vannak utasok.
+     * @return Igaz, ha az Ã¡llomÃ¡son vannak utasok.
      */
     public boolean hasPassengers(){
     	return passengers;
     }
     
-    //kiürítésnél hasznos, esetleg ha termelõdhetnek ide utasok
+    //kiÃ¼rÃ­tÃ©snÃ©l hasznos, esetleg ha termelÃµdhetnek ide utasok
     /**
-     * @param p Az állomáson vannak-e utasok
+     * @param p Az Ã¡llomÃ¡son vannak-e utasok
      */
     public void setPassengers(boolean p){
     	passengers = p;

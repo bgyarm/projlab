@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 /**
- * Az esemÈnyek ir·nyÌt·s·Èrt felelıs oszt·ly
+ * Az esem√©nyek ir√°ny√≠t√°s√°√©rt felel≈ës oszt√°ly
  */
 public class Controller {
     View view = null;
@@ -21,8 +21,8 @@ public class Controller {
     MouseListener listener;
 
     /**
-     * @param v nÈzet
-     * @param actLevel jelenlegi p·lya
+     * @param v n√©zet
+     * @param actLevel jelenlegi p√°lya
      */
     public Controller(View v, String actLevel) {
         comm = new Command();
@@ -34,7 +34,7 @@ public class Controller {
             public void mouseClicked(MouseEvent e) {
                 int x = e.getX();
                 int y = e.getY();
-                if(x > 0 && x < view.getW() && y > 0 && y < view.getH()) {//view poz√≠ci√≥ja a Windowon
+                if(x > 0 && x < view.getW() && y > 0 && y < view.getH()) {
                     String comm = elementAt(x/View.imgSize, y/View.imgSize);
                     if(comm != null) {
                         events.add(comm);
@@ -54,8 +54,8 @@ public class Controller {
     }
 
     /**
-     * Betˆlti a p·ly·t
-     * @param actLevel jelenlegi p·lya
+     * Bet√∂lti a p√°ly√°t
+     * @param actLevel jelenlegi p√°lya
      */
     void init(String actLevel){
         if(railMap != null)
@@ -79,10 +79,10 @@ public class Controller {
     }
 
     /**
-     * A nÈzethez adja a grafikai elemet
-     * @param elem sÌnelem
-     * @param x szÈlessÈgi koordin·ta
-     * @param y magass·gi koordin·ta
+     * A n√©zethez adja a grafikai elemet
+     * @param elem s√≠nelem
+     * @param x sz√©less√©gi koordin√°ta
+     * @param y magass√°gi koordin√°ta
      */
     void getGraphics(RailElement elem, int x, int y){
         Drawable d = null;
@@ -128,7 +128,7 @@ public class Controller {
     }
 
     /**
-     * Valid·lja a nÈzetet
+     * Valid√°lja a n√©zetet
      */
     public void validate(){
         for (Iterator<String> iterator = events.iterator(); iterator.hasNext(); ) {
@@ -159,7 +159,7 @@ public class Controller {
                         }
                         else {
                             String color = ((Carriage)tmp).getColor().name();
-                            view.addTrain(new GCar(j * View.imgSize, i * View.imgSize, direction, color, ((Carriage) tmp).hasPassengers()), j, i);
+                            view.addTrain(new GCar(j * View.imgSize, i * View.imgSize, direction, color, ((Carriage) tmp).hasPassangers()), j, i);
                         }
                     } else
                         view.addTrain(null, j, i);
@@ -169,9 +169,9 @@ public class Controller {
     }
 
     /**
-     * @param x szÈlessÈgi koordin·ta
-     * @param y magass·gi koordin·ta
-     * @return A koordin·t·n lÈvı elem, ha van ott valami, egyÈbkÈnt null
+     * @param x sz√©less√©gi koordin√°ta
+     * @param y magass√°gi koordin√°ta
+     * @return A koordin√°t√°n l√©v≈ë elem, ha van ott valami, egy√©bk√©nt null
      */
     public String elementAt(int x, int y) {
         RailElement elem = railMap[y][x];
@@ -191,15 +191,15 @@ public class Controller {
     }
 
     /**
-     * EsemÈny hozz·ad·sa
-     * @param ev esemÈny
+     * Esem√©ny hozz√°ad√°sa
+     * @param ev esem√©ny
      */
     public void addEvent(String ev){
         events.add(ev);
     }
 
     /**
-     * ⁄j vonat elhelyezÈse a p·ly·n
+     * √∫j vonat elhelyez√©se a p√°ly√°n
      */
     public void newTrain(){
         if(Game.numTrains < Game.maxTrains) {
@@ -244,7 +244,7 @@ public class Controller {
     }
 
     /**
-     * @return Az egÈr esemÈnykezelıje
+     * @return Az eg√©r esem√©nykezel≈ëje
      */
     public MouseListener getListener(){return listener;}
 }

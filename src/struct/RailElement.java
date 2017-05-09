@@ -1,11 +1,11 @@
 package struct;
 
 /**
- * A s�nelemekhez absztrakt oszt�ly
+ * A sínelemekhez absztrakt osztály
  */
 public abstract class RailElement {
     ElementBase trainElement;
-    static protected RailElement notConnected = new RailElement() {//nem csatlakozott sínt jelzi
+    static protected RailElement notConnected = new RailElement() {
         /* (non-Javadoc)
          * @see struct.RailElement#setNext(struct.RailElement)
          */
@@ -24,40 +24,40 @@ public abstract class RailElement {
     };
 	
 	/**
-	 * @param next mellette l�v� s�nelem
-	 * @return siker�lt-e �sszekapcsolni
+	 * @param next mellette lévö sínelem
+	 * @return sikerült-e összekapcsolni
 	 */
 	public abstract boolean setNext(RailElement next);
 
     /**
-     * @param prev A halad�si ir�nnyal ellent�tesen l�v� szomsz�dos s�n
-     * @return A halad�si ir�nyban l�v� szomsz�dos s�n
+     * @param prev A haladási iránnyal ellentétesen lévö szomszédos sín
+     * @return A haladási irányban lévö szomszédos sín
      */
     public abstract RailElement getNext(RailElement prev);
 
     /**
-     * @param te A s�nen l�v� vonatelem
+     * @param te A sínen lévö vonatelem
      */
     public void setTrainElement(ElementBase te){trainElement = te;}
     /**
-     * @return A s�nen l�v� vonatelem
+     * @return A sínen lévö vonatelem
      */
     public ElementBase getTrainElement(){
         return trainElement;
     }
     /**
-     * @return Lehet-e p�lyabej�rat (ahol a vonatok indulnak)
+     * @return Lehet-e pályabejárat (ahol a vonatok indulnak)
      */
     public boolean isEntrance(){return false;}
     /**
-     * @param element A sz�tkapcsoland� s�n
-     * @return Siker�lt-e sz�tkapcsolni a k�t s�nt
+     * @param element A sz?tkapcsoland? sín
+     * @return Sikerült-e szétkapcsolni a két sínt
      */
     public boolean remove(RailElement element){return false;}
 
     /**
-     * @return A s�nelem mellett tal�lhat� �llom�s. null, ha nincs
+     * @return A sínelem mellett található állomás. null, ha nincs
      */
-    public Station getStation() { return null; } //csak Rail mellett lehet station. Railben override szükséges.
+    public Station getStation() { return null; }
 
 }

@@ -9,7 +9,7 @@ import struct.*;
 import struct.Color;
 
 /**
- * Egy parancs feldolgozására szolgáló osztály
+ * Egy parancs feldolgozÃ¡sÃ¡ra szolgÃ¡lÃ³ osztÃ¡ly
  */
 public class Command {
 	private File input;
@@ -24,10 +24,10 @@ public class Command {
 	private boolean testing = false;
 	
 	/**
-	 * Parancsok fájlból olvasása
-	 * @param path fájl elérési útja
+	 * Parancsok fÃ¡jlbÃ³l olvasÃ¡sa
+	 * @param path fÃ¡jl elÃ©rÃ©si Ãºtja
 	 */
-	public void input(String path){//bemeneti fájl beállítása
+	public void input(String path){//bemeneti fÃ¡jl beÃ¡llÃ­tÃ¡sa
         String testdir;
         if(testing) {
             testdir = new File("").getAbsolutePath() + "\\tests\\";
@@ -44,10 +44,10 @@ public class Command {
 	}
 	
 	/**
-	 * Kimenet fájlba írása
-	 * @param path Kimeneti fájl elérési útvonala
+	 * Kimenet fÃ¡jlba Ã­rÃ¡sa
+	 * @param path Kimeneti fÃ¡jl elÃ©rÃ©si Ãºtvonala
 	 */
-	public void output(String path){// kimeneti fájl beállítása
+	public void output(String path){// kimeneti fÃ¡jl beÃ¡llÃ­tÃ¡sa
         String resultdir = new File("").getAbsolutePath() + "\\results\\";
 		File temp = new File(resultdir + path + ".txt");
 		if(temp.isFile()){
@@ -60,13 +60,13 @@ public class Command {
 	}
 	
 	/**
-	 * Bemenetrõl érkezõ utasítások lefuttatása (tesztekhez)
+	 * BemenetrÅ‘l Ã©rkezÅ‘ utasÃ­tÃ¡sok lefuttatÃ¡sa (tesztekhez)
 	 */
-	public void init(){ //bemenetröl érkezö utasítások lefuttatása
+	public void init(){ //bemenetrÅ‘l Ã©rkezÅ‘ utasÃ­tÃ¡sok lefuttatÃ¡sa
 		try{
 			FileInputStream fis;
 			InputStreamReader isr;
-			if(input != null) {//ha van érvényes fájl megadva a programnak, onnan tölti be az utasításokat, egyébként Consolból lehet megadni
+			if(input != null) {//ha van Ã©rvÃ©nyes fÃ¡jl megadva a programnak, onnan tÃ¶lti be az utasÃ­tÃ¡sokat, egyÃ©bkÃ©nt ConsolbÃ³l lehet megadni
 				fis = new FileInputStream(input);
 				isr = new InputStreamReader(fis);
 				if(testing)
@@ -77,15 +77,15 @@ public class Command {
                     System.out.println("Test started from console.");
             }
 			BufferedReader br = new BufferedReader(isr);
-		    ArrayList<String> matrix = new ArrayList<>(); //pálya leírását tartalmazza majd
-		    ArrayList<String> commands = new ArrayList<>(); //az utasításokat tartalmazza
-            expected = new ArrayList<>(); //teszt: a várt eredmény ide fog betölteni/játékban: további vonatok létrehozásának kommandjai
+		    ArrayList<String> matrix = new ArrayList<>(); //pÃ¡lya leÃ­rÃ¡sÃ¡t tartalmazza majd
+		    ArrayList<String> commands = new ArrayList<>(); //az utasÃ­tÃ¡sokat tartalmazza
+            expected = new ArrayList<>(); //teszt: a vÃ¡rt eredmÃ©ny ide fog betÃ¶lteni
             trains.clear();
 
 		    String info = br.readLine();
 		    if(info == null)
 		        return;
-            String[] size = info.split("/")[0].trim().split(" ");//pályaméret beolvasása
+            String[] size = info.split("/")[0].trim().split(" ");//pÃ¡lyamÃ©ret beolvasÃ¡sa
             if(size.length != 2)
                 return;
             mapSize = new Dimension(Integer.parseInt(size[1]), Integer.parseInt(size[0]));
@@ -107,16 +107,6 @@ public class Command {
             for (int i = 0; i < commands.size(); i++)
                 runCommand(commands.get(i), railMap);
 
-            /*
-            Random r = new Random();
-            double percent = 0.2;
-            for (int i = 0; i < commands.size(); i++) {
-                r.nextInt(100);//események bekövetkezésének randomizálása.
-                if(i < 100*percent)
-                    runCommand(commands.get(i));
-                else
-                    i--;
-            }*/
             getRailMap();
             getTrainMap();
             if(testing) {
@@ -132,10 +122,10 @@ public class Command {
 	}
 	
 	/**
-	 * Sínpálya felépítése
+	 * SÃ­npÃ¡lya felÃ©pÃ­tÃ©se
 	 * @param mrx bemenet
 	 */
-	private void railMap(ArrayList<String> mrx){//a sínpálya felépítése
+	private void railMap(ArrayList<String> mrx){//a sÃ­npÃ¡lya felÃ©pÃ­tÃ©se
 		try{
             entrances.clear();
             Tunnel.reset();
@@ -148,7 +138,7 @@ public class Command {
 			for(int i = 0; i < h; i++) {
                 String[] row = mrx.get(i).split(";");//felosztjuk a bemenetet sorokra
                 for(int j = 0; j < w; j++){
-                    RailElement temp = getElement(row[j]); //végigmegyünk egy sor minden elemén és létrehozzuk a megfelel? objektumot
+                    RailElement temp = getElement(row[j]); //vÃ©gigmegyÃ¼nk egy sor minden elemÃ©n Ã©s lÃ©trehozzuk a megfelelÅ‘ objektumot
                     if(temp != null) {
                         railMap[i][j] = temp;
                     }
@@ -161,12 +151,12 @@ public class Command {
                     if(railMap[i][j] != null) {
                         RailElement temp = railMap[i][j];
                         RailElement[] neigh = getNeighbours(i, j);
-                        for(int n = 0; n < 4; n++)//végigmegy a szomszédokon, ha valahol érvényes sín van összekapcsolja öket
+                        for(int n = 0; n < 4; n++)//vÃ©gigmegy a szomszÃ©dokon, ha valahol Ã©rvÃ©nyes sÃ­n van Ã¶sszekapcsolja Å‘ket
                             b = temp.setNext(neigh[n]);
                         if((i == 0 || j == 0 || i == railMap.length-1 || j == railMap[i].length-1) && temp.isEntrance())
                             entrances.add(new Point(i,j));
                     }
-                    if (!b) //ha valamelyik kapcsolás sikertelen volt kivételt dobunk.
+                    if (!b) //ha valamelyik kapcsolÃ¡s sikertelen volt kivÃ©telt dobunk.
                         throw new Exception("Wrong matrix format! Rail cannot connect at (" + i + ", " + j + ").");
                 }
             }
@@ -175,12 +165,12 @@ public class Command {
 		}
 	}
 
-	private RailElement getElement(String string) { //megfelelö elem létrehozáas
+	private RailElement getElement(String string) { //megfelelÅ‘ elem lÃ©trehozÃ¡sa
 		if(string.equals("R"))return new Rail();
 		else if(string.equals("T"))return new Tunnel();
 		else if(string.equals("S"))return new Switch();
 		else if(string.equals("C"))return new Crossing();
-		else if(string.charAt(0) == 'R') { //Sín és állomás.
+		else if(string.charAt(0) == 'R') { //SÃ­n Ã©s Ã¡llomÃ¡s.
 			Station s;
 			switch(string.charAt(1)){
 				case 'R':
@@ -205,15 +195,15 @@ public class Command {
 	}
 
 	/**
-	 * Események elsütése a pályán(tesztekhez)
+	 * EsemÃ©nyek elsÃ¼tÃ©se a pÃ¡lyÃ¡n(tesztekhez)
 	 * @param cmd parancs
-	 * @param map pályaelemek térképe
+	 * @param map pÃ¡lyaelemek tÃ©rkÃ©pe
 	 */
-	public void runCommand(String cmd, RailElement[][] map){//események elsütése
+	public void runCommand(String cmd, RailElement[][] map){//esemÃ©nyek elsÃ¼tÃ©se
 	    try {
                 String[] comm = cmd.split(" ");
                 switch (comm[0].charAt(0)) {
-                    case 'E'://Engine létrehozása:
+                    case 'E'://Engine lÃ©trehozÃ¡sa:
                         if (comm.length == 3) {
                             ArrayList<ElementBase> train = new ArrayList<>();
                             Engine e;
@@ -224,74 +214,74 @@ public class Command {
                                 e.setName(comm[0]);
                                 train.add(e);
                                 map[h][w].setTrainElement(e);
-                                trains.add(train);//vonat listába felvétel
+                                trains.add(train);//vonat listÃ¡ba felvÃ©tel
                             }
                         }
                         break;
-                    case 'C'://Kocsi létrehozása, Carriage vagy CoalCar is lehet
+                    case 'C'://Kocsi lÃ©trehozÃ¡sa, Carriage vagy CoalCar is lehet
                         ElementBase c = null;
                         ArrayList<ElementBase> train = trains.get(Character.getNumericValue(comm[0].charAt(1)));
                         ElementBase last = train.get(train.size() - 1);
-                        if (comm.length == 3) {//3 paraméter esetén Carriage
+                        if (comm.length == 3) {//3 paramÃ©ter esetÃ©n Carriage
                             if(trains.size() > Character.getNumericValue(comm[0].charAt(1))) {
                                 if (comm[1].equals("R")) //piros
-                                    c = new Carriage(last, Color.red, comm[2].equals("1") ? true : false); //elötte lévö kocsi, szín és utasok beállítása
-                                else if (comm[1].equals("G")) //zöld
+                                    c = new Carriage(last, Color.red, comm[2].equals("1") ? true : false); //elÃ¶tte lÃ©vÅ‘ kocsi, szÃ­n Ã©s utasok beÃ¡llÃ­tÃ¡sa
+                                else if (comm[1].equals("G")) //zÃ¶ld
                                     c = new Carriage(last, Color.green, comm[2].equals("1") ? true : false);
-                                else if (comm[1].equals("B")) //kék
+                                else if (comm[1].equals("B")) //kÃ©k
                                     c = new Carriage(last, Color.blue, comm[2].equals("1") ? true : false);
-                                else if (comm[1].equals("U")) //'U' karakter esetén bárhol leszállhatnak az utasok a kocsiból. (Szivárvány szín)
+                                else if (comm[1].equals("U")) //'U' karakter esetÃ©n bÃ¡rhol leszÃ¡llhatnak az utasok a kocsibÃ³l. (SzivÃ¡rvÃ¡ny szÃ­n)
                                     c = new Carriage(last, Color.rainbow, comm[2].equals("1") ? true : false);
-                                if(((Carriage)c).hasPassengers() && ((Carriage)c).searchToken())//ha vannak utasok, és ö az elsö megkapja a tokent
+                                if(((Carriage)c).hasPassangers() && ((Carriage)c).searchToken())//ha vannak utasok, Ã©s Å‘ az elsÅ‘ megkapja a tokent
                                         c.giveToken();
                             }
                         }
-                        else if (comm.length == 2 && comm[1].equals("C")) { //2 paraméter esetén és ha a színe 'C' (Coal) akkor CoalCar.
+                        else if (comm.length == 2 && comm[1].equals("C")) { //2 paramÃ©ter esetÃ©n Ã©s ha a szÃ­ne 'C' (Coal) akkor CoalCar.
                             c = new CoalCar(last);
                         }
                         try{
                             c.setName(comm[0]);
-                            train.add(c); //vonat listába felveszük
+                            train.add(c); //vonat listÃ¡ba felveszÃ¼k
                         }catch (Exception e){}
                         break;
-                    case 'T'://alagút eseméyn esetén
-                        if (comm.length == 4) {//4 paraméteres utasítás
+                    case 'T'://alagÃºt esemÃ©ny esetÃ©n
+                        if (comm.length == 4) {//4 paramÃ©teres utasÃ­tÃ¡s
                             int h = Integer.parseInt(comm[1]);
                             int w = Integer.parseInt(comm[2]);
-                            if(comm[3].equals("C")) {//ha építeni akarunk
+                            if(comm[3].equals("C")) {//ha Ã©pÃ­teni akarunk
                                 if (map[h][w] == null) {
-                                    RailElement[] neighs = getNeighbours(h, w); //megkeressük a szomszédban lévö elemeket
+                                    RailElement[] neighs = getNeighbours(h, w); //megkeressÃ¼k a szomszÃ©dban lÃ©vÅ‘ elemeket
                                     for(int n = 0; n < 4; n++) {
-                                        if (neighs[n] != null) {//csak akkor építhetünk egy helyre alagútat, ha pontosan egy érvényes sínelem van a szomszédok között
+                                        if (neighs[n] != null) {//csak akkor Ã©pÃ­thetÃ¼nk egy helyre alagutat, ha pontosan egy Ã©rvÃ©nyes sÃ­nelem van a szomszÃ©dok kÃ¶zÃ¶tt
                                             boolean b = true;
                                             for (int j = 0; j < 4; j++)
                                                 if (j != n)
-                                                    b = b && neighs[j] == null;//pontosan 1 érvényes elem lehet a környéken amihez hozzáköthetjük.
+                                                    b = b && neighs[j] == null;//pontosan 1 Ã©rvÃ©nyes elem lehet a kÃ¶rnyÃ©ken amihez hozzÃ¡kÃ¶thetjÃ¼k.
                                             if (b) {
-                                                map[h][w] = new Tunnel();//létrehozzuk és megpróbáljuk elhelyezni
-                                                if(!((Tunnel)map[h][w]).build(neighs[n]))// jó helyen felépítjük. Azt hogy hány alagút van azt a Tunnel.build függvény közben ellenörizzük
-                                                    map[h][w] = null; // ha nem lehet építeni, megszüntetjük.
+                                                map[h][w] = new Tunnel();//lï¿½trehozzuk ï¿½s megprï¿½bï¿½ljuk elhelyezni
+                                                if(!((Tunnel)map[h][w]).build(neighs[n]))// jï¿½ helyen felï¿½pï¿½tjï¿½k. Azt hogy hï¿½ny alagï¿½t van azt a Tunnel.build fï¿½ggvï¿½ny kï¿½zben ellenï¿½rizzï¿½k
+                                                    map[h][w] = null; // ha nem lehet ï¿½pï¿½teni, megszï¿½ntetjï¿½k.
                                                 break;
                                             } else
                                                 break;
                                         }
                                     }
                                 }
-                            } else if(comm[3].equals("D")) //ha lebontanánk
+                            } else if(comm[3].equals("D")) //ha lebontanÃ¡nk
                                 if(map[h][w].getClass().getSimpleName().equals("Tunnel")) {
-                                    if(((Tunnel) map[h][w]).destroy())//ha le lehet bontani, nem áll rajta a vonat
-                                        map[h][w] = null;// megszüntetjük a pályáról is.
+                                    if(((Tunnel) map[h][w]).destroy())//ha le lehet bontani, nem Ã¡ll rajta a vonat
+                                        map[h][w] = null;// megszÃ¼ntetjÃ¼k a pÃ¡lyÃ¡rÃ³l is.
                                 }
                         }
                         break;
-                    case 'S'://váltás esetén
-                        if (comm.length == 4) {//Ha paraméterül kapja az állapotot
+                    case 'S'://vÃ¡ltÃ³s esetÃ©n
+                        if (comm.length == 4) {//Ha paramÃ©terÃ¼l kapja az Ã¡llapotot
 
                             int h = Integer.parseInt(comm[1]);
                             int w = Integer.parseInt(comm[2]);
                             if(map[h][w].getClass().getSimpleName().equals("Switch"))
-                                ((Switch)map[h][w]).changeDirection(comm[3]);//Ha tud az adott állapotba vált
-                        } else if(comm.length == 3){ //ha nincs álapot paraméter
+                                ((Switch)map[h][w]).changeDirection(comm[3]);//Ha tud az adott Ã¡llapotba vÃ¡lt
+                        } else if(comm.length == 3){ //ha nincs Ã¡lapot paramÃ©ter
                             int h = Integer.parseInt(comm[1]);
                             int w = Integer.parseInt(comm[2]);
                             if(map[h][w].getClass().getSimpleName().equals("Switch"))
@@ -302,12 +292,12 @@ public class Command {
                         int repeat = 1;
                         if(comm.length == 2)
                             repeat = Integer.parseInt(comm[1]);
-                        for(;repeat > 0; repeat--) //ha van paramétere, akkor beállítjuk az értékét repeat-nek, és ennyiszer hívjuk meg a függvényt
-                            if(comm[0].length() > 1){//egy bizonyos vonat mozgatása
+                        for(;repeat > 0; repeat--) //ha van paramÃ©tere, akkor beÃ¡llÃ­tjuk az Ã©rtÃ©kÃ©t repeat-nek, Ã©s ennyiszer hÃ­vjuk meg a fÃ¼ggvÃ©nyt
+                            if(comm[0].length() > 1){//egy bizonyos vonat mozgatÃ¡sa
                                 int num;
                                 num = Integer.parseInt(comm[0].substring(1));
                                 trains.get(num).get(0).move();
-                            } else {//összes vonat mozgatása
+                            } else {//Ã¶sszes vonat mozgatÃ¡sa
                                 for(int j = 0; j < trains.size(); j++)
                                     trains.get(j).get(0).move();
                             }
@@ -319,11 +309,11 @@ public class Command {
     }
 
     /**
-     * @param h magassági koordináta
-     * @param w szélességi koordináta
-     * @return a koordináták által meghatározott sínelem közvetlen szomszédai, amikhez csatlakozhat
+     * @param h magassÃ¡gi koordinÃ¡ta
+     * @param w szÃ©lessÃ©gi koordinÃ¡ta
+     * @return a koordinÃ¡tÃ¡k Ã¡ltal meghatÃ¡rozott sÃ­nelem kÃ¶zvetlen szomszÃ©dai, amikhez csatlakozhat
      */
-    public RailElement[] getNeighbours(int h, int w){//visszaadja egy adott sín körüli elemeket
+    public RailElement[] getNeighbours(int h, int w){//visszaadja egy adott sÃ­n kÃ¶rÃ¼li elemeket
 	    int maxh = railMap.length;
 	    int maxw = railMap[0].length;
         RailElement[] neighs = new RailElement[4];
@@ -341,16 +331,16 @@ public class Command {
     }
 
     /**
-     * @param re sínelem
-     * @return a sínelem tulajdonságai(típus, van-e rajta állomás, stb.)
+     * @param re sÃ­nelem
+     * @return a sÃ­nelem tulajdonsÃ¡gai(tÃ­pus, van-e rajta Ã¡llomÃ¡s, stb.)
      */
-    public String getRailInfo(RailElement re){//Lekérdezzük egy sínelem tulajdonságait. Formázottan visszaadjuk az információt
+    public String getRailInfo(RailElement re){//LekÃ©rdezzÃ¼k egy sÃ­nelem tulajdonsÃ¡gait. FormÃ¡zottan visszaadjuk az informÃ¡ciÃ³t
         String str = "";
         if(re != null)
             switch (re.getClass().getSimpleName()) {
                 case "Rail":
                     str += "R";
-                    Station s = re.getStation();//sín mellett lehet állomás is
+                    Station s = re.getStation();//sÃ­n mellett lehet Ã¡llomÃ¡s is
                     if(s != null) {
                         if (s.getColor() == Color.red)
                             str += "R" + (s.hasPassengers() ? "1" : "0");
@@ -378,26 +368,26 @@ public class Command {
     }
 
 	/**
-	 * A kész pálya formázása, majd az eredményhez írása(teszteknél kell)
+	 * A kÃ©sz pÃ¡lya formÃ¡zÃ¡sa, majd az eredmÃ¡nyhez Ã­rÃ¡sa(teszteknÃ©l kell)
 	 */
-	public void getRailMap(){//a pályát formázottan megjeleníti
+	public void getRailMap(){//a pÃ¡lyÃ¡t formÃ¡zottan megjelenÃ­ti
         String row = "";
         result.add("/RailMap:\n");
         for (int i = 0; i < railMap.length; i++) {
             for (int j = 0; j < railMap[i].length; j++) {
-                row += getRailInfo(railMap[i][j]);//mindegyik elemröl lekérjük az információt
+                row += getRailInfo(railMap[i][j]);//mindegyik elemrÅ‘l lekÃ©rjÃ¼k az informÃ¡ciÃ³t
                 if(j != railMap[i].length-1)
                     row += "| ";
             }
-            result.add(row + '\n');//formázottan hozzáírjuk az eredményekhez
+            result.add(row + '\n');//formÃ¡zottan hozzÃ¡Ã­rjuk az eredmÃ©nyekhez
             row = "";
         }
     }
 
     /**
-     * A vonatelemek térképét frissíti (elhelyezkedésüket)
+     * A vonatelemek tÃ©rkÃ©pÃ©t frissÃ­ti (elhelyezkedÃ©sÃ¼ket)
      */
-    public void updateTrainMap(){//frissíti a trainmap által tárolt adatokat
+    public void updateTrainMap(){//frissÃ­ti a trainmap Ã¡ltal tÃ¡rolt adatokat
         for (int i = 0; i < trainMap.length; i++) {
             for (int j = 0; j < trainMap[i].length; j++) {
                 if(railMap[i][j] != null)
@@ -410,63 +400,63 @@ public class Command {
 
     /**
      * @param eb egy vonatelem
-     * @return a megadott vonatelem tulajdonságai(típus, szín, utasok, ilyesmi)
+     * @return a megadott vonatelem tulajdonsÃ¡gai(tÃ­pus, szÃ­n, utasok, ilyesmi)
      */
-    public String getTrainInfo(ElementBase eb){//hasonló mint a getRailInfo csak vonatelemmel
+    public String getTrainInfo(ElementBase eb){//hasonlÃ³ mint a getRailInfo csak vonatelemmel
         String str = "";
         if(eb != null)
             switch (eb.getClass().getSimpleName()) {
                 case "Engine":
-                    if(eb.getCrshed() != null)//mást írunk ha ütközött
+                    if(eb.getCrshed() != null)//mÃ¡st Ã­runk ha Ã¼tkÃ¶zÃ¶tt
                         str += "!" + eb.getName().substring(1) +eb.getCrshed();
-                    else if(eb.getDerailed())//mást ha kisiklott
+                    else if(eb.getDerailed())//mÃ¡st ha kisiklott
                         str+= "!D" + eb.getName().substring(1);
                     else
-                        str += eb.getName();//és megint mást ha nem volt semmi gond
+                        str += eb.getName();//Ã©s megint mÃ¡st ha nem volt semmi gond
                     break;
-                case "Carriage"://szín és állapot lekérése
+                case "Carriage"://szÃ­n Ã©s Ã¡llapot lekÃ©rÃ©se
                     Carriage c = (Carriage)eb;
                     str += c.getName();
                     if(c.getColor() == Color.red)
-                        str += "R" + (c.hasPassengers() ? "1" : "0");
+                        str += "R" + (c.hasPassangers() ? "1" : "0");
                     if(c.getColor() == Color.green)
-                        str += "G" + (c.hasPassengers() ? "1" : "0");
+                        str += "G" + (c.hasPassangers() ? "1" : "0");
                     if(c.getColor() == Color.blue)
-                        str += "B" + (c.hasPassengers() ? "1" : "0");
+                        str += "B" + (c.hasPassangers() ? "1" : "0");
                     if(c.getColor() == Color.rainbow)
-                        str += "U" + (c.hasPassengers() ? "1" : "0");
+                        str += "U" + (c.hasPassangers() ? "1" : "0");
                     break;
                 case "CoalCar":
-                    str += eb.getName();//csak a nevét tároljuk el
+                    str += eb.getName();//csak a nevÃ©t tÃ¡roljuk el
                     break;
                 default:
                     break;
             }
         else
-            str += "0";//ha nincs az adott pontban vonat rész
+            str += "0";//ha nincs az adott pontban vonat rÃ©sz
         return String.format("%-4s", str);
     }
 
     /**
-     * A vonatok jelenlegi állását elmenti az eredményekbe(teszteseteknél kell)
+     * A vonatok jelenlegi Ã¡llÃ¡sÃ¡t elmenti az eredmÃ©nyekbe
      */
-    public void getTrainMap(){//hasonló mint a getRailMap
-        updateTrainMap();//elöször frissítjük a térképet
+    public void getTrainMap(){//hasonlÃ³ mint a getRailMap
+        updateTrainMap();//elÅ‘szÃ¶r frissÃ­tjÃ¼k a tÃ©rkÃ©pet
         String row = "";
         result.add("\n/Trainmap:\n");
         for (int i = 0; i < trainMap.length; i++) {
             for (int j = 0; j < trainMap[i].length; j++) {
-                row += getTrainInfo(trainMap[i][j]);//lekérjük az infót
+                row += getTrainInfo(trainMap[i][j]);//lekÃ©rjÃ¼k az infÃ³t
                 if(j != trainMap[i].length-1)
                     row += "| ";
             }
-            result.add(row + '\n');//hozzáadjuk a resulthoz
+            result.add(row + '\n');//hozzÃ¡adjuk a resulthoz
             row = "";
         }
-        if(Tunnel.isInitialized()) {//ha létrehoztunk alagutat, azt is megjelenítjük
+        if(Tunnel.isInitialized()) {//ha lÃ©trehoztunk alagutat, azt is megjelenÃ­tjÃ¼k
             result.add("\n/Tunnel:\n");
             for (int i = 0; i < Tunnel.getInner().length; i++) {
-                row += getTrainInfo(Tunnel.getInner()[i].getTrainElement());//lekérjük az infót
+                row += getTrainInfo(Tunnel.getInner()[i].getTrainElement());//lekÃ©rjÃ¼k az infÃ³t
                 if (i != Tunnel.getInner().length - 1)
                     row += "| ";
                 else
@@ -477,32 +467,32 @@ public class Command {
     }
 
     /**
-     * Teszteset sikerességének vizsgálata
-     * @param height a pálya magassága
-     * @param expected elvárt teszteredmény
+     * Teszteset sikeressÃ©gÃ©nek vizsgÃ¡lata
+     * @param height a pÃ¡lya magassÃ¡ga
+     * @param expected elvÃ¡rt teszteredmÃ©ny
      * @return igaz, ha a teszt sikeres volt
      */
-    public boolean testMatch(int height, ArrayList<String> expected){//összehasonlítja sorról sorra az eredményeket az elvárttal.
+    public boolean testMatch(int height, ArrayList<String> expected){//Ã¶sszehasonlÃ­tja sorrÃ³l sorra az eredmÃ©nyeket az elvÃ¡rttal.
         result.remove(0); result.remove(height);
-        int resH = height*2;//Rail + Trainmap, mindegyikhez a felirat + sortörés.
+        int resH = height*2;//Rail + Trainmap, mindegyikhez a felirat + sortÃ¶rÃ©s.
         if(Tunnel.isInitialized()) {
             result.remove(2*height); resH += 1; //+Tunnel
         }
-        if(expected.size() != resH || result.size() != resH) return false;//ha nem annyi sora van mint amit vártunk visszatérünk
+        if(expected.size() != resH || result.size() != resH) return false;//ha nem annyi sora van mint amit vÃ¡rtunk visszatÃ©rÃ¼nk
         for(int i = 0; i < resH; i++){
-            if(!expected.get(i).equals(result.get(i).trim())){//amíg jók az eredmények várakozik
-                System.out.println("Wrong results at line " + (i+1));//ha valami hibás, kiírja a sort, és visszatér hamissal
+            if(!expected.get(i).equals(result.get(i).trim())){//amÃ­g jÃ³k az eredmÃ©nyek vÃ¡rakozik
+                System.out.println("Wrong results at line " + (i+1));//ha valami hibÃ¡s, kiÃ­rja a sort, Ã©s visszatÃ©r hamissal
                 return false;
             }
         }
-        return true;//egyébként sikeres
+        return true;//egyÃ©bkÃ©nt sikeres
     }
 
     /**
-     * Az eredményt fájlba írja
-     * @param res eredmény
+     * Az eredmÃ©nyt fÃ¡jlba Ã­rja
+     * @param res eredmÃ©ny
      */
-    public void writeOut(ArrayList<String> res){//kiírjuk a paraméterben átadott lista tartalmát.
+    public void writeOut(ArrayList<String> res){//kiÃ­rjuk a paramÃ©terben Ã¡tadott lista tartalmÃ¡t.
         try {
             Writer out;
             if (output != null)
@@ -521,15 +511,15 @@ public class Command {
     }
 
     /**
-     * @return A pálya dimenziója/mérete
+     * @return A pÃ¡lya dimenziÃ³ja/mÃ©rete
      */
     public Dimension getDim(){return mapSize;}
     /**
-     * @return A sínelemek térképe
+     * @return A sÃ­nelemek tÃ©rkÃ©pe
      */
     public RailElement[][] getMap(){return railMap;}
     /**
-     * @return A lehetséges belépési pontok a vonatoknak
+     * @return A lehetsÃ©ges belÃ©pÃ©si pontok a vonatoknak
      */
     public ArrayList<Point> getEntraces(){return entrances;}
 }

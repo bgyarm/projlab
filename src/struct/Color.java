@@ -1,7 +1,7 @@
 package struct;
 
 /**
- * Egy egyszerû szín osztály 4 színnel: piros, kék, zöld, szívárvány
+ * Egy egyszerÃ» szÃ­n osztÃ¡ly 4 szÃ­nnel: piros, kÃ©k, zÃ¶ld, szÃ­vÃ¡rvÃ¡ny
  */
 public enum Color {
     red(java.awt.Color.RED),
@@ -12,19 +12,19 @@ public enum Color {
     java.awt.Color color;
 
     /**
-     * @param c szín
+     * @param c szÃ­n
      */
     Color(java.awt.Color c){
         color = c;
     }
     /**
-     * @return szín
+     * @return szÃ­n
      */
     public java.awt.Color getColor(){return color;}
 
     /**
-     * @param c másik szín
-     * @return igaz, ha azonos a kettõ szín
+     * @param c mÃ¡sik szÃ­n
+     * @return igaz, ha azonos a kettÃµ szÃ­n
      */
-    boolean equals(Color c){ return this == c || this == rainbow || c == rainbow; }//a szivÃ¡rvÃ¡ny szÃ­n mindennel ekvivalens
+    boolean equals(Color c){ return this == c || this == rainbow || c == rainbow; }//a szivÃƒÂ¡rvÃƒÂ¡ny szÃƒÂ­n mindennel ekvivalens
 }
