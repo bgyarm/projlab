@@ -7,9 +7,19 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * A szenes/utasokocsik kirajzolható objektuma
+ */
 public class GCar extends Drawable {
     String direction;
     boolean passengers;
+    /**
+     * @param x Szélességi koordináta
+     * @param y Magassági koordináta
+     * @param dir A kocsi iránya
+     * @param color A kocsi színe
+     * @param passengers Vannak-e utasok
+     */
     public GCar(int x, int y, String dir, String color, boolean passengers) {
         super(x, y);
         direction = dir;
@@ -27,6 +37,10 @@ public class GCar extends Drawable {
         } catch (IOException ex) {}
     }
 
+    /* (non-Javadoc)
+     * @see graphics.Drawable#draw(java.awt.Graphics)
+     * Ha vannak utasok, azt is jelzi
+     */
     @Override
     public void draw(Graphics g) {
         super.draw(g);

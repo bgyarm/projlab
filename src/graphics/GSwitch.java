@@ -8,7 +8,15 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * A váltó kirajzolható megvalósítása
+ */
 public class GSwitch extends Drawable {
+    /**
+     * @param x Szélességi koordináta
+     * @param y Magassági koordináta
+     * @param state A váltó állása
+     */
     public GSwitch(int x, int y, String state){
         super(x, y);
         String path = new File("").getAbsolutePath() + "\\img\\";
@@ -29,6 +37,10 @@ public class GSwitch extends Drawable {
             }
         } catch (IOException ex){}
     }
+    /* (non-Javadoc)
+     * @see graphics.Drawable#draw(java.awt.Graphics)
+     * Jelzi, hogy ez egy váltó egy S betûvel
+     */
     @Override
     public void draw(Graphics g){
         super.draw(g);

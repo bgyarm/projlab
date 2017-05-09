@@ -1,11 +1,17 @@
 package struct;
 
+/**
+ * A váltó sínelemet megvalósító osztály
+ */
 public class Switch extends RailElement {
 	//négy irányú váltó
     private RailElement[] sw;
     private State state;
 
     //hat lehetséges állapot
+    /**
+     * Hat lehetséges állapot
+     */
     enum State{//állapotok azzal a jelzéssel hogy melyik sínhez vannak csatlakoztatva
         AB(0, 1),
         BC(1, 2),
@@ -19,16 +25,24 @@ public class Switch extends RailElement {
     }
 
 
-
+    /**
+     * Kezdõállapot nélküli konstruktor
+     */
     public Switch(){
         sw = new RailElement[4];
     	trainElement = null;
         notConnected = new RailElement() {//nem csatlakozott sínt jelzi
+            /* (non-Javadoc)
+             * @see struct.RailElement#setNext(struct.RailElement)
+             */
             @Override
             public boolean setNext(RailElement next) {
                 return false;
             }
 
+            /* (non-Javadoc)
+             * @see struct.RailElement#getNext(struct.RailElement)
+             */
             @Override
             public RailElement getNext(RailElement prev) {
                 return null;
@@ -36,6 +50,9 @@ public class Switch extends RailElement {
         };
         state = State.AB;//alap állapot az AB állapot
     }
+	/**
+	 * @param state kezdõállapot
+	 */
 	public Switch(String state){//meg lehet adni kezdö állapottal is
         sw = new RailElement[4];
 		trainElement = null;
@@ -54,6 +71,9 @@ public class Switch extends RailElement {
 	}
 
     //Az elsõ null érték helyére rakjuk az új sínelemet
+    /* (non-Javadoc)
+     * @see struct.RailElement#setNext(struct.RailElement)
+     */
     @Override
     public boolean setNext(RailElement element){
         if(element == null)
@@ -69,6 +89,9 @@ public class Switch extends RailElement {
         return false;
     }
 
+    /* (non-Javadoc)
+     * @see struct.RailElement#getNext(struct.RailElement)
+     */
     @Override
     public RailElement getNext(RailElement prev){
         //Megkapjuk az állapotból, hogy mely sínek vannak összekötve
@@ -83,6 +106,9 @@ public class Switch extends RailElement {
     }
 
     //megadja, hogy lehetséges-e egyáltalán a váltás
+    /**
+     * @return Lehetséges-e a váltás
+     */
     private boolean valid(){//akor lehetséges ha van legalább két aktív sine
     	int n = 0;
     	for (int i = 0; i < 4; i++){
@@ -91,6 +117,9 @@ public class Switch extends RailElement {
     	return n>2;
     }
 
+    /**
+     * @param dir váltás iránya
+     */
     public void changeDirection(String dir){
         if(trainElement == null) {
             state = State.valueOf(dir);
@@ -102,6 +131,9 @@ public class Switch extends RailElement {
         }
     }
 
+    /**
+     * váltás a következõ állapotba
+     */
     public void changeDirection() {//megpróbálja a következö állapotba állítani a váltót
     	//Ha nem lehetséges a váltás, ne próbálkozzon
         if(!valid()) return;
@@ -134,6 +166,9 @@ public class Switch extends RailElement {
         }
     }
 
+    /* (non-Javadoc)
+     * @see struct.RailElement#isEntrance()
+     */
     @Override
     public boolean isEntrance(){//lehet e kiindulópont
         int n = 0;
@@ -143,5 +178,8 @@ public class Switch extends RailElement {
         return n > 0 && n < 3;
     }
 
+    /**
+     * @return Az váltó állása/állapota
+     */
     public String  getState(){return state.name();}
 }

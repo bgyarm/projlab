@@ -6,8 +6,18 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * A mozdony kirajzolható megvalósítása
+ */
 public class GEngine extends Drawable {
     String direction;
+    /**
+     * @param x Szélességi koordináta
+     * @param y Magassági koordináta
+     * @param dir Haladási irány
+     * @param boom Felrobbant-e
+     * @param start A vonat elindult-e
+     */
     public GEngine(int x, int y, String dir, boolean boom, boolean start) {
         super(x, y);
         direction = dir;

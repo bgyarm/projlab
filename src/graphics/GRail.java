@@ -8,8 +8,17 @@ import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Az egyszerû sínelem kirajzolható megvalósítása
+ */
 public class GRail extends Drawable {
     Station station;
+    /**
+     * @param x Szélességi koordináta
+     * @param y Magassági koordináta
+     * @param dir Iránya
+     * @param station Rajta lévõ állomás (ha van)
+     */
     public GRail(int x, int y, String dir, Station station){
         super(x, y);
         String path = new File("").getAbsolutePath() + "\\img\\";
@@ -34,6 +43,10 @@ public class GRail extends Drawable {
             }
         } catch (IOException ex){}
     }
+    /* (non-Javadoc)
+     * @see graphics.Drawable#draw(java.awt.Graphics)
+     * Ha van rajta állomás, jelzi, az utasokat is
+     */
     @Override
     public void draw(Graphics g) {
         super.draw(g);
