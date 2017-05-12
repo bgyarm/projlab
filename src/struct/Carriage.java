@@ -16,7 +16,9 @@ public class Carriage extends ElementBase {
      * @param passengers Vannek-e utasok a kocsin 
      */
     public  Carriage(ElementBase parent, Color color, boolean passengers){
-    	child = null;
+        prevRail = RailElement.notConnected;
+        actRail = RailElement.notConnected;
+        child = null;
         this.color = color;
         this.empty = !passengers;
         this.token = false;
@@ -43,16 +45,16 @@ public class Carriage extends ElementBase {
 
         prevRail = actRail;//beállítjuk a dolgokat
     	actRail = parent.prevRail;
-    	if(actRail != null)
+    	if(actRail != RailElement.notConnected)
     		actRail.setTrainElement(this);
-    	if(prevRail != null)
+    	if(prevRail != null || prevRail != RailElement.notConnected)
     	    prevRail.setTrainElement(child);
     	boolean tokenpass = false;//csak akkor adjuk át a tokent ha kiürült egy vagon. Alapból ezért false
         
         //nézzük meg, van-e itt állomás, ahová érkeztünk
         //ha van és egyezik a színünk...
 		Station s = null;
-		if(actRail != null)
+		if(actRail != RailElement.notConnected)
         	s = actRail.getStation();
         if (s != null) {
             Color c = s.getColor();

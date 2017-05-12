@@ -27,7 +27,6 @@ public class Controller {
     public Controller(View v, String actLevel) {
         comm = new Command();
         view = v;
-        init(actLevel);
 
         listener = new MouseListener() {
             @Override
@@ -61,8 +60,10 @@ public class Controller {
         if(railMap != null)
             for(int i = 0; i < railMap.length; i++)
                 for(int j = 0; j < railMap[i].length; j++)
-                    if(railMap[i][j] != null && railMap[i][j].getClass().getSimpleName().equals("Tunnel"))
-                        ((Tunnel)railMap[i][j]).destroy();
+                    if(railMap[i][j] != null && railMap[i][j].getClass().getSimpleName().equals("Tunnel")) {
+                        ((Tunnel) railMap[i][j]).destroy();
+                        railMap[i][j] = null;
+                    }
         comm.input(actLevel.substring(0, actLevel.lastIndexOf('.')));
         comm.init();
         int size = view.getSize().width / comm.getDim().width;
@@ -146,14 +147,14 @@ public class Controller {
                         RailElement[] neighs = comm.getNeighbours(i, j);
                         String direction = "";
                         for(int n = 0; n < 4; n++)
-                            if(neighs[n] != null && neighs[n].equals(tmp.getPrevRail()))
+                            if(neighs[n] != null && neighs[n] != RailElement.notConnected && neighs[n].equals(tmp.getPrevRail()))
                                 direction += n;
                         for(int n = 0; n < 4; n++)
-                            if(neighs[n] != null && neighs[n].equals(tmp.getActRail().getNext(tmp.getPrevRail())))
+                            if(neighs[n] != null && neighs[n] != RailElement.notConnected && neighs[n].equals(tmp.getActRail().getNext(tmp.getPrevRail())))
                                 direction += n;
                         if (tmp.getClass().getSimpleName().equals("Engine")) {
                             boolean isBoom = tmp.getDerailed() || tmp.getCrshed() != null;
-                            view.addTrain(new GEngine(j * View.imgSize, i * View.imgSize, direction, isBoom, tmp.getPrevRail()==null), j, i);
+                            view.addTrain(new GEngine(j * View.imgSize, i * View.imgSize, direction, isBoom, tmp.getPrevRail() == RailElement.notConnected), j, i);
                         } else if (tmp.getClass().getSimpleName().equals("CoalCar")){
                             view.addTrain(new GCar(j * View.imgSize, i * View.imgSize, direction, "coal", false), j, i);
                         }
@@ -213,7 +214,7 @@ public class Controller {
                     ent = comm.getEntraces().get(r.nextInt(entNum));
                     tries++;
                     if(tries > 3) break;
-                } while ((railMap[ent.x][ent.y].getTrainElement() != null || railMap[ent.x][ent.y].getNext(null) == null) && !Game.isOver());
+                } while ((railMap[ent.x][ent.y].getTrainElement() != null || railMap[ent.x][ent.y].isBothNull()) && !Game.isOver());
                 if(tries <= 3) {
                     s = String.format("E%d %d %d", Game.numTrains, ent.x, ent.y);
                     addEvent(s);

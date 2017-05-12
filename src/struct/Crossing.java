@@ -8,8 +8,8 @@ public class Crossing extends RailElement {
     private RailElement[] cross;
     
     public Crossing(){
+        super();
     	cross = new RailElement[4];
-    	trainElement = null;
     }
 
     
@@ -57,7 +57,7 @@ public class Crossing extends RailElement {
         int n = 0;
         for(int i = 0; i < 4; i++)
             if(cross[i] == notConnected)//akkor lehet ha van legalább 1 nem cstlakoztatott vége
-                n++;
-        return n > 0 && n < 3;
+                return true;
+        return false;
     }
 }

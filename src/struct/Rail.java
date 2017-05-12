@@ -12,10 +12,10 @@ public class Rail extends RailElement {
      * Állomás nélküli sín
      */
     public Rail(){
-    	trainElement = null;
+        super();
         station = null;
-        railA = null;
-        railB = null;
+        railA = notConnected;
+        railB = notConnected;
     }
     /**
      * @param s A sín mellett található állomás
@@ -23,6 +23,8 @@ public class Rail extends RailElement {
     public Rail(Station s) {
     	super();
     	station = s;
+        railA = notConnected;
+        railB = notConnected;
     }
     /**
      * @param next Mellette lévõ sínelem
@@ -37,11 +39,13 @@ public class Rail extends RailElement {
     	 */
     	@Override
     public boolean setNext(RailElement next){
+        if(next == null)
+            return this.setNext(notConnected);
     	//Csak akkor tudja beállítani a következõt, ha van olyan vége, ami nincs csatlakoztatva sehova
-    	if(next == null || railA == next || railB == next) return true;
-        if(railA == null)
+    	if(next == notConnected || railA == next || railB == next) return true;
+        if(railA == notConnected)
     		railA = next;
-    	else if (railB == null)
+    	else if (railB == notConnected)
     		railB = next;
     	else
     		return false;
@@ -75,7 +79,7 @@ public class Rail extends RailElement {
      */
     @Override
     public boolean isEntrance(){//lehet e bejárat. Ilyenkor valamelyik végének nullnak kell lenni, ahol bejön a vonat.
-        if(railA == null || railB == null)//azt hogy pálya szélér?l indul e azt a vonat létrehozásakor ellen?rizzük
+        if((railA == notConnected && railB != notConnected) || (railB == notConnected && railA != notConnected))//azt hogy pálya szélérél indul-e azt a vonat létrehozásakor ellenörizzük
             return true;
         return false;
     }
@@ -86,9 +90,9 @@ public class Rail extends RailElement {
     @Override
     public boolean remove(RailElement element){//szétkapcsoljuk az aktuális sínt és a paraméterben kapottat, ha lehet.
     	if(railA == element)
-    		railA = null;
+    		railA = notConnected;
     	else if(railB == element)
-    		railB = null;
+    		railB = notConnected;
     	else
     		return false;
     	return true;

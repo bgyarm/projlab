@@ -5,7 +5,9 @@ package struct;
  */
 public abstract class RailElement {
     ElementBase trainElement;
-    static protected RailElement notConnected = new RailElement() {
+
+    static final public RailElement notConnected  = new RailElement() {
+
         /* (non-Javadoc)
          * @see struct.RailElement#setNext(struct.RailElement)
          */
@@ -22,7 +24,9 @@ public abstract class RailElement {
             return null;
         }
     };
-	
+
+    public RailElement(){trainElement = null;}
+
 	/**
 	 * @param next mellette lévö sínelem
 	 * @return sikerült-e összekapcsolni
@@ -49,11 +53,20 @@ public abstract class RailElement {
      * @return Lehet-e pályabejárat (ahol a vonatok indulnak)
      */
     public boolean isEntrance(){return false;}
+
     /**
-     * @param element A sz?tkapcsoland? sín
+     * @return Mindkét vége null-e
+     */
+    public boolean isBothNull(){
+        if(this.getNext(notConnected) == notConnected)
+            return true;
+        return false;
+    }
+    /**
+     * @param element A szétkapcsolandó sín
      * @return Sikerült-e szétkapcsolni a két sínt
      */
-    public boolean remove(RailElement element){return false;}
+    public boolean remove(RailElement element){return true;}
 
     /**
      * @return A sínelem mellett található állomás. null, ha nincs

@@ -9,6 +9,8 @@ public class CoalCar extends ElementBase {
 	 * @param parent Az õt húzó elem
 	 */
 	public  CoalCar(ElementBase parent){
+		prevRail = RailElement.notConnected;
+		actRail = RailElement.notConnected;
 		child = null;
 		this.parent = parent;
 		parent.child = this;

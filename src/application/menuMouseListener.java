@@ -42,7 +42,7 @@ public class menuMouseListener implements MouseListener {
                 System.exit(0);
             }
         } else {
-            if (mouse.distance(new Point(Window.windowWidth - 220, Window.windowHeight - 80)) < 50) {
+            if (!Game.isPaused() && mouse.distance(new Point(Window.windowWidth - 220, Window.windowHeight - 80)) < 50) {
                 menu.setStarted(false);
                 menu.update();
                 menu.repaint();

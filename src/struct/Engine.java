@@ -12,11 +12,10 @@ public class Engine extends ElementBase {
      * @param rail A mozdony kezdõhelye
      */
     public  Engine(RailElement rail){
-    	child = null;
         actRail = rail;
-        prevRail = null;
+        prevRail = RailElement.notConnected;
+    	child = null;
         active = true;
-        
         parent = null;
         this.setName("Engine " + count++);
     }
@@ -31,7 +30,7 @@ public class Engine extends ElementBase {
         RailElement nextRail = actRail.getNext(prevRail);//magkapjuk az elözö pozícióból kiszámított következö pozíciót.
 
 
-        if(nextRail != null && nextRail != RailElement.notConnected && nextRail.getTrainElement() == null){//ha nem siklik ki, és nincs akivel ütközne
+        if(nextRail != RailElement.notConnected && nextRail.getTrainElement() == null){//ha nem siklik ki, és nincs akivel ütközne
             prevRail = actRail;
             actRail = nextRail;
             actRail.setTrainElement(this);
@@ -41,7 +40,7 @@ public class Engine extends ElementBase {
         		child.move();//megpróbáljuk mozgatni a kapcsolt kocsikat
         	}
         }
-        else if(nextRail != null && nextRail.getTrainElement() != null) {//ha van valaki elöttünk
+        else if(nextRail.getTrainElement() != null) {//ha van valaki elöttünk
             crash(nextRail.getTrainElement().getName().substring(1));//ütközés és átadjuk az idját a vonatnak akivel ütköztünk
             nextRail.getTrainElement().crash(this.getName().substring(1));// másik vonaton is meg kell hívni
         }

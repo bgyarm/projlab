@@ -53,8 +53,8 @@ public class Tunnel extends Rail {
      */
     @Override
     public boolean setNext(RailElement next){//megpróbáljuk beállítani a következö sínnek a kopottat
-        if(next == null || railB == next) return true;//ha már be van állítva vagy nem akarunk semmit beállítani
-        if(railA != null && railB == null){ //ha railA null, akkor a konstruktorban nem tudta megkapni az alagút semeylik végét. railB-hez ha már van valaki hozzákötve akkor nem tudjuk beállítani
+        if(next == null || next == notConnected || railB == next) return true;//ha már be van állítva vagy nem akarunk semmit beállítani
+        if(railA != null && railB == notConnected){ //ha railA null, akkor a konstruktorban nem tudta megkapni az alagút semeylik végét. railB-hez ha már van valaki hozzákötve akkor nem tudjuk beállítani
             railB = next;
             return true;//ha betudtuk állítani, be is állítjuk
         }
@@ -83,13 +83,13 @@ public class Tunnel extends Rail {
         ElementBase inElement = this.getTrainElement();
 
         if(inElement == null){//ha nincs senki közvetlenül a bejáraton
-            if(railB != null)
-                if(railB.remove(this))//megpróbáljuk szétkapcsolni
-                    this.remove(railB);
-            if(!tunnel[0].remove(this))
-                tunnel[2].remove(this);
-            count--;
-            return true;// ha lehet
+            if(railB.remove(this)) {//megpróbáljuk szétkapcsolni
+                this.remove(railB);
+                if (!tunnel[0].remove(this))
+                    tunnel[2].remove(this);
+                count--;
+                return true;// ha lehet
+            }
         }
         return false;//ha nem lehet megsemmisíteni
     }
@@ -99,8 +99,8 @@ public class Tunnel extends Rail {
      */
     public static void reset(){
         if(initialized) {
-            tunnel[0].remove(tunnel[0].getNext(tunnel[1]));
-            tunnel[2].remove(tunnel[2].getNext(tunnel[1]));
+            //tunnel[0].remove(tunnel[0].getNext(tunnel[1]));
+            //tunnel[2].remove(tunnel[2].getNext(tunnel[1]));
             tunnel[0].setTrainElement(null);
             tunnel[1].setTrainElement(null);
             tunnel[2].setTrainElement(null);

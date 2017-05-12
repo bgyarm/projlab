@@ -54,6 +54,7 @@ public class Game extends JLayeredPane implements Runnable{
      * Elindítja a játékot (start gomb)
      */
     public void start(){
+        pause = false;
         numTrains = 0;
         ticks = 0;
         controller.newTrain();
@@ -68,15 +69,16 @@ public class Game extends JLayeredPane implements Runnable{
         try{
             while (true) {
                 if (!over && menu.getStarted()) {
-                    ticks++;
                     if (r.nextInt(100) < 5)
                         controller.newTrain();
                     controller.validate();
+                    menu.repaint(0, 0, 150, 40);
                     Thread.sleep(800);
                     controller.addEvent("M");
-                    menu.repaint(0, 0, 100, 40);
-                    if(ticks > 30){
+                    ticks++;
+                    if(ticks >= 30){
                         gameOver("Nyertel!");
+                        pause = true;
                         Thread.sleep(3000);
                         overText = "";
                         menu.act++;
@@ -101,6 +103,7 @@ public class Game extends JLayeredPane implements Runnable{
      * @param b végejelzés
      */
     public static void setOver(boolean b){over = b;}
+    public static boolean isPaused(){return pause;}
 	/**
 	 * Szüneteli vagy folytatja a játékot
 	 */

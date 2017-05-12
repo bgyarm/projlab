@@ -29,16 +29,16 @@ public class Switch extends RailElement {
      * Kezdõállapot nélküli konstruktor
      */
     public Switch(){
+        super();
         sw = new RailElement[4];
-    	trainElement = null;
         state = State.AB;//alap állapot az AB állapot
     }
 	/**
 	 * @param state kezdõállapot
 	 */
 	public Switch(String state){//meg lehet adni kezdö állapottal is
+        super();
         sw = new RailElement[4];
-		trainElement = null;
 		changeDirection(state);
 	}
 
@@ -49,7 +49,7 @@ public class Switch extends RailElement {
     @Override
     public boolean setNext(RailElement element){
         if(element == null)
-            return setNext(notConnected);//ha nincs csatlakoztatva akkor is jelzö értékkel beállítunk egy objektumot
+            return this.setNext(notConnected);//ha nincs csatlakoztatva akkor is jelzö értékkel beállítunk egy objektumot
         if(element != notConnected)
             for(int i = 0; i < 4; i++)
                 if(sw[i] == element) return true;//ha már szerepel
@@ -69,10 +69,9 @@ public class Switch extends RailElement {
         //Megkapjuk az állapotból, hogy mely sínek vannak összekötve
         //Majd ha az egyik végét kaptuk elõzõként, akkor a másikat adjuk vissza
         //Ha egyiket sem, akkor null értéket
-        RailElement tmp = prev == null ? notConnected : prev;
-        if(tmp == sw[state.getState()[0]])
+        if(prev == sw[state.getState()[0]])
             return sw[state.getState()[1]];
-        else if (tmp == sw[state.getState()[1]])
+        else if (prev == sw[state.getState()[1]])
             return sw[state.getState()[0]];
         return null;
     }
@@ -84,7 +83,7 @@ public class Switch extends RailElement {
     private boolean valid(){//akor lehetséges ha van legalább két aktív sine
     	int n = 0;
     	for (int i = 0; i < 4; i++){
-            if(sw[i] != null || sw[i] != notConnected) n++;//null is lehet ha még nem volt meghívva rá a setNext
+            if(sw[i] != notConnected) n++;
         }
     	return n>2;
     }
@@ -143,11 +142,9 @@ public class Switch extends RailElement {
      */
     @Override
     public boolean isEntrance(){//lehet e kiindulópont
-        int n = 0;
-        for(int i = 0; i < 4; i++)
-            if(sw[i] == null || sw[i] == notConnected)//akkor lehet ha van legalább 1 nem csatlakoztatott vége
-                n++;
-        return n > 0 && n < 3;
+        if(sw[state.getState()[0]] == notConnected || sw[state.getState()[1]] == notConnected) //ha valamelyik végé nincs csatlakoztatva, de a másik igen
+            return true; //lehet bejárat
+        return false;//egyébként nem
     }
 
     /**

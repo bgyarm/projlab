@@ -63,10 +63,11 @@ public class Menu extends JPanel {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         g.setFont(Game.font);
-        g.drawString(levels[act].substring(0, levels[act].lastIndexOf('.')), 200, 30);
+        g.drawString(levels[act].substring(0, levels[act].lastIndexOf('.')), 400, 30);
         if(started){
             g.drawString("Back", Window.windowWidth - 240, Window.windowHeight - 80);
             g.drawString(Integer.toString(Game.points), 20, 35);
+            g.drawString(Integer.toString(Game.ticks), 100, 35);
             if(Game.isOver()) {
                 g.setColor(Color.BLACK);
                 g.setFont(new Font("Comic Sans MS", Font.BOLD, 60));

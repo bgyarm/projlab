@@ -70,7 +70,7 @@ public abstract class ElementBase {
     /**
      * @return Az elõzõ sínelem
      */
-    public RailElement getPrevRail() {return prevRail;}
+    public RailElement getPrevRail() {return prevRail == null ? RailElement.notConnected : prevRail;}
     /**
      * A tokent ennek a vonatelemnek adja. Mozdony/szeneskocsi esetén egybõl továbbadja, ha tudja
      */
