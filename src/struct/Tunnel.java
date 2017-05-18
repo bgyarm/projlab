@@ -18,6 +18,7 @@ public class Tunnel extends Rail {
         tunnel[1].setNext(tunnel[0]);
         tunnel[1].setNext(tunnel[2]);
         tunnel[2].setNext(tunnel[1]);
+        count = 0;
         initialized = true;//ez után már létrejött a láthatatlan alagút
     }
 
@@ -97,8 +98,8 @@ public class Tunnel extends Rail {
     /**
      * Az alagút alaphelyzetbe állítása
      */
-    public static void reset(){
-        if(initialized) {
+    public static void reset() {
+        if (initialized) {
             //tunnel[0].remove(tunnel[0].getNext(tunnel[1]));
             //tunnel[2].remove(tunnel[2].getNext(tunnel[1]));
             tunnel[0].setTrainElement(null);

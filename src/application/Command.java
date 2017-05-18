@@ -160,6 +160,17 @@ public class Command {
                         throw new Exception("Wrong matrix format! Rail cannot connect at (" + i + ", " + j + ").");
                 }
             }
+
+            for(int i = 0; i < h; i++) {
+                for (int j = 0; j < w; j++) {
+                    if (railMap[i][j] != null) {
+                        if(railMap[i][j].getClass().getSimpleName().equals("Switch"))
+                            ((Switch)railMap[i][j]).changeDirection("AB");
+                        else if(railMap[i][j].getClass().getSimpleName().equals("Tunnel"))
+                            Tunnel.count++;
+                    }
+                }
+            }
 		} catch(Exception e){
             System.out.println(e.getMessage());
 		}
@@ -286,6 +297,14 @@ public class Command {
                             int w = Integer.parseInt(comm[2]);
                             if(map[h][w].getClass().getSimpleName().equals("Switch"))
                                 ((Switch)map[h][w]).changeDirection();
+                        }
+                        break;
+                    case 's'://váltós esetén
+                        if(comm.length == 3){ //ha nincs álapot paraméter
+                            int h = Integer.parseInt(comm[1]);
+                            int w = Integer.parseInt(comm[2]);
+                            if(map[h][w].getClass().getSimpleName().equals("Switch"))
+                                ((Switch)map[h][w]).changeDirectionBack();
                         }
                         break;
                     case 'M'://Mozgatjuk a vonatokat

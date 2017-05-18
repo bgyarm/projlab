@@ -95,7 +95,7 @@ public class Switch extends RailElement {
         if(trainElement == null) {
             state = State.valueOf(dir);
             for(int i = 0; i < 4; i++)
-                if(i == state.getState()[0] || i == state.getState()[1])
+                if(sw[i] != null && i == state.getState()[0] || i == state.getState()[1])
                     sw[i].setNext(this);
                 else
                     sw[i].remove(this);
@@ -137,14 +137,51 @@ public class Switch extends RailElement {
         }
     }
 
+    /**
+     * váltás a elõzõ állapotba
+     */
+    public void changeDirectionBack() {//megpróbálja az elözö állapotba állítani a váltót
+        //Ha nem lehetséges a váltás, ne próbálkozzon
+        if(!valid()) return;
+        if (trainElement == null) {
+            switch(state){//megviszgálja az aktuális helyzetet, majd dönt a következö állapotról
+                case BC:
+                    state = State.AB;
+                    break;
+                case CD:
+                    state = State.BC;
+                    break;
+                case DA:
+                    state = State.CD;
+                    break;
+                case AC:
+                    state = State.DA;
+                    break;
+                case BD:
+                    state = State.AC;
+                    break;
+                case AB:
+                    state = State.BD;
+                    break;
+            }
+            for(int i = 0; i < 4; i++)
+                if(i == state.getState()[0] || i == state.getState()[1])
+                    sw[i].setNext(this);
+                else
+                    sw[i].remove(this);
+        }
+    }
+
     /* (non-Javadoc)
      * @see struct.RailElement#isEntrance()
      */
     @Override
     public boolean isEntrance(){//lehet e kiindulópont
-        if(sw[state.getState()[0]] == notConnected || sw[state.getState()[1]] == notConnected) //ha valamelyik végé nincs csatlakoztatva, de a másik igen
-            return true; //lehet bejárat
-        return false;//egyébként nem
+        int n = 0;
+        for(int i = 0; i< 4; i++)
+            if(sw[i] == notConnected) //ha valamelyik vége nincs csatlakoztatva
+            n++;
+        return n < 3 && n > 1;
     }
 
     /**

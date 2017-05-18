@@ -34,7 +34,7 @@ public class Controller {
                 int x = e.getX();
                 int y = e.getY();
                 if(x > 0 && x < view.getW() && y > 0 && y < view.getH()) {
-                    String comm = elementAt(x/View.imgSize, y/View.imgSize);
+                    String comm = elementAt(x/View.imgSize, y/View.imgSize, e.getButton() == MouseEvent.BUTTON3);
                     if(comm != null) {
                         events.add(comm);
                         validate();
@@ -174,12 +174,15 @@ public class Controller {
      * @param y magassági koordináta
      * @return A koordinátán lévö elem, ha van ott valami, egyébként null
      */
-    public String elementAt(int x, int y) {
+    public String elementAt(int x, int y, boolean right) {
         RailElement elem = railMap[y][x];
         if (elem != null) {
             String type = elem.getClass().getSimpleName();
             if (type.equals("Switch")) {
-                return String.format("S %d %d", y, x);
+                if(right)
+                    return String.format("s %d %d", y, x);
+                else
+                    return String.format("S %d %d", y, x);
             }
             else if (type.equals("Tunnel")) {
                 return String.format("T %d %d D", y, x);

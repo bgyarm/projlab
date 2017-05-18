@@ -58,7 +58,7 @@ public abstract class RailElement {
      * @return Mindkét vége null-e
      */
     public boolean isBothNull(){
-        if(this.getNext(notConnected) == notConnected)
+        if(this.getNext(notConnected) == notConnected || getNext(notConnected) == null)
             return true;
         return false;
     }
